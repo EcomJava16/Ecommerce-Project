@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<session version="1.0">
-<refactoring accessors="true" comment="Delete element from project &apos;ecom-backend&apos;&#x0D;&#x0A;- Original project: &apos;ecom-backend&apos;&#x0D;&#x0A;- Original element: &apos;ecom-backend/src/main/java/cybersoft.java16.ecom.controller&apos;" description="Delete element" element1="/src\/main\/java=/optional=/true=/=/maven.pomderived=/true=/&lt;cybersoft.java16.ecom.controller" elements="1" flags="589830" id="org.eclipse.jdt.ui.delete" resources="0" stamp="1650629810586" subPackages="false" version="1.0"/>
-</session>
