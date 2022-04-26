@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+
 @Getter
 @Setter
 @Entity
@@ -20,11 +21,11 @@ import lombok.experimental.SuperBuilder;
 public class EcomUser extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
-	@Column(name = "username")
+	@Column(name = "username", nullable = false, unique = true)
 	private String username;
 	@Column(name = "email")
 	private String email;
-	@Column(name = "password")
+	@Column(name = "password", nullable = false, unique = true)
 	private String password;
 	@Column(name = "facebook")
 	private String facebook;
@@ -38,11 +39,12 @@ public class EcomUser extends BaseEntity {
 	private String firstName;
 	@Column(name = "last_name")
 	private String lastName;
-	@Column(name = "display_name")
-	private String displayName;
+	@Column(name = "full_name")
+	private String fullName;
 	@Column(name = "address")
 	private String address;
 	@Column(name = "phone_number")
 	private String phoneNumber;
-
+	@Column(name="delete")
+	private boolean delete;
 }
