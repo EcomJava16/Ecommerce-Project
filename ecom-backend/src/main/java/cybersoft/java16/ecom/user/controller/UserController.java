@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cybersoft.java16.ecom.common.helper.ResponseHelper;
 import cybersoft.java16.ecom.user.dto.UserDTO;
+import cybersoft.java16.ecom.user.dto.UserUpdateDTO;
 import cybersoft.java16.ecom.user.service.UserService;
 
 @RequestMapping("/api/v1/user")
@@ -43,7 +44,7 @@ public class UserController {
 	}
 	
 	@PutMapping("/update/{user-id}")
-	public Object updateUser(@PathVariable(name = "user-id") String userId,@Valid @RequestBody UserDTO dto, BindingResult result) {
+	public Object updateUser(@PathVariable(name = "user-id") String userId,@Valid @RequestBody UserUpdateDTO dto, BindingResult result) {
 		if (result.hasErrors()) {
 			return ResponseHelper.getErrorResponse(result, HttpStatus.BAD_REQUEST);
 		}
