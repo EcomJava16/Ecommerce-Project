@@ -20,7 +20,6 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @SuperBuilder
 @Entity
-@Access(AccessType.FIELD)
 @Table(name = "category")
 public class Category extends BaseEntity {
 	private static final long serialVersionUID = 1L;
