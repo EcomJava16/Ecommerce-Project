@@ -35,17 +35,15 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public ProductDTO findById(String id) {
-		UUID uuid;
 		try {
-			uuid = UUID.fromString(id);
-		} catch (IllegalArgumentException ex) {
-			return null;
-		}
-		Optional<Product> productOpt = repository.findById(uuid);
+		Optional<Product> productOpt = repository.findById(UUID.fromString(id));
 		if(productOpt.isEmpty()) {
 			return null;
 		}
-		return ProductMapper.INSTANCE.toDTO(productOpt.get());
+			return ProductMapper.INSTANCE.toDTO(productOpt.get());
+		} catch (IllegalArgumentException ex) {
+			return null;
+		}
 	}
 
 	@Override
