@@ -23,5 +23,4 @@ public class Category extends BaseEntity {
 	private String model;
 	private String year;
 	
-	
 }

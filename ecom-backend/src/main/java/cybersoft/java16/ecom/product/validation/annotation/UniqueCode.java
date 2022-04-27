@@ -14,7 +14,7 @@ import cybersoft.java16.ecom.product.validation.validator.UniqueCodeValidator;
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD})
 public @interface UniqueCode {
-	String message() default "{product.validation.existedcode}";
+	String message() default "{product.validation.uniquecode.existedcode}";
 	
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
