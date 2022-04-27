@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import cybersoft.java16.ecom.user.dto.UserDTO;
+import cybersoft.java16.ecom.user.dto.UserUpdateDTO;
 import cybersoft.java16.ecom.user.mapper.UserMapper;
 import cybersoft.java16.ecom.user.model.EcomUser;
 import cybersoft.java16.ecom.user.repository.UserRepository;
@@ -24,7 +25,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<UserDTO> findAllUser() {
-		return repository.findAll().stream().map(t -> UserMapper.INSTANCE.toUserDto(t)).collect(Collectors.toList());
+		return  repository.findByDeleteFalse().stream().map(t -> UserMapper.INSTANCE.toUserDto(t)).collect(Collectors.toList());
 	}
 
 	@Override
@@ -42,17 +43,15 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDTO updateUser(String userId, UserDTO dto) {
+	public UserDTO updateUser(String userId, UserUpdateDTO dto) {
 		try {
 			EcomUser user = repository.getById(UUID.fromString(userId));
-			user.setUsername(dto.getUsername());
-			// Check password before update
-			if (!encoder.matches(dto.getPassword(), user.getPassword())) {
-				user.setPassword(encoder.encode(dto.getPassword()));
-			}
 			user.setPassword(encoder.encode(dto.getPassword()));
-			user.setStatus(dto.getStatus());
-			user.setProvider(dto.getProvider());
+			user.setAddress(dto.getAddress());
+			user.setFullName(dto.getFullName());
+			user.setFirstName(dto.getFirstName());
+			user.setLastName(dto.getLastName());
+			user.setPhoneNumber(dto.getPhoneNumber());
 			repository.save(user);
 			UserDTO updateUserDto = UserMapper.INSTANCE.toUserDto(user);
 			updateUserDto.setPassword(null);
@@ -66,7 +65,8 @@ public class UserServiceImpl implements UserService {
 	public UserDTO deleteUser(String userId) {
 		try {
 			EcomUser user = repository.getById(UUID.fromString(userId));
-			repository.deleteById(UUID.fromString(userId));
+			user.setDelete(true);
+			repository.save(user);
 			UserDTO deleteUserDto = UserMapper.INSTANCE.toUserDto(user);
 			deleteUserDto.setPassword(null);
 			return deleteUserDto;
