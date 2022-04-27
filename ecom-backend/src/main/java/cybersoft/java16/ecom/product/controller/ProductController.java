@@ -50,7 +50,7 @@ public class ProductController {
 	public Object findById(@PathVariable("product-id") String id ) {
 		ProductDTO product = service.findById(id);
 		if(product == null) {
-			return ResponseHelper.getErrorResponse("Not found product", HttpStatus.BAD_REQUEST);
+			return ResponseHelper.getErrorResponse("Product not found", HttpStatus.BAD_REQUEST);
 		}
 		return ResponseHelper.getResponse(product, HttpStatus.OK);
 	}
@@ -59,7 +59,7 @@ public class ProductController {
 	public Object findByCode(@PathVariable("product-code") String code) {
 		ProductDTO product = service.findByCode(code);
 		if(product == null) {
-			return ResponseHelper.getErrorResponse("Not found product", HttpStatus.BAD_REQUEST);
+			return ResponseHelper.getErrorResponse("Product not found", HttpStatus.BAD_REQUEST);
 		}
 		return ResponseHelper.getResponse(product, HttpStatus.OK);
 	}
