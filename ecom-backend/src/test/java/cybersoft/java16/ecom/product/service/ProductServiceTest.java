@@ -39,14 +39,14 @@ public class ProductServiceTest {
 				.description("product for test")
 				.build();
 	when(repository.findById(productID)).thenReturn(Optional.ofNullable(product));
-	Product actualProduct = repository.findById(productID).get();
+	Product actualProduct = service.findById(productID);
 	assertEquals(productID, actualProduct.getId());
 	assertEquals("Test_product", actualProduct.getCode());
 	assertEquals("product for test", actualProduct.getDescription());
 	}
 	
 	@Test
-	public void shouldReturnAllEntityCorrectlyWhenNoEntityFound() {
+	public void shouldReturnEmptyListWhenNoEntityFound() {
 		when(repository.findAll()).thenReturn(List.of());
 		
 		List<ProductDTO> products = service.findAllProductDTO();
@@ -54,7 +54,7 @@ public class ProductServiceTest {
 	}
 	
 	@Test
-	public void shouldReturnCorrectlyWhenCreate() {
+	public void shouldReturnAProductWhenCreateNewProduct() {
 		UUID productID = UUID.randomUUID();
 		Product product = Product.builder()
 				.id(productID)
