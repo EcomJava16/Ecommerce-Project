@@ -5,12 +5,11 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cybersoft.java16.ecom.product.dto.ProductDTO;
+import cybersoft.java16.ecom.product.dto.ProductUpdateDTO;
 import cybersoft.java16.ecom.product.mapper.ProductMapper;
 import cybersoft.java16.ecom.product.model.Product;
 import cybersoft.java16.ecom.product.repository.ProductRepository;
@@ -28,7 +27,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public ProductDTO createNewProduct(@Valid ProductDTO dto) {
+	public ProductDTO createNewProduct(ProductDTO dto) {
 		Product product = ProductMapper.INSTANCE.toModel(dto);
 		Product newProduct = repository.save(product);
 		return ProductMapper.INSTANCE.toDTO(newProduct);
@@ -36,7 +35,13 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public ProductDTO findById(String id) {
-		Optional<Product> productOpt = repository.findById(UUID.fromString(id));
+		UUID uuid;
+		try {
+			uuid = UUID.fromString(id);
+		} catch (IllegalArgumentException ex) {
+			return null;
+		}
+		Optional<Product> productOpt = repository.findById(uuid);
 		if(productOpt.isEmpty()) {
 			return null;
 		}
@@ -44,7 +49,7 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public ProductDTO updateProduct(String id, @Valid ProductDTO dto) {
+	public ProductUpdateDTO updateProduct(String id,ProductUpdateDTO dto) {
 		Optional<Product> productOpt = repository.findById(UUID.fromString(id));
 		if (productOpt.isEmpty()) {
 			return null;
@@ -53,22 +58,21 @@ public class ProductServiceImpl implements ProductService {
 		Product product = productOpt.get();
 		
 		//Check code changed?
-		if(product.getCode().equals(dto.getCode())) {
+		if(!(product.getCode().equals(dto.getCode()))) {
 			//Check code is used?
 			Optional<Product> existedProduct = repository.findByCode(dto.getCode());
 			if(existedProduct.isPresent()) {
 				return null;
 			}
-			product.setCode(dto.getCode());
-		}
-		
-		product.setName(dto.getName());
-		
+			product.setCode(dto.getCode());			
+		}	
+		product.setName(dto.getName());	
 		product.setDescription(dto.getDescription());
-		
+		product.setPrice(dto.getPrice());
+		product.setStock(dto.getStock());
 		repository.save(product);
 		
-		return ProductMapper.INSTANCE.toDTO(product);
+		return ProductMapper.INSTANCE.toProductUpdateDTO(product);
 	}
 
 	@Override
@@ -79,6 +83,24 @@ public class ProductServiceImpl implements ProductService {
 		}
 		repository.deleteById(UUID.fromString(id));
 		return ProductMapper.INSTANCE.toDTO(existedProduct.get());
+	}
+
+	@Override
+	public ProductDTO findByCode(String code) {
+		Optional<Product> product = repository.findByCode(code);
+		if(product.isEmpty()) {
+			return null;
+		}
+		return ProductMapper.INSTANCE.toDTO(product.get());
+	}
+
+	@Override
+	public ProductDTO findByName(String name) {
+		Optional<Product> product = repository.findByName(name);
+		if(product.isEmpty()) {
+			return null;
+		}
+		return ProductMapper.INSTANCE.toDTO(product.get());
 	}
 
 }

@@ -11,15 +11,15 @@ import javax.validation.constraints.Size;
 import org.hibernate.annotations.ColumnDefault;
 
 import cybersoft.java16.ecom.product.util.Value;
-import cybersoft.java16.ecom.product.validation.annotation.UniqueCode;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+
 @Setter
 @Getter
 @Builder
-public class ProductDTO {
-	@UniqueCode
+public class ProductUpdateDTO {
+	// No need to check unique code, ProductServiceImpl.updateProduct do that.
 	@NotBlank (message = "{product.code.notblank}")
 	@Size(min =5, max = 100, message = "{product.code.size}")
 	private String code;

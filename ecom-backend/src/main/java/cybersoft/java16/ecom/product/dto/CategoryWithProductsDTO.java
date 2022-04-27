@@ -1,6 +1,6 @@
 package cybersoft.java16.ecom.product.dto;
 
-import java.util.List;
+import java.util.Set;
 import java.util.UUID;
 
 import lombok.Getter;
@@ -12,5 +12,5 @@ public class CategoryWithProductsDTO {
 	private UUID id;
 	private String model;
 	private String year;
-	private List<ProductDTO> products;
+	private Set<ProductDTO> products;
 }

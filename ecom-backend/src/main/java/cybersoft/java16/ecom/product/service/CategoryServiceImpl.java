@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import cybersoft.java16.ecom.product.dto.CategoryDTO;
 import cybersoft.java16.ecom.product.dto.CategoryWithProductsDTO;
 import cybersoft.java16.ecom.product.mapper.CategoryMapper;
-import cybersoft.java16.ecom.product.mapper.ProductMapper;
 import cybersoft.java16.ecom.product.model.Category;
 import cybersoft.java16.ecom.product.model.Product;
 import cybersoft.java16.ecom.product.repository.CategoryRepository;
@@ -51,9 +50,9 @@ public class CategoryServiceImpl implements CategoryService {
 		} catch (EntityNotFoundException ex) {
 			return null;
 		}
-		product.addCategory(categoryId);
-		productRepository.save(product);	
-		return getCategoryWithProductsDTOHelper(category);
+		category.addProduct(product);
+		repository.save(category);
+		return CategoryMapper.INSTANCE.toDTOWithProducts(category);
 	}
 
 	@Override
@@ -66,10 +65,9 @@ public class CategoryServiceImpl implements CategoryService {
 		} catch(EntityNotFoundException ex) {
 			return null;
 		}
-		
-		product.removeCategory();
-		productRepository.save(product);	
-		return getCategoryWithProductsDTOHelper(category);
+		category.removeProduct(product);
+		repository.save(category);	
+		return CategoryMapper.INSTANCE.toDTOWithProducts(category);
 	}
 
 	@Override
@@ -80,15 +78,6 @@ public class CategoryServiceImpl implements CategoryService {
 		}catch (EntityNotFoundException ex) {
 			return null;
 		}
-		return getCategoryWithProductsDTOHelper(category);
-	}
-
-	private CategoryWithProductsDTO getCategoryWithProductsDTOHelper(Category category) {
-		CategoryWithProductsDTO categoryWithProductsDTO = CategoryMapper.INSTANCE.toDTOWithProducts(category);
-		List<Product> products = productRepository.findByCategoryId(category.getId());
-		categoryWithProductsDTO.setProducts(products.stream()
-													.map(p -> ProductMapper.INSTANCE.toDTO(p))
-													.collect(Collectors.toList()));
-		return categoryWithProductsDTO;
+		return CategoryMapper.INSTANCE.toDTOWithProducts(category);
 	}
 }

@@ -2,14 +2,15 @@ package cybersoft.java16.ecom.product.service;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import cybersoft.java16.ecom.product.dto.ProductDTO;
+import cybersoft.java16.ecom.product.dto.ProductUpdateDTO;
 
 public interface ProductService {
 	List<ProductDTO> findAllProductDTO();
-	ProductDTO createNewProduct(@Valid ProductDTO dto);
+	ProductDTO createNewProduct(ProductDTO dto);
 	ProductDTO findById(String id);
-	ProductDTO updateProduct(String id, @Valid ProductDTO dto);
+	ProductDTO findByCode(String code);
+	ProductDTO findByName(String name);
+	ProductUpdateDTO updateProduct(String id,ProductUpdateDTO dto);
 	ProductDTO deleteProductById(String id);
 }

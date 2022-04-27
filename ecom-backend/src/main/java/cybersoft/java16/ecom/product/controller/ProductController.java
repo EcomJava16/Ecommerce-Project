@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cybersoft.java16.ecom.common.helper.ResponseHelper;
 import cybersoft.java16.ecom.product.dto.ProductDTO;
+import cybersoft.java16.ecom.product.dto.ProductUpdateDTO;
 import cybersoft.java16.ecom.product.service.ProductService;
 
 @CrossOrigin(origins = "http://localhost:3000")
@@ -45,7 +46,7 @@ public class ProductController {
 		return ResponseHelper.getResponse(newProduct, HttpStatus.OK);
 	}
 	
-	@GetMapping("/{product-id}")
+	@GetMapping("/id/{product-id}")
 	public Object findById(@PathVariable("product-id") String id ) {
 		ProductDTO product = service.findById(id);
 		if(product == null) {
@@ -54,19 +55,37 @@ public class ProductController {
 		return ResponseHelper.getResponse(product, HttpStatus.OK);
 	}
 	
+	@GetMapping("/code/{product-code}")
+	public Object findByCode(@PathVariable("product-code") String code) {
+		ProductDTO product = service.findByCode(code);
+		if(product == null) {
+			return ResponseHelper.getErrorResponse("Not found product", HttpStatus.BAD_REQUEST);
+		}
+		return ResponseHelper.getResponse(product, HttpStatus.OK);
+	}
+	
+	@GetMapping("/name/{product-name}")
+	public Object findByName(@PathVariable("product-name") String name) {
+		ProductDTO product = service.findByName(name);
+		if(product == null) {
+			return ResponseHelper.getErrorResponse("Not found product", HttpStatus.BAD_REQUEST);
+		}
+		return ResponseHelper.getResponse(product, HttpStatus.OK);
+	}
+	
 	@PutMapping("/{product-id}")
 	public Object updateProduct(@PathVariable("product-id") String id
-								,@Valid @RequestBody ProductDTO dto
+								,@Valid @RequestBody ProductUpdateDTO dto
 								,BindingResult result) {
 		if(result.hasErrors()) {
 			return ResponseHelper.getErrorResponse(result, HttpStatus.BAD_REQUEST);
 		}
-		ProductDTO updateProduct = service.updateProduct(id, dto);
+		ProductUpdateDTO updatedProduct = service.updateProduct(id, dto);
 		
-		if(updateProduct == null) {
+		if(updatedProduct == null) {
 			return ResponseHelper.getErrorResponse("Product is not exist or product code already used", HttpStatus.BAD_REQUEST);
 		}	
-		return ResponseHelper.getResponse(updateProduct, HttpStatus.OK);
+		return ResponseHelper.getResponse(updatedProduct, HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{product-id}")
