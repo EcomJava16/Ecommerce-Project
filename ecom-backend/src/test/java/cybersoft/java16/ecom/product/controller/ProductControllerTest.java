@@ -31,11 +31,6 @@ public class ProductControllerTest {
 	@Autowired
 	private MockMvc mockMvc;
 	
-	@BeforeEach
-	public void mockSecurity() {
-		
-	}
-	
 	@Test
 	public void shouldSuccessWhenCreateProduct() throws Exception {
 		UUID productID = UUID.randomUUID();
