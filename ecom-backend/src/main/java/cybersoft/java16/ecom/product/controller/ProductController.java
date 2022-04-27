@@ -83,7 +83,7 @@ public class ProductController {
 		ProductUpdateDTO updatedProduct = service.updateProduct(id, dto);
 		
 		if(updatedProduct == null) {
-			return ResponseHelper.getErrorResponse("Product is not exist or product code already used", HttpStatus.BAD_REQUEST);
+			return ResponseHelper.getErrorResponse("Product is not exist", HttpStatus.BAD_REQUEST);
 		}	
 		return ResponseHelper.getResponse(updatedProduct, HttpStatus.OK);
 	}
