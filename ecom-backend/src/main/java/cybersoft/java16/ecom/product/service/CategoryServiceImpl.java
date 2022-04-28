@@ -10,12 +10,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cybersoft.java16.ecom.product.dto.CategoryDTO;
+import cybersoft.java16.ecom.product.dto.CategoryWithProductsAndSubCategoriesDTO;
 import cybersoft.java16.ecom.product.dto.CategoryWithProductsDTO;
+import cybersoft.java16.ecom.product.dto.CategoryWithSubCategoriesDTO;
 import cybersoft.java16.ecom.product.mapper.CategoryMapper;
 import cybersoft.java16.ecom.product.model.Category;
 import cybersoft.java16.ecom.product.model.Product;
+import cybersoft.java16.ecom.product.model.SubCategory;
 import cybersoft.java16.ecom.product.repository.CategoryRepository;
 import cybersoft.java16.ecom.product.repository.ProductRepository;
+import cybersoft.java16.ecom.product.repository.SubCategoryRepository;
 
 @Service
 public class CategoryServiceImpl implements CategoryService {
@@ -23,6 +27,8 @@ public class CategoryServiceImpl implements CategoryService {
 	private CategoryRepository repository;
 	@Autowired
 	private ProductRepository productRepository;
+	@Autowired
+	private SubCategoryRepository subCategoryRepository;
 	
 	@Override
 	public List<CategoryDTO> findAllCategoryDTO() {
@@ -79,4 +85,30 @@ public class CategoryServiceImpl implements CategoryService {
 		}
 		return CategoryMapper.INSTANCE.toDTOWithProducts(category);
 	}
+
+	@Override
+	public CategoryWithSubCategoriesDTO addSubCategory(String categoryId, String subCategoryId) {
+		Category category;
+		SubCategory subCategory;
+		try {
+			category = repository.getById(UUID.fromString(categoryId));
+			subCategory = subCategoryRepository.getById(UUID.fromString(subCategoryId));
+		}catch(EntityNotFoundException ex) {
+			return null;
+		}
+		category.addSubCategory(subCategory);
+		repository.save(category);
+		return CategoryMapper.INSTANCE.toDTOWithSubCategories(category);
+	}
+
+	@Override
+	public List<CategoryWithProductsAndSubCategoriesDTO> findAllCategoriesWithProductsAndSubCategoriesDTO() {
+		List<Category> categories = repository.findAll();
+		return categories
+				.stream()
+				.map(c -> CategoryMapper.INSTANCE.toDTOWithProductsAndSubCategories(c))
+				.collect(Collectors.toList());
+	}
+
+	
 }

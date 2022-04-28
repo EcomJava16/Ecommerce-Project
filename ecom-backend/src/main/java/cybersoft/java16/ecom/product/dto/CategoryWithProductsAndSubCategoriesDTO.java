@@ -9,7 +9,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Builder
-public class CategoryDTO {
+public class CategoryWithProductsAndSubCategoriesDTO {
 	private String model;
 	private String year;
+	private Set<SubCategoryWithProductsDTO> subCategories;
 }

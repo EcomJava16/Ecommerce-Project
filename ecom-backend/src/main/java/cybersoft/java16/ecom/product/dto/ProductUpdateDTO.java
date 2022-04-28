@@ -10,6 +10,7 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.ColumnDefault;
 
+import cybersoft.java16.ecom.product.model.Country;
 import cybersoft.java16.ecom.product.util.Value;
 import lombok.Builder;
 import lombok.Getter;
@@ -30,6 +31,7 @@ public class ProductUpdateDTO {
 	@NotBlank(message = "{product.description.notblank}")
 	private String description;
 	
+	private Country country;
 	@DecimalMin(value = Value.PRICE_DECIMAL_MIN,message = "{product.price.decimalmin}")
 	@Digits(fraction = Value.PRICE_DIGITS_FRACTION
 			,integer = Value.PRICE_DIGITS_INTEGER, message = "{product.price.digits}")
