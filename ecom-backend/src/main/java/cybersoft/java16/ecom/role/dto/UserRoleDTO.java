@@ -3,20 +3,17 @@ package cybersoft.java16.ecom.role.dto;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import cybersoft.java16.ecom.role.validation.annotation.UniqueCode;
-import cybersoft.java16.ecom.role.validation.annotation.UniqueName;
+import cybersoft.java16.ecom.role.validation.annotation.UniqueRoleName;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
-@UniqueCode(message = "{role.code.existed}")
-@UniqueName(message = "{role.name.existed}")
+@NoArgsConstructor
 public class UserRoleDTO {
-	
-	@Size(min=5, max=30, message = "{role.code.size}")
-	private String code;
-	
+	@UniqueRoleName(message = "{role.name.existed}")
 	@Size(min=5, max=30, message = "{role.name.size}")
 	private String name;
 	

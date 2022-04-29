@@ -8,12 +8,12 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import cybersoft.java16.ecom.role.validation.validator.UniqueNameValidator;
+import cybersoft.java16.ecom.role.validation.validator.UniqueRoleNameValidator;
 
-@Constraint(validatedBy = UniqueNameValidator.class)
+@Constraint(validatedBy = UniqueRoleNameValidator.class)
 @Retention(RetentionPolicy.RUNTIME)
-@Target(ElementType.TYPE)
-public @interface UniqueName {
+@Target(ElementType.FIELD)
+public @interface UniqueRoleName {
 	String message() default "The name already existed";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default{};

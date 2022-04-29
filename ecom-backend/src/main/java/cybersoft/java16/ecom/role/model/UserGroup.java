@@ -12,35 +12,36 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.Length;
+
 import cybersoft.java16.ecom.common.model.BaseEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-@Entity
+
 @Getter
 @Setter
 @NoArgsConstructor
 @SuperBuilder
+@Entity
 @Table(name = "user_group")
 public class UserGroup extends BaseEntity {
 
-	@Column(name="code", nullable = false, unique = true)
-	private String code;
-	
+	private static final long serialVersionUID = 1L;
+
 	@Column(name="name", nullable = false, unique = true)
 	private String name;
 	
 	@Column(name="description", nullable = false)
 	private String description;
 	
-	@ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+	@ManyToMany( cascade={ CascadeType.MERGE, CascadeType.PERSIST })
 	@JoinTable(
-			name="group_role",
+			name="user_group_role",
 			joinColumns = @JoinColumn(name = "group_id"),
-			inverseJoinColumns = @JoinColumn(name = "role_id")
-			)
+			inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<UserRole> roles = new LinkedHashSet<UserRole>();
 
 	public void addRole(UserRole role) {

@@ -4,14 +4,13 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class UserRoleUpdateDTO {
-	
-	@Size(min=5, max=30, message = "{role.code.size}")
-	private String code;
 	
 	@Size(min=5, max=30, message = "{role.name.size}")
 	private String name;

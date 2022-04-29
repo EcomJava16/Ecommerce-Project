@@ -13,7 +13,6 @@
 	<name>ecom-backend</name>
 	<description>Project for practicing </description>
 	<properties>
-		<m2e.apt.activation>jdt_apt</m2e.apt.activation>
 		<java.version>17</java.version>
 		<mapstruct.version>1.4.2.Final</mapstruct.version>
 		<org.projectlombok.version>1.18.22</org.projectlombok.version>

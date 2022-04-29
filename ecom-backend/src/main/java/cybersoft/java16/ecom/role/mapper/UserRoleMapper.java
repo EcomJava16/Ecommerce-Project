@@ -11,5 +11,5 @@ public interface UserRoleMapper {
 	UserRoleMapper INSTANCE = Mappers.getMapper(UserRoleMapper.class);
 	
 	UserRoleDTO toDTO(UserRole model);
-	UserRole toModel(UserRoleDTO dto);
+	UserRole toRole(UserRoleDTO dto);
 }

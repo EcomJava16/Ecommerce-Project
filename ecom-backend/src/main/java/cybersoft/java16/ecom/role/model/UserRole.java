@@ -9,29 +9,30 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import cybersoft.java16.ecom.common.model.BaseEntity;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
 
-@Entity
+
 @Getter
 @Setter
 @NoArgsConstructor
 @SuperBuilder
+@Entity
 @Table(name="user_role")
 public class UserRole extends BaseEntity {
-	
-	@Column(name="code", nullable = false, unique = true)
-	private String code;
+	private static final long serialVersionUID = 1L;
 	
 	@Column(name="name", nullable = false, unique = true)
 	private String name;
 	
 	@Column(name="description", nullable = false)
 	private String description;
-	
+	@JsonIgnore
 	@ManyToMany(mappedBy = "roles")
-	private Set<UserGroup> groups = new LinkedHashSet();
+	private Set<UserGroup> groups = new LinkedHashSet<UserGroup>();
 }

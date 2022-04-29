@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import cybersoft.java16.ecom.role.dto.UserGroupDTO;
 import cybersoft.java16.ecom.role.dto.UserGroupUpdateDTO;
+import cybersoft.java16.ecom.role.dto.UserGroupWithRoleDTO;
 import cybersoft.java16.ecom.role.mapper.UserGroupMapper;
 import cybersoft.java16.ecom.role.model.UserGroup;
 import cybersoft.java16.ecom.role.model.UserRole;
@@ -23,94 +24,77 @@ import cybersoft.java16.ecom.role.repository.UserRoleRepository;
 @Service
 public class UserGroupServiceImpl implements UserGroupService {
 	@Autowired
-	private UserGroupRepository repository;
-	
+	private UserGroupRepository groupRepository;
+
 	@Autowired
 	private UserRoleRepository roleRepository;
 
 	@Override
-	public List<UserGroupDTO> findAllDto() {
-		List<UserGroup> lstGroups = repository.findAll();
-		List<UserGroupDTO> lstDto = lstGroups.stream()
-				.map(t->UserGroupMapper.INSTANCE.toDTO(t))
+	public List<UserGroupDTO> findAllGroups() {
+		return groupRepository.findAll().stream().map(t -> UserGroupMapper.INSTANCE.toDTO(t))
 				.collect(Collectors.toList());
-		return lstDto;
 	}
 
 	@Override
 	public UserGroupDTO createNewGroup(UserGroupDTO dto) {
-		UserGroup group = UserGroupMapper.INSTANCE.toModel(dto);
-		UserGroup newGroup = repository.save(group);
-		return UserGroupMapper.INSTANCE.toDTO(newGroup);
+		UserGroup group = UserGroupMapper.INSTANCE.toGroup(dto);
+		groupRepository.save(group);
+		return UserGroupMapper.INSTANCE.toDTO(group);
 	}
 
 	@Override
-	public UserGroupDTO update(String groupId, @Valid UserGroupUpdateDTO dto) {
-		Optional<UserGroup> group = repository.findById(UUID.fromString(groupId));
-		
-		if(group.isPresent())
-		{
-			if (!group.get().getCode().equals(dto.getCode())) {
-		    	Optional<UserGroup> existedGroup = repository.findByCode(dto.getCode());
-		    	if (existedGroup.isPresent())
-		    		return null;
-		    	
-		    	group.get().setCode(dto.getCode());
-		    }
-			if (!group.get().getName().equals(dto.getName())) {
-		    	Optional<UserGroup> existedGroup = repository.findByName(dto.getName());
-		    	if (existedGroup.isPresent())
-		    		return null;
-		    	
-		    	group.get().setName(dto.getName());
-		    }
-			group.get().setDescription(dto.getDescription());
-			UserGroup updated = repository.save(group.get());
-			return UserGroupMapper.INSTANCE.toDTO(updated);
+	public UserGroupDTO updateGroup(String groupId, UserGroupUpdateDTO dto) {
+		try {
+			UserGroup group = groupRepository.getById(UUID.fromString(groupId));
+			if (!group.getName().equalsIgnoreCase(dto.getName())) {
+				UserGroup existedGroup = groupRepository.findByName(dto.getName());
+				if (existedGroup != null) {
+					return null;
+				}
+				group.setName(dto.getName());
+			}
+			group.setDescription(dto.getDescription());
+			return UserGroupMapper.INSTANCE.toDTO(groupRepository.save(group));
+		} catch (EntityNotFoundException e) {
+			return null;
 		}
-		return null;
 	}
 
 	@Override
-	public UserGroupDTO delete(String groupId) {
-		Optional<UserGroup> group = repository.findById(UUID.fromString(groupId));
-		
-		if(group.isPresent())
-		{
-			repository.delete(group.get());
-			return UserGroupMapper.INSTANCE.toDTO(group.get());
+	public UserGroupDTO deleteGroup(String groupId) {
+		try {
+			UserGroup group = groupRepository.getById(UUID.fromString(groupId));
+			groupRepository.delete(group);
+			return UserGroupMapper.INSTANCE.toDTO(group);
+		} catch (EntityNotFoundException e) {
+			return null;
 		}
-		return null;
 	}
 
 	@Override
-	public Object addRole(String groupId, String roleId) {
-		Optional<UserGroup> group = repository.findById(UUID.fromString(groupId));
-		Optional<UserRole> role = roleRepository.findById(UUID.fromString(roleId));
-		
-		if(group.isEmpty())
-			return "Group ID is invalid";
-		else if(role.isEmpty())
-			return "Role ID is invalid";
-		
-		group.get().addRole(role.get());
-		UserGroup updated = repository.save(group.get());
-		return UserGroupMapper.INSTANCE.toDTO(updated);
+	public UserGroupWithRoleDTO addRoleIntoGroupById(String groupId, String roleId) {
+		try {
+			UserGroup group = groupRepository.getById(UUID.fromString(groupId));
+			UserRole role = roleRepository.getById(UUID.fromString(roleId));
+			group.addRole(role);
+			groupRepository.save(group);
+			return UserGroupMapper.INSTANCE.toGroupWithRoleDTO(group);
+		} catch (EntityNotFoundException e) {
+			return null;
+		}
 	}
 
 	@Override
-	public Object removeRole(String groupId, String roleId) {
-		Optional<UserGroup> group = repository.findById(UUID.fromString(groupId));
-		Optional<UserRole> role = roleRepository.findById(UUID.fromString(roleId));
-		
-		if(group.isEmpty())
-			return "Group ID is invalid";
-		else if(role.isEmpty())
-			return "Role ID is invalid";
-		
-		group.get().removeRole(role.get());
-		UserGroup updated = repository.save(group.get());
-		return UserGroupMapper.INSTANCE.toDTO(updated);
+	public UserGroupWithRoleDTO removeRoleFromGroupById(String groupId, String roleId) {
+		try {
+			UserGroup group = groupRepository.getById(UUID.fromString(groupId));
+			UserRole role = roleRepository.getById(UUID.fromString(roleId));
+			group.removeRole(role);
+			groupRepository.save(group);
+			return UserGroupMapper.INSTANCE.toGroupWithRoleDTO(group);
+		} catch (EntityNotFoundException e) {
+			return null;
+		}
 	}
 
 }

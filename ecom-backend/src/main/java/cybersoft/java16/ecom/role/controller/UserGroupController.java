@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import cybersoft.java16.ecom.common.helper.ResponseHelper;
 import cybersoft.java16.ecom.role.dto.UserGroupDTO;
+import cybersoft.java16.ecom.role.dto.UserGroupWithRoleDTO;
 import cybersoft.java16.ecom.role.dto.UserGroupUpdateDTO;
 import cybersoft.java16.ecom.role.service.UserGroupService;
 
@@ -28,67 +30,63 @@ public class UserGroupController {
 
 	@Autowired
 	private UserGroupService service;
-	
-	@PostMapping("/create")
-	public Object createNewGroup(@Valid @RequestBody UserGroupDTO dto, BindingResult bindingResult) {
-		if(bindingResult.hasErrors())
-			return new ResponseEntity<>(bindingResult.getAllErrors()
-					.stream()
-					.map(t->t.getDefaultMessage())
-					.collect(Collectors.toList()), HttpStatus.BAD_REQUEST);
-		service.createNewGroup(dto);
-		return new ResponseEntity<>("Create new group successfully", HttpStatus.CREATED);
-	}
-	
+
 	@GetMapping
 	public Object findAllGroup() {
-		List<UserGroupDTO> lstGroups = service.findAllDto();
-		return new ResponseEntity<>(lstGroups, HttpStatus.OK);
+		List<UserGroupDTO> listGroups = service.findAllGroups();
+		return ResponseHelper.getResponse(listGroups, HttpStatus.OK);
 	}
-	
+
+	@PostMapping("/create")
+	public Object createNewGroup(@Valid @RequestBody UserGroupDTO dto, BindingResult bindingResult) {
+		if (bindingResult.hasErrors()) {
+			return ResponseHelper.getErrorResponse(bindingResult, HttpStatus.BAD_REQUEST);
+		}
+		UserGroupDTO newGroup = service.createNewGroup(dto);
+		return ResponseHelper.getResponse(newGroup, HttpStatus.CREATED);
+	}
+
 	@PutMapping("update/{id}")
-	public Object updateGroup(@PathVariable(name="id") String groupId, @Valid @RequestBody UserGroupUpdateDTO dto, 
+	public Object updateGroup(@PathVariable(name = "id") String groupId, @Valid @RequestBody UserGroupUpdateDTO dto,
 			BindingResult bindingResult) {
-		if(bindingResult.hasErrors())
-			return new ResponseEntity<>(bindingResult.getAllErrors()
-					.stream()
-					.map(t->t.getDefaultMessage())
-					.collect(Collectors.toList()), HttpStatus.BAD_REQUEST);
-		UserGroupDTO updated = service.update(groupId, dto);
-		
-		if(updated == null)
-			return new ResponseEntity<>("Id is invalid", HttpStatus.BAD_REQUEST);
-		
-		return new ResponseEntity<>("Update group successfully", HttpStatus.OK);
+		if (bindingResult.hasErrors()) {
+			return ResponseHelper.getErrorResponse(bindingResult, HttpStatus.BAD_REQUEST);
+		}
+		UserGroupDTO updatedGroup = service.updateGroup(groupId, dto);
+		if (updatedGroup == null) {
+			return ResponseHelper.getErrorResponse("Id is invalid", HttpStatus.BAD_REQUEST);
+		}
+		return ResponseHelper.getResponse(updatedGroup, HttpStatus.ACCEPTED);
 	}
-	
+
 	@DeleteMapping("/delete/{id}")
-	public Object deleteGroup(@PathVariable(name="id") String groupId) {
-		UserGroupDTO deleted = service.delete(groupId);
-		
-		if(deleted == null)
-			return new ResponseEntity<>("Id is invalid", HttpStatus.BAD_REQUEST);
-		
-		return new ResponseEntity<>("Delete group successfully", HttpStatus.OK);
+	public Object deleteGroup(@PathVariable(name = "id") String groupId) {
+		UserGroupDTO deletedGroup = service.deleteGroup(groupId);
+
+		if (deletedGroup == null) {
+			return ResponseHelper.getErrorResponse("Id is invalid",HttpStatus.BAD_REQUEST);
+			}
+
+		return ResponseHelper.getResponse(deletedGroup, HttpStatus.ACCEPTED);
 	}
-	
+
 	@PutMapping("/addRole/{groupId}/{roleId}")
-	public Object addRole(@PathVariable(name="groupId") String groupId, @PathVariable(name="roleId") String roleId) {
-		Object obj = service.addRole(groupId, roleId);
-		
-		if(obj instanceof UserGroupDTO)
-			return new ResponseEntity<>("Add role to group successfully", HttpStatus.OK);
-		else
-			return new ResponseEntity<>(obj.toString(), HttpStatus.BAD_REQUEST);
+	public Object addRole(@PathVariable(name = "groupId") String groupId,
+			@PathVariable(name = "roleId") String roleId) {
+		UserGroupWithRoleDTO groupWithRole= service.addRoleIntoGroupById(groupId, roleId);
+		if (groupWithRole==null){
+			return ResponseHelper.getErrorResponse("Id group or role is invalid",HttpStatus.BAD_REQUEST);
+		}
+			return ResponseHelper.getResponse(groupWithRole, HttpStatus.ACCEPTED);
 	}
-	
-	@PutMapping("/removeRole/{groupId}/{roleId}")
-	public Object removeRole(@PathVariable(name="groupId") String groupId, @PathVariable(name="roleId") String roleId) {
-		Object obj = service.removeRole(groupId, roleId);
-		
-		if(obj instanceof UserGroupDTO)
-			return new ResponseEntity<>("Remove role to group successfully", HttpStatus.OK);
-		else
-			return new ResponseEntity<>(obj.toString(), HttpStatus.BAD_REQUEST);
+
+	@DeleteMapping("/removeRole/{groupId}/{roleId}")
+	public Object removeRole(@PathVariable(name = "groupId") String groupId,
+			@PathVariable(name = "roleId") String roleId) {
+		UserGroupWithRoleDTO groupWithRole= service.removeRoleFromGroupById(groupId, roleId);
+		if (groupWithRole==null){
+			return ResponseHelper.getErrorResponse("Id group or role is invalid",HttpStatus.BAD_REQUEST);
+		}
+			return ResponseHelper.getResponse(groupWithRole, HttpStatus.ACCEPTED);
 	}
 }
