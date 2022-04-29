@@ -4,6 +4,7 @@ import java.util.List;
 
 
 import cybersoft.java16.ecom.user.dto.UserDTO;
+import cybersoft.java16.ecom.user.dto.UserUpdateDTO;
 
 public interface UserService {
 
@@ -11,7 +12,7 @@ public interface UserService {
 
 	UserDTO createNewUser(UserDTO dto);
 
-	UserDTO updateUser(String userId, UserDTO dto);
+	UserDTO updateUser(String userId,UserUpdateDTO dto);
 
 	UserDTO deleteUser(String userId);
 
