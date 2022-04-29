@@ -18,8 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cybersoft.java16.ecom.common.helper.ResponseHelper;
 import cybersoft.java16.ecom.product.dto.CategoryDTO;
+import cybersoft.java16.ecom.product.dto.CategoryWithProductsAndSubCategoriesDTO;
 import cybersoft.java16.ecom.product.dto.CategoryWithProductsDTO;
+import cybersoft.java16.ecom.product.dto.CategoryWithSubCategoriesDTO;
+import cybersoft.java16.ecom.product.dto.SubCategoryDTO;
 import cybersoft.java16.ecom.product.service.CategoryService;
+import cybersoft.java16.ecom.product.service.SubCategoryService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -34,6 +38,11 @@ public class CategoryController {
 		return ResponseHelper.getResponse(categoriesDTO, HttpStatus.OK);
 	}
 	
+	@GetMapping("/subcategory/products")
+	public Object findAllCategoriesWithProductsAndSubCategoriesDTO() {
+		List<CategoryWithProductsAndSubCategoriesDTO> categoriesDTO = service.findAllCategoriesWithProductsAndSubCategoriesDTO();
+		return ResponseHelper.getResponse(categoriesDTO, HttpStatus.OK); 
+	}
 	@PostMapping
 	public Object createNewCategory(@RequestBody @Valid CategoryDTO dto
 									,BindingResult result) {
@@ -42,6 +51,17 @@ public class CategoryController {
 		}
 		CategoryDTO newCategory = service.createNewCategory(dto);
 		return ResponseHelper.getResponse(newCategory, HttpStatus.OK);
+	}
+	
+	
+	@PostMapping("/add-subcategory/{category-id}/{subcategory-id}")
+	public Object addSubCategory(@PathVariable("category-id") String categoryId
+								,@PathVariable("subcategory-id") String subCategoryId) {
+		CategoryWithSubCategoriesDTO modifiedCategory = service.addSubCategory(categoryId, subCategoryId);
+		if(modifiedCategory == null) {
+			return ResponseHelper.getErrorResponse("Id not found", HttpStatus.BAD_REQUEST);
+		}
+		return ResponseHelper.getResponse(modifiedCategory, HttpStatus.OK);
 	}
 	
 	@PostMapping("/add-product/{category-id}/{product-id}")

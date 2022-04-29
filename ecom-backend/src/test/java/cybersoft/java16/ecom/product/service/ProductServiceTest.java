@@ -39,10 +39,10 @@ public class ProductServiceTest {
 				.description("product for test")
 				.build();
 	when(repository.findById(productID)).thenReturn(Optional.ofNullable(product));
-	Product actualProduct = service.findById(productID);
-	assertEquals(productID, actualProduct.getId());
-	assertEquals("Test_product", actualProduct.getCode());
-	assertEquals("product for test", actualProduct.getDescription());
+	Optional<Product> actualProduct = repository.findById(productID);
+	assertEquals(productID, actualProduct.get().getId());
+	assertEquals("Test_product", actualProduct.get().getCode());
+	assertEquals("product for test", actualProduct.get().getDescription());
 	}
 	
 	@Test

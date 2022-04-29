@@ -27,15 +27,39 @@ public class Category extends BaseEntity {
 	private String year;
 	
 	@OneToMany(mappedBy = "category")
+	private Set<SubCategory> subCategories = new LinkedHashSet<SubCategory>();
+	
+	@OneToMany(mappedBy = "category")
 	private Set<Product> products = new LinkedHashSet<Product>();
 	
 	public void addProduct(Product product) {
 		product.setCategory(this);
 		products.add(product);
+		subCategories.stream().map(s -> {
+			if (product.getSubCategory() == s)
+				s.getProducts().add(product);
+			return subCategories;
+		});
 	}
 	
 	public void removeProduct(Product product) {
 		product.setCategory(null);
 		products.remove(product);
+		if(product.getSubCategory() == null)
+		subCategories.stream().map(s -> {
+			if (product.getSubCategory() == s)
+				s.getProducts().remove(product);
+			return subCategories;
+		});
+	}
+	
+	public void addSubCategory(SubCategory subCategory) {
+		subCategory.setCategory(this);
+		subCategories.add(subCategory);
+	}
+	
+	public void removeSubCategory(SubCategory subCategory) {
+		subCategory.setCategory(null);
+		subCategories.remove(subCategory);
 	}
 }
