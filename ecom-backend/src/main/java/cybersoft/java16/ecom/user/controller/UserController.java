@@ -2,6 +2,7 @@ package cybersoft.java16.ecom.user.controller;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class UserController {
 		return ResponseHelper.getResponse(listUser, HttpStatus.FOUND);
 	}
 
-	@PostMapping("/create")
+	@PostMapping("/register")
 	public Object createNewUser(@Valid @RequestBody UserDTO dto, BindingResult result) {
 		if (result.hasErrors()) {
 			return ResponseHelper.getErrorResponse(result, HttpStatus.BAD_REQUEST);

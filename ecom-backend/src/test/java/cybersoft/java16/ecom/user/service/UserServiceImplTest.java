@@ -54,19 +54,6 @@ public class UserServiceImplTest {
 		assertDoesNotThrow(() -> service.createNewUser(dto));
 	}
 	
-	@DisplayName("Should update user with Id")
-	@Test
-	public void shouldUpdateUserWithId() {
-		UserUpdateDTO dto = UserUpdateDTO.builder().password("12345678")
-				.build();
-		dto.setPassword(encoder.encode(dto.getPassword()));
-		EcomUser updateUser = EcomUser.builder().username("administrator").password(dto.getPassword())
-				.build();
-		String userId = UUID.randomUUID().toString();
-		when(repository.getById(UUID.fromString(userId))).thenReturn(UserMapper.INSTANCE.updateDtoToUser(dto));
-		when(repository.save(updateUser)).thenReturn(updateUser);
-		assertNotEquals(null,service.updateUser(userId, dto));
-	}
 	@DisplayName("Should delete user with Id")
 	@Test
 	public void shouldDeleteUserWithId() {

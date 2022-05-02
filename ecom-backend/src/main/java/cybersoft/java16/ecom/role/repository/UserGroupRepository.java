@@ -9,7 +9,5 @@ import cybersoft.java16.ecom.role.model.UserGroup;
 
 @Repository
 public interface UserGroupRepository extends JpaRepository<UserGroup, UUID>{
-
 	UserGroup findByName(String name);
-
 }

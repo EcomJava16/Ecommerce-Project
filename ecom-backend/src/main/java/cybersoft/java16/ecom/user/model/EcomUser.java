@@ -1,12 +1,20 @@
 package cybersoft.java16.ecom.user.model;
 
+import java.util.LinkedHashSet;
+import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import cybersoft.java16.ecom.common.model.BaseEntity;
+import cybersoft.java16.ecom.role.model.UserGroup;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,7 +33,7 @@ public class EcomUser extends BaseEntity {
 	private String username;
 	@Column(name = "email")
 	private String email;
-	@Column(name = "password", nullable = false, unique = true)
+	@Column(name = "password", nullable = false)
 	private String password;
 	@Column(name = "facebook")
 	private String facebook;
@@ -47,4 +55,7 @@ public class EcomUser extends BaseEntity {
 	private String phoneNumber;
 	@Column(name="delete")
 	private boolean delete;
+	@JsonIgnore
+	@ManyToMany(mappedBy = "users",targetEntity = UserGroup.class)
+	private Set<UserGroup> groups = new LinkedHashSet<UserGroup>();
 }

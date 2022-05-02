@@ -1,4 +1,4 @@
-package cybersoft.java16.ecom.user.validation.annotation;
+package cybersoft.java16.ecom.security.validation.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -8,14 +8,13 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import cybersoft.java16.ecom.user.validation.validator.UniqueUsernameValidator;
+import cybersoft.java16.ecom.security.validation.validator.UsernameExistedValidator;
 
-@Constraint(validatedBy = UniqueUsernameValidator.class)
+@Constraint(validatedBy = UsernameExistedValidator.class)
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface UniqueUsername {
-
-	String message() default "The username is existed";
+public @interface UsernameExisted {
+	String message() default "The username is  inexisted";
 
 	Class<?>[] groups() default {};
 

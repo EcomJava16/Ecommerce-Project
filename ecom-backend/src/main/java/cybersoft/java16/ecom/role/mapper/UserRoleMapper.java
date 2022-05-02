@@ -4,6 +4,7 @@ import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
 import cybersoft.java16.ecom.role.dto.UserRoleDTO;
+import cybersoft.java16.ecom.role.dto.UserRoleWithProgramsDTO;
 import cybersoft.java16.ecom.role.model.UserRole;
 
 @Mapper
@@ -12,4 +13,5 @@ public interface UserRoleMapper {
 	
 	UserRoleDTO toDTO(UserRole model);
 	UserRole toRole(UserRoleDTO dto);
+	UserRoleWithProgramsDTO toRoleWithPrograms(UserRole role);
 }

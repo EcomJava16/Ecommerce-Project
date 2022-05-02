@@ -33,6 +33,7 @@ public class UserGroupController {
 
 	@GetMapping
 	public Object findAllGroup() {
+
 		List<UserGroupDTO> listGroups = service.findAllGroups();
 		return ResponseHelper.getResponse(listGroups, HttpStatus.OK);
 	}
