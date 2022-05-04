@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import cybersoft.java16.ecom.common.helper.ResponseHelper;
 import cybersoft.java16.ecom.role.dto.UserRoleDTO;
 import cybersoft.java16.ecom.role.dto.UserRoleUpdateDTO;
+import cybersoft.java16.ecom.role.dto.UserRoleWithProgramsDTO;
 import cybersoft.java16.ecom.role.service.UserRoleService;
 
 @RestController
@@ -66,5 +67,13 @@ public class UserRoleController {
 			return ResponseHelper.getErrorResponse("Id is invalid", HttpStatus.BAD_REQUEST);
 		}
 		return ResponseHelper.getResponse(deletedRole, HttpStatus.OK);
+	}
+	@PutMapping("/add_program/{program_id}/{role_id}")
+	public Object addProgramIntoRole(@PathVariable(name = "program_id") String programId, @PathVariable(name = "role_id") String roleId) {
+		UserRoleWithProgramsDTO roleWithPrograms = service.addProgramsIntoRole(programId, roleId);
+		if (roleWithPrograms == null) {
+			return ResponseHelper.getErrorResponse("Id is invalid",HttpStatus.BAD_REQUEST);
+		}
+		return ResponseHelper.getResponse(roleWithPrograms, HttpStatus.CREATED);
 	}
 }

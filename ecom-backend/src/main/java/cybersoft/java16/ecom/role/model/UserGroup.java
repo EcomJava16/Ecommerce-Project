@@ -14,12 +14,14 @@ import javax.persistence.Table;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import cybersoft.java16.ecom.common.model.BaseEntity;
+import cybersoft.java16.ecom.user.model.EcomUser;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
-
 
 @Getter
 @Setter
@@ -31,18 +33,19 @@ public class UserGroup extends BaseEntity {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(name="name", nullable = false, unique = true)
+	@Column(name = "name", nullable = false, unique = true)
 	private String name;
-	
-	@Column(name="description", nullable = false)
+
+	@Column(name = "description", nullable = false)
 	private String description;
-	
-	@ManyToMany( cascade={ CascadeType.MERGE, CascadeType.PERSIST })
-	@JoinTable(
-			name="user_group_role",
-			joinColumns = @JoinColumn(name = "group_id"),
-			inverseJoinColumns = @JoinColumn(name = "role_id"))
+	@JsonIgnore
+	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
+	@JoinTable(name = "group_with_role", joinColumns = @JoinColumn(name = "group_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private Set<UserRole> roles = new LinkedHashSet<UserRole>();
+	@JsonIgnore
+	@ManyToMany(cascade = { CascadeType.MERGE, CascadeType.PERSIST })
+	@JoinTable(name = "user_with_group", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "group_id"))
+	private Set<EcomUser> users = new LinkedHashSet<EcomUser>();
 
 	public void addRole(UserRole role) {
 		roles.add(role);

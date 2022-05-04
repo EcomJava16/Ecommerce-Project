@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.Length;
 import cybersoft.java16.ecom.user.model.Provider;
 import cybersoft.java16.ecom.user.model.UserStatus;
 import cybersoft.java16.ecom.user.validation.annotation.UniqueUsername;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,8 +15,7 @@ import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@SuperBuilder
+@Builder
 public class UserDTO {
 	@UniqueUsername(message="{user.username.existed}")
 	@NotBlank

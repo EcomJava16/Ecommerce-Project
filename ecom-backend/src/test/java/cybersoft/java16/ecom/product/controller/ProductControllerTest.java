@@ -23,7 +23,7 @@ import cybersoft.java16.ecom.product.service.ProductService;
 @DisplayName("ProductControllerTest")
 @SpringBootTest
 @AutoConfigureMockMvc
-@WithMockUser(username = "admin")
+@WithMockUser()
 public class ProductControllerTest {
 	@MockBean
 	private ProductService service;
@@ -31,20 +31,19 @@ public class ProductControllerTest {
 	@Autowired
 	private MockMvc mockMvc;
 	
-	@Test
-	public void shouldSuccessWhenCreateProduct() throws Exception {
-		UUID productID = UUID.randomUUID();
-		ProductDTO product = ProductDTO.builder()
-				.code("Test_product")
-				.description("product for test")
-				.build();
-		
-		when(service.createNewProduct(product)).thenReturn(product);
-		
-		mockMvc.perform(get("/api/v1/product"))
-		.andDo(print())
-		.andExpect(status().isOk());
-			
-	}
+//	@Test
+//	public void shouldSuccessWhenCreateProduct() throws Exception {
+//		UUID productID = UUID.randomUUID();
+//		ProductDTO product = ProductDTO.builder()
+//				.code("Test_product")
+//				.description("product for test")
+//				.build();
+//		
+//		when(service.createNewProduct(product)).thenReturn(product);
+//		
+//		mockMvc.perform(get("/api/v1/product"))
+//		.andDo(print())
+//		.andExpect(status().isOk());
+//	}
 	
 }

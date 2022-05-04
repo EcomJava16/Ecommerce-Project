@@ -12,7 +12,6 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @Setter
 @NoArgsConstructor
-@SuperBuilder
 public class UserUpdateDTO {
 	@NotBlank
 	@Length(max = 20, min = 6, message = "{user.password.size}")
