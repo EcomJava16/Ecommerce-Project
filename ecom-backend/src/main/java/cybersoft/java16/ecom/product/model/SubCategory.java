@@ -3,6 +3,7 @@ package cybersoft.java16.ecom.product.model;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -22,8 +23,8 @@ import lombok.experimental.SuperBuilder;
 @Entity
 @Table(name = "sub_category")
 public class SubCategory extends BaseEntity {
+	@Column(nullable = false)
 	private short year;
-	private String part;
 	
 	@ManyToOne()
 	@JoinColumn(name = "category_id")

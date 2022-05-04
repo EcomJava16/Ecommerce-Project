@@ -18,12 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cybersoft.java16.ecom.common.helper.ResponseHelper;
 import cybersoft.java16.ecom.product.dto.CategoryDTO;
-import cybersoft.java16.ecom.product.dto.CategoryWithProductsAndSubCategoriesDTO;
-import cybersoft.java16.ecom.product.dto.CategoryWithProductsDTO;
 import cybersoft.java16.ecom.product.dto.CategoryWithSubCategoriesDTO;
-import cybersoft.java16.ecom.product.dto.SubCategoryDTO;
 import cybersoft.java16.ecom.product.service.CategoryService;
-import cybersoft.java16.ecom.product.service.SubCategoryService;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -32,17 +28,6 @@ public class CategoryController {
 	@Autowired
 	private CategoryService service ;
 	
-	@GetMapping
-	public Object findAllCategoryDTO() {	
-		List<CategoryDTO> categoriesDTO = service.findAllCategoryDTO();
-		return ResponseHelper.getResponse(categoriesDTO, HttpStatus.OK);
-	}
-	
-	@GetMapping("/subcategory/products")
-	public Object findAllCategoriesWithProductsAndSubCategoriesDTO() {
-		List<CategoryWithProductsAndSubCategoriesDTO> categoriesDTO = service.findAllCategoriesWithProductsAndSubCategoriesDTO();
-		return ResponseHelper.getResponse(categoriesDTO, HttpStatus.OK); 
-	}
 	@PostMapping
 	public Object createNewCategory(@RequestBody @Valid CategoryDTO dto
 									,BindingResult result) {
@@ -52,46 +37,72 @@ public class CategoryController {
 		CategoryDTO newCategory = service.createNewCategory(dto);
 		return ResponseHelper.getResponse(newCategory, HttpStatus.OK);
 	}
+		
+	@GetMapping
+	public Object findAllCategoryDTO() {	
+		List<CategoryDTO> categoriesDTO = service.findAllCategoryDTO();
+		return ResponseHelper.getResponse(categoriesDTO, HttpStatus.OK);
+	}
 	
-	
-	@PostMapping("/add-subcategory/{category-id}/{subcategory-id}")
-	public Object addSubCategory(@PathVariable("category-id") String categoryId
-								,@PathVariable("subcategory-id") String subCategoryId) {
-		CategoryWithSubCategoriesDTO modifiedCategory = service.addSubCategory(categoryId, subCategoryId);
-		if(modifiedCategory == null) {
-			return ResponseHelper.getErrorResponse("Id not found", HttpStatus.BAD_REQUEST);
+	@GetMapping("/{category-id}")
+	public Object findCategoryWithSubCategoryByCategoryId(
+			@PathVariable("category-id")String categoryId) {
+		CategoryWithSubCategoriesDTO categoryWithSubCategoryDTO = service.findCategoryWithSubCategoryByCategoryId(categoryId);
+		if(categoryWithSubCategoryDTO == null) {
+			return ResponseHelper.getErrorResponse(service.getErrorMessage(), HttpStatus.BAD_REQUEST);
 		}
-		return ResponseHelper.getResponse(modifiedCategory, HttpStatus.OK);
+		return ResponseHelper.getResponse(categoryWithSubCategoryDTO, HttpStatus.OK);
+	}
+	
+	@PostMapping("/update/{category-id}")
+	public Object updateCategory(@PathVariable("category-id") String id
+								,@RequestBody @Valid CategoryDTO dto
+								,BindingResult result) {
+		if(result.hasErrors()) {
+			return ResponseHelper.getErrorResponse(result, HttpStatus.BAD_REQUEST);
+		}
+		CategoryDTO updatedCategoryDTO = service.updateCategory(id, dto);
+		if(updatedCategoryDTO == null) {
+			return ResponseHelper.getErrorResponse(service.getErrorMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return ResponseHelper.getResponse(updatedCategoryDTO, HttpStatus.OK);
 	}
 	
 	@PostMapping("/add-product/{category-id}/{product-id}")
 	public Object addProduct(@PathVariable("category-id") String categoryId
 							,@PathVariable("product-id") String productId) {
-		CategoryWithProductsDTO modifiedCategory = service.addProduct(categoryId, productId);
+		CategoryDTO modifiedCategory = service.addProduct(categoryId, productId);
 		if(modifiedCategory == null) {
-			return ResponseHelper.getErrorResponse("Category or Product not found", HttpStatus.BAD_REQUEST);
+			return ResponseHelper.getErrorResponse(service.getErrorMessage(), HttpStatus.BAD_REQUEST);
 		}
 		return ResponseHelper.getResponse(modifiedCategory, HttpStatus.OK);
 	}
-	
-	@DeleteMapping("/remove-product/{category-id}/{product-id}")
-	public Object removeProduct(@PathVariable("category-id") String categoryId
-								,@PathVariable("product-id") String productId) {
-		CategoryWithProductsDTO modifiedCategory = service.removeProduct(categoryId, productId);
-		if(modifiedCategory == null) {
-			return ResponseHelper.getErrorResponse("Category or Product not found", HttpStatus.BAD_REQUEST);
-		}
 		
+	@PostMapping("/add-subcategory/{category-id}/{subcategory-id}")
+	public Object addSubCategory(@PathVariable("category-id") String categoryId
+								,@PathVariable("subcategory-id") String subCategoryId) {
+		CategoryWithSubCategoriesDTO modifiedCategory = service.addSubCategory(categoryId, subCategoryId);
+		if(modifiedCategory == null) {
+			return ResponseHelper.getErrorResponse(service.getErrorMessage(), HttpStatus.BAD_REQUEST);
+		}
 		return ResponseHelper.getResponse(modifiedCategory, HttpStatus.OK);
 	}
 	
-	@GetMapping("/{category-id}")
-	public Object findCategoryWithProductsByCategoryId(
-			@PathVariable("category-id")String categoryId) {
-		CategoryWithProductsDTO categoryWithProductsDTO = service.findCategoryWithProductsByCategoryId(categoryId);
-		if(categoryWithProductsDTO == null) {
-			return ResponseHelper.getErrorResponse("Category not found", HttpStatus.BAD_REQUEST);
+	@DeleteMapping("/remove-product/{product-id}")
+	public Object removeProduct(@PathVariable("product-id") String productId) {
+		List<CategoryWithSubCategoriesDTO> categories = service.removeProduct(productId);
+		if(categories == null) {
+			return ResponseHelper.getErrorResponse(service.getErrorMessage(), HttpStatus.BAD_REQUEST);
 		}
-		return ResponseHelper.getResponse(categoryWithProductsDTO, HttpStatus.OK);
+		return ResponseHelper.getResponse(categories, HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/delete/{category-id}")
+	public Object deleteCategory(@PathVariable("category-id") String id) {
+		CategoryDTO deletedCategory = service.deleteCategory(id);
+		if(deletedCategory == null) {
+			return ResponseHelper.getErrorResponse(service.getErrorMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return ResponseHelper.getResponse(deletedCategory, HttpStatus.OK);
 	}
 }

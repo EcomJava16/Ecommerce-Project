@@ -17,12 +17,13 @@ import cybersoft.java16.ecom.product.validation.annotation.UniqueCode;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+
 @Setter
 @Getter
 @Builder
 public class ProductDTO {
-	@NotNull(message = "{product.code.notnull}")
 	@UniqueCode
+	@NotNull(message = "{product.code.notnull}")
 	@NotBlank (message = "{product.code.notblank}")
 	@Size(min =5, max = 100, message = "{product.code.size}")
 	private String code;
@@ -35,9 +36,9 @@ public class ProductDTO {
 	@NotBlank(message = "{product.description.notblank}")
 	private String description;
 	
+	@NotNull(message = "{product.year.notnull}")
 	private short year;
 	
-	private String part;
 	
 	@NotNull(message = "{product.country.notnull}")
 	private Country country;

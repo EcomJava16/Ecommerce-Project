@@ -10,7 +10,7 @@ import cybersoft.java16.ecom.product.model.Product;
 @Mapper
 public interface ProductMapper {
 	ProductMapper INSTANCE = Mappers.getMapper(ProductMapper.class);
-	ProductUpdateDTO toProductUpdateDTO (Product model);
-	ProductDTO toDTO(Product model);
-	Product toModel(ProductDTO dto);
+	ProductUpdateDTO 	toProductUpdateDTO (Product model);
+	ProductDTO 			toDTO(Product model);
+	Product 			toModel(ProductDTO dto);
 }

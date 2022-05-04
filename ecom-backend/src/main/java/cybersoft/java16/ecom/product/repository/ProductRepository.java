@@ -1,6 +1,5 @@
 package cybersoft.java16.ecom.product.repository;
 
-import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 

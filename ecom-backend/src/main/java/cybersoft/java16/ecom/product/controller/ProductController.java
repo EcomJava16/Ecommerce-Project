@@ -29,12 +29,6 @@ public class ProductController {
 	@Autowired
 	private ProductService service;
 	
-	@GetMapping
-	public Object findAllProductDTO() {
-		List<ProductDTO> productsDTO = service.findAllProductDTO(); 
-		return ResponseHelper.getResponse(productsDTO, HttpStatus.OK);	
-	}
-	
 	@PostMapping
 	public Object createNewProduct(@Valid @RequestBody ProductDTO dto
 							, BindingResult result ) {
@@ -46,11 +40,17 @@ public class ProductController {
 		return ResponseHelper.getResponse(newProduct, HttpStatus.OK);
 	}
 	
+	@GetMapping
+	public Object findAllProductDTO() {
+		List<ProductDTO> productsDTO = service.findAllProductDTO(); 
+		return ResponseHelper.getResponse(productsDTO, HttpStatus.OK);	
+	}
+	
 	@GetMapping("/id/{product-id}")
 	public Object findById(@PathVariable("product-id") String id ) {
 		ProductDTO product = service.findById(id);
 		if(product == null) {
-			return ResponseHelper.getErrorResponse("Product not found", HttpStatus.BAD_REQUEST);
+			return ResponseHelper.getErrorResponse(service.getErrorMessage(), HttpStatus.BAD_REQUEST);
 		}
 		return ResponseHelper.getResponse(product, HttpStatus.OK);
 	}
@@ -59,7 +59,7 @@ public class ProductController {
 	public Object findByCode(@PathVariable("product-code") String code) {
 		ProductDTO product = service.findByCode(code);
 		if(product == null) {
-			return ResponseHelper.getErrorResponse("Product not found", HttpStatus.BAD_REQUEST);
+			return ResponseHelper.getErrorResponse(service.getErrorMessage(), HttpStatus.BAD_REQUEST);
 		}
 		return ResponseHelper.getResponse(product, HttpStatus.OK);
 	}
@@ -68,7 +68,7 @@ public class ProductController {
 	public Object findByName(@PathVariable("product-name") String name) {
 		ProductDTO product = service.findByName(name);
 		if(product == null) {
-			return ResponseHelper.getErrorResponse("Not found product", HttpStatus.BAD_REQUEST);
+			return ResponseHelper.getErrorResponse(service.getErrorMessage(), HttpStatus.BAD_REQUEST);
 		}
 		return ResponseHelper.getResponse(product, HttpStatus.OK);
 	}
@@ -83,7 +83,7 @@ public class ProductController {
 		ProductUpdateDTO updatedProduct = service.updateProduct(id, dto);
 		
 		if(updatedProduct == null) {
-			return ResponseHelper.getErrorResponse("Product is not exist", HttpStatus.BAD_REQUEST);
+			return ResponseHelper.getErrorResponse(service.getErrorMessage(), HttpStatus.BAD_REQUEST);
 		}	
 		return ResponseHelper.getResponse(updatedProduct, HttpStatus.OK);
 	}
@@ -92,7 +92,7 @@ public class ProductController {
 	public Object deleteProduct(@PathVariable("product-id") String id) {
 		ProductDTO deleteProduct = service.deleteProductById(id);
 		if(deleteProduct == null) {
-			return ResponseHelper.getErrorResponse("Product is not exist", HttpStatus.BAD_REQUEST);
+			return ResponseHelper.getErrorResponse(service.getErrorMessage(), HttpStatus.BAD_REQUEST);
 		}
 		
 		return ResponseHelper.getResponse(deleteProduct, HttpStatus.OK);

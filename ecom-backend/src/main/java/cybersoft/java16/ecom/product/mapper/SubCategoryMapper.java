@@ -10,7 +10,7 @@ import cybersoft.java16.ecom.product.model.SubCategory;
 @Mapper
 public interface SubCategoryMapper {
 	SubCategoryMapper INSTANCE = Mappers.getMapper(SubCategoryMapper.class);
-	SubCategoryDTO toDTO (SubCategory model);
-	SubCategory toModel (SubCategoryDTO dto);
-	SubCategoryWithProductsDTO toDTOWithProducts(SubCategory model);
+	SubCategoryDTO 				toDTO (SubCategory model);
+	SubCategory 				toModel (SubCategoryDTO dto);
+	SubCategoryWithProductsDTO 	toDTOWithProducts(SubCategory model);
 }
