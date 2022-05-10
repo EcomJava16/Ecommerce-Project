@@ -16,6 +16,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.SuperBuilder;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -38,9 +39,6 @@ public class Product extends BaseEntity {
 	private short year;
 	
 	@Column(nullable = false)
-	private String part;
-	
-	@Column(nullable = false)
 	@Enumerated(EnumType.STRING)
 	private Country country;
 	
@@ -51,11 +49,6 @@ public class Product extends BaseEntity {
 	@Column(nullable = false)
 	@ColumnDefault(value = Value.STOCK_COLUMN_DEFAULT)
 	private int stock;
-	
-	
-	@ManyToOne()
-	@JoinColumn(name = "category_id")
-	private Category category;
 	
 	@ManyToOne()
 	@JoinColumn(name = "subcategory_id")

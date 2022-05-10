@@ -13,12 +13,22 @@ import cybersoft.java16.ecom.product.dto.ProductUpdateDTO;
 import cybersoft.java16.ecom.product.mapper.ProductMapper;
 import cybersoft.java16.ecom.product.model.Product;
 import cybersoft.java16.ecom.product.repository.ProductRepository;
+import cybersoft.java16.ecom.product.util.ErrorMessage;
+
 @Service
 public class ProductServiceImpl implements ProductService {
+	private String errorMessage = "";
+	
 	@Autowired
 	private ProductRepository repository;
 	
-
+	@Override
+	public ProductDTO createNewProduct(ProductDTO dto) {
+		Product product = ProductMapper.INSTANCE.toModel(dto);
+		Product newProduct = repository.save(product);
+		return ProductMapper.INSTANCE.toDTO(newProduct);
+	}
+	
 	@Override
 	public List<ProductDTO> findAllProductDTO() {
 		return repository.findAll().stream()
@@ -27,29 +37,65 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public ProductDTO createNewProduct(ProductDTO dto) {
-		Product product = ProductMapper.INSTANCE.toModel(dto);
-		Product newProduct = repository.save(product);
-		return ProductMapper.INSTANCE.toDTO(newProduct);
+	public ProductDTO findById(String id) {
+		Optional<Product> productOpt;
+		// catch invalid and not found
+		try {
+			productOpt = repository.findById(UUID.fromString(id));
+			if(productOpt.isEmpty()) { // not found
+				errorMessage = ErrorMessage.NOT_FOUND_PRODUCT;
+				return null;
+			}
+		} catch (IllegalArgumentException ex) { // invalid
+			errorMessage = ErrorMessage.INVALID_UUID;
+			return null;
+		}
+		return ProductMapper.INSTANCE.toDTO(productOpt.get());
 	}
 
 	@Override
-	public ProductDTO findById(String id) {
-		try {
-		Optional<Product> productOpt = repository.findById(UUID.fromString(id));
-		if(productOpt.isEmpty()) {
+	public ProductDTO findByCode(String code) {
+		Optional<Product> productOpt;
+		try{
+			productOpt = repository.findByCode(code);
+			if(productOpt.isEmpty()) {
+				errorMessage = ErrorMessage.NOT_FOUND_PRODUCT;
+				return null;
+			}
+		}catch(IllegalArgumentException ex) {
+			errorMessage = ErrorMessage.INVALID_UUID;
 			return null;
 		}
-			return ProductMapper.INSTANCE.toDTO(productOpt.get());
-		} catch (IllegalArgumentException ex) {
+		return ProductMapper.INSTANCE.toDTO(productOpt.get());
+	}
+
+	@Override
+	public ProductDTO findByName(String name) {
+		Optional<Product> productOpt;
+		try{
+			productOpt = repository.findByName(name);
+			if(productOpt.isEmpty()) {
+				errorMessage = ErrorMessage.NOT_FOUND_PRODUCT;
+				return null;
+			}
+		}catch(IllegalArgumentException ex) {
+			errorMessage = ErrorMessage.INVALID_UUID;
 			return null;
 		}
+		return ProductMapper.INSTANCE.toDTO(productOpt.get());
 	}
 
 	@Override
 	public ProductUpdateDTO updateProduct(String id,ProductUpdateDTO dto) {
-		Optional<Product> productOpt = repository.findById(UUID.fromString(id));
-		if (productOpt.isEmpty()) {
+		Optional<Product> productOpt;
+		try{
+			productOpt = repository.findById(UUID.fromString(id));
+			if (productOpt.isEmpty()) {
+				errorMessage = ErrorMessage.NOT_FOUND_PRODUCT;
+				return null;
+			}
+		}catch(IllegalArgumentException ex) {
+			errorMessage = ErrorMessage.INVALID_UUID;
 			return null;
 		}
 		
@@ -60,6 +106,7 @@ public class ProductServiceImpl implements ProductService {
 			//Check code is used?
 			Optional<Product> existedProduct = repository.findByCode(dto.getCode());
 			if(existedProduct.isPresent()) {
+				errorMessage = ErrorMessage.CODE_IS_USED;
 				return null;
 			}
 			product.setCode(dto.getCode());			
@@ -75,30 +122,24 @@ public class ProductServiceImpl implements ProductService {
 
 	@Override
 	public ProductDTO deleteProductById(String id) {
-		Optional<Product> existedProduct = repository.findById(UUID.fromString(id));
-		if(existedProduct.isEmpty()) {
+		Optional<Product> existedProductOpt;
+		try{
+			existedProductOpt = repository.findById(UUID.fromString(id));
+			if(existedProductOpt.isEmpty()) {
+				errorMessage = ErrorMessage.NOT_FOUND_PRODUCT;
+				return null;
+			}
+		}catch(IllegalArgumentException ex) {
+			errorMessage = ErrorMessage.INVALID_UUID;
 			return null;
 		}
 		repository.deleteById(UUID.fromString(id));
-		return ProductMapper.INSTANCE.toDTO(existedProduct.get());
+		return ProductMapper.INSTANCE.toDTO(existedProductOpt.get());
 	}
-
+	
 	@Override
-	public ProductDTO findByCode(String code) {
-		Optional<Product> product = repository.findByCode(code);
-		if(product.isEmpty()) {
-			return null;
-		}
-		return ProductMapper.INSTANCE.toDTO(product.get());
-	}
-
-	@Override
-	public ProductDTO findByName(String name) {
-		Optional<Product> product = repository.findByName(name);
-		if(product.isEmpty()) {
-			return null;
-		}
-		return ProductMapper.INSTANCE.toDTO(product.get());
+	public String getErrorMessage() {
+		return errorMessage;
 	}
 
 }
