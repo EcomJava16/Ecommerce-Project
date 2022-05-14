@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,11 +23,18 @@ import cybersoft.java16.ecom.user.dto.UserDTO;
 import cybersoft.java16.ecom.user.dto.UserUpdateDTO;
 import cybersoft.java16.ecom.user.service.UserService;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/v1/user")
 @RestController
 public class UserController {
 	@Autowired
 	private UserService service;
+	
+	@GetMapping("/{username}")
+	public Object getCurrentUser(@Valid @PathVariable(name = "username") String username ) {
+		UserDTO user = service.findUserByUsername(username);
+		return ResponseHelper.getResponse(user, HttpStatus.OK);
+	}
 
 	@GetMapping
 	public Object getAllUser() {

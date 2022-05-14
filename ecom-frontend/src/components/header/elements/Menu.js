@@ -11,6 +11,9 @@ import MenuSidebar from "./MenuSidebar";
 import SearchBar from "./SearchBar";
 import { getTotalProductInCart } from "../../../common/shopUtils";
 import Container from "../../other/Container";
+import LoginModal from "../../login/LoginModal";
+import Profile from '../elements/Profile';
+
 
 function Menu({ containerType }) {
   const cartState = useSelector((state) => state.cartReducer);
@@ -18,6 +21,10 @@ function Menu({ containerType }) {
   const [cartSidebarOpen, setCartSidebarOpen] = useState(false);
   const [menuSidebarOpen, setMenuSidebarOpen] = useState(false);
   const [wishlistSidebarOpen, setWishlistSidebarOpen] = useState(false);
+
+  const [openModal, setOpenModal] = useState(false);
+  const [isLogin, setIsLogin] = useState(localStorage.getItem('token') != null);
+
   return (
     <>
       <div className="menu">
@@ -50,11 +57,14 @@ function Menu({ containerType }) {
               placeholder="What are you looking for ?"
             />
             <div className="menu-functions">
-              <Button>
-                <Link href="#">
-                  <a>Join now</a>
-                </Link>
-              </Button>
+              {isLogin ?
+                <Profile logged={setIsLogin} /> :
+                <Button onClick={() => { setOpenModal(true); }}>
+                  <Link href="#">
+                    <a>Join now</a>
+                  </Link>
+                </Button>
+              }
               <div
                 className="menu-function-item"
                 onClick={() => setWishlistSidebarOpen(true)}
@@ -138,6 +148,7 @@ function Menu({ containerType }) {
       >
         <MenuSidebar />
       </Drawer>
+      {openModal && <LoginModal closeModal={setOpenModal} logged={setIsLogin}/>}
     </>
   );
 }
