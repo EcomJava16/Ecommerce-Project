@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 export default function Modal({ closeModal, logged }) {
@@ -6,22 +6,25 @@ export default function Modal({ closeModal, logged }) {
         username: "",
         password: ""
     });
-
     const [errMessage, setErrMessage] = useState("");
-
     const setParams = (event) => {
         let previousState = loginInfo;
         setLoginInfo({ ...previousState, [event.target.name]: event.target.value });
     }
+    const errorMessage = (errMessage != "" && <span className='errMessage'>{errMessage}</span>)
 
-    const login = () => {
+    const login = (event) => {
+        event.preventDefault();
+        if (loginInfo.username.length < 6) {
+            return (setErrMessage("Username must be from 6 characters"))
+        }
+        if (loginInfo.password.length < 6) {
+            return (setErrMessage("Password must be from 6 characters"))
+        }
         axios({
             method: 'post',
             url: 'http://localhost:8080/api/v1/login',
-            data: {
-                username: loginInfo.username,
-                password: loginInfo.password
-            }
+            data: loginInfo
         }).then(res => {
             console.log(res);
             localStorage.setItem("token", res.data.content);
@@ -29,37 +32,45 @@ export default function Modal({ closeModal, logged }) {
             logged(true);
             closeModal(false)
         }).catch(err => {
-            console.log(err.response.data.error);
-            setErrMessage("");
-            err.response.data.error.forEach(element => {
-                setErrMessage(errMessage + element);
-            });
+            setErrMessage(err.response.data.error);
         });
 
     }
+    useEffect(() => {
+        function handlerClose(event) {
+            if (event.which === 27) {
+                closeModal(false)
+            }
+        }
+    
+        document.addEventListener("keyup", handlerClose);
+        return () => {
+            document.removeEventListener("keyup", handlerClose);
+        }
+    }, [])
 
     return (
-        <div>
-            <div className="modalBackground">
+        <div >
+            <div className="modalBackground" >
                 <div className="modalContainer">
                     <div className="title">
                         <h1>Login</h1>
                     </div>
-                    <div className="body">
+                    <form className="body">
                         <div>
-                            <label htmlFor='username'>Username</label>
-                            <input type='text' name='username' id='username' onChange={setParams}></input>
+                            <label>Username</label>
+                            <input type='text' name='username' id='username' onChange={setParams}></input><br />
                         </div>
                         <div>
-                            <label htmlFor='password'>Password</label>
+                            <label>Password</label>
                             <input type='password' name='password' id='password' onChange={setParams}></input>
                         </div>
-                        {errMessage != "" && <div className='errMessage'>{errMessage}</div>}
-                    </div>
+                        {errorMessage}
                     <div className="footer">
-                        <button className="btnLogin" onClick={login}>Login</button>
+                        <button type='submit' className="btnLogin" onClick={login}>Login</button>
                         <button className="btnCancel" onClick={() => closeModal(false)}>Cancel</button>
                     </div>
+                    </form>
                 </div>
             </div>
         </div>

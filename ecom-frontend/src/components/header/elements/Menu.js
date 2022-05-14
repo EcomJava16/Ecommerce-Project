@@ -12,7 +12,7 @@ import SearchBar from "./SearchBar";
 import { getTotalProductInCart } from "../../../common/shopUtils";
 import Container from "../../other/Container";
 import LoginModal from "../../login/LoginModal";
-import Profile from '../elements/Profile';
+
 
 
 function Menu({ containerType }) {
@@ -23,7 +23,7 @@ function Menu({ containerType }) {
   const [wishlistSidebarOpen, setWishlistSidebarOpen] = useState(false);
 
   const [openModal, setOpenModal] = useState(false);
-  const [isLogin, setIsLogin] = useState(localStorage.getItem('token') != null);
+  const [isLogin, setIsLogin] = useState(false);
 
   return (
     <>
@@ -58,12 +58,9 @@ function Menu({ containerType }) {
             />
             <div className="menu-functions">
               {isLogin ?
-                <Profile logged={setIsLogin} /> :
-                <Button onClick={() => { setOpenModal(true); }}>
-                  <Link href="#">
-                    <a>Join now</a>
-                  </Link>
-                </Button>
+                <Button onClick={()=>{localStorage.removeItem("token"); setIsLogin(false)}}>LOGOUT</Button>
+                :
+                <Button onClick={() => setOpenModal(true)}>LOGIN</Button>
               }
               <div
                 className="menu-function-item"

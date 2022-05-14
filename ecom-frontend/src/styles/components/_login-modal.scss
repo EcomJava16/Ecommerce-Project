@@ -22,6 +22,12 @@
     display: inline-block;
     text-align: center;
     margin-top: 10px;
+
+    h1 {
+      font-family: 'Times New Roman', Times, serif;
+      font-size: 5em;
+      font-weight: bold;
+    }
   }
 
   .body {
@@ -34,10 +40,12 @@
     flex-direction: column;
     white-space: pre;
     justify-items: normal;
+    font-family: Arial, Helvetica, sans-serif;
 
     .errMessage {
       color: red;
       font-size: 15px;
+      font-family: 'Times New Roman', Times, serif;
     }
 
     label {
@@ -45,6 +53,16 @@
       flex-direction: row;
       justify-content: flex-start;
       text-align: right;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    input {
+      padding: 5px 5px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
     }
   }
 
