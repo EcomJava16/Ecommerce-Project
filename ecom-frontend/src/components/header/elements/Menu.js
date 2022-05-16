@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Button, Drawer } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { CloseOutlined } from "@ant-design/icons";
-
 import productsData from "../../../data/product.json";
 import CartSidebar from "../../cart/CartSidebar";
 import WishlistSidebar from "../../wishlist/WishlistSidebar";
@@ -11,6 +10,9 @@ import MenuSidebar from "./MenuSidebar";
 import SearchBar from "./SearchBar";
 import { getTotalProductInCart } from "../../../common/shopUtils";
 import Container from "../../other/Container";
+import LoginModal from "../../login/LoginModal";
+
+
 
 function Menu({ containerType, shopData }) {
   const cartState = useSelector((state) => state.cartReducer);
@@ -18,6 +20,10 @@ function Menu({ containerType, shopData }) {
   const [cartSidebarOpen, setCartSidebarOpen] = useState(false);
   const [menuSidebarOpen, setMenuSidebarOpen] = useState(false);
   const [wishlistSidebarOpen, setWishlistSidebarOpen] = useState(false);
+
+  const [openModal, setOpenModal] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
+
   return (
     <>
       <div className="menu">
@@ -51,11 +57,11 @@ function Menu({ containerType, shopData }) {
               shopData={shopData}
             />
             <div className="menu-functions">
-              <Button>
-                <Link href="#">
-                  <a>Join now</a>
-                </Link>
-              </Button>
+              {isLogin ?
+                <Button onClick={()=>{localStorage.removeItem("token"); setIsLogin(false)}}>LOGOUT</Button>
+                :
+                <Button onClick={() => setOpenModal(true)}>LOGIN</Button>
+              }
               <div
                 className="menu-function-item"
                 onClick={() => setWishlistSidebarOpen(true)}
@@ -139,8 +145,8 @@ function Menu({ containerType, shopData }) {
       >
         <MenuSidebar />
       </Drawer>
+      {openModal && <LoginModal closeModal={setOpenModal} logged={setIsLogin}/>}
     </>
   );
 }
-
 export default React.memo(Menu);
