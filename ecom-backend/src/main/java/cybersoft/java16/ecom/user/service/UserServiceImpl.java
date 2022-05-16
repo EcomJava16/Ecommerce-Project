@@ -5,6 +5,7 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 
 import javax.persistence.EntityNotFoundException;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -73,6 +74,11 @@ public class UserServiceImpl implements UserService {
 		} catch (EntityNotFoundException | IllegalArgumentException e) {
 			return null;
 		}
+	}
+
+	@Override
+	public UserDTO findUserByUsername(@Valid String username) {
+		return repository.findByUsername(username).map(t -> UserMapper.INSTANCE.toUserDto(t)).get();
 	}
 
 }
