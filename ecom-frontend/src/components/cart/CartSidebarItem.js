@@ -37,9 +37,6 @@ function CartSidebarItem({ data }) {
   return (
     <>
       <div className="cart-sidebar-item">
-        <div className="cart-sidebar-item__image">
-          <img src={data.thumbImage[0]} alt="Product image" />
-        </div>
         <div className="cart-sidebar-item__content">
           <Link
             href={process.env.PUBLIC_URL + `/product/[slug]`}

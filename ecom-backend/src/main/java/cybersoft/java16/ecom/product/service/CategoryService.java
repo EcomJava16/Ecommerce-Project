@@ -7,10 +7,9 @@ import cybersoft.java16.ecom.product.dto.CategoryWithSubCategoriesDTO;
 
 public interface CategoryService {
 	CategoryDTO 						createNewCategory(CategoryDTO dto);
-	List<CategoryDTO>					findAllCategoryDTO();
+	List<CategoryWithSubCategoriesDTO>	findAllCategoryDTO();
 	CategoryWithSubCategoriesDTO 		findCategoryWithSubCategoryByCategoryId(String categoryId);
 	CategoryDTO 						updateCategory(String id, CategoryDTO dto);
-	CategoryDTO							addProduct(String categoryId, String productId);
 	CategoryWithSubCategoriesDTO		addSubCategory(String categoryId, String subCategoryId);
 	List<CategoryWithSubCategoriesDTO> 	removeProduct(String productId);
 	CategoryDTO 						deleteCategory(String id);

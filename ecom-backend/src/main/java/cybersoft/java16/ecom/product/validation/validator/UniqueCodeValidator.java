@@ -23,8 +23,8 @@ public class UniqueCodeValidator implements ConstraintValidator<UniqueCode, Stri
 	}
 
 	@Override
-	public boolean isValid(String code, ConstraintValidatorContext context) {
-		Optional<Product> productOpt = repository.findByCode(code);
+	public boolean isValid(String name, ConstraintValidatorContext context) {
+		Optional<Product> productOpt = repository.findByName(name);
 		if (productOpt.isEmpty()) {
 			return true;
 		}

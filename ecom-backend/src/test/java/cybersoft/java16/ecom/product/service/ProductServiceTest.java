@@ -21,46 +21,46 @@ import cybersoft.java16.ecom.product.repository.ProductRepository;
 @DisplayName("Product Service")
 @SpringBootTest
 public class ProductServiceTest {
-	@Mock
-	private ProductRepository repository;
-	
-	@Mock
-	private ProductMapper mapper;
-	
-	@InjectMocks
-	private ProductService service = new ProductServiceImpl();
-	
-	@Test
-	public void shouldMockCorrectly () {
-		UUID productID = UUID.randomUUID();
-		Product product = Product.builder()
-				.id(productID)
-				.code("Test_product")
-				.description("product for test")
-				.build();
-	when(repository.findById(productID)).thenReturn(Optional.ofNullable(product));
-	Optional<Product> actualProduct = repository.findById(productID);
-	assertEquals(productID, actualProduct.get().getId());
-	assertEquals("Test_product", actualProduct.get().getCode());
-	assertEquals("product for test", actualProduct.get().getDescription());
-	}
-	
-	@Test
-	public void shouldReturnEmptyListWhenNoEntityFound() {
-		when(repository.findAll()).thenReturn(List.of());
-		
-		List<ProductDTO> products = service.findAllProductDTO();
-		assertEquals(0, products.size());
-	}
-	
-	@Test
-	public void shouldReturnAProductWhenCreateNewProduct() {
-		UUID productID = UUID.randomUUID();
-		Product product = Product.builder()
-				.id(productID)
-				.code("Test_product")
-				.description("product for test")
-				.build();
-		
-	}
+//	@Mock
+//	private ProductRepository repository;
+//	
+//	@Mock
+//	private ProductMapper mapper;
+//	
+//	@InjectMocks
+//	private ProductService service = new ProductServiceImpl();
+//	
+//	@Test
+//	public void shouldMockCorrectly () {
+//		UUID productID = UUID.randomUUID();
+//		Product product = Product.builder()
+//				.id(productID)
+//				.code("Test_product")
+//				.description("product for test")
+//				.build();
+//	when(repository.findById(productID)).thenReturn(Optional.ofNullable(product));
+//	Optional<Product> actualProduct = repository.findById(productID);
+//	assertEquals(productID, actualProduct.get().getId());
+//	assertEquals("Test_product", actualProduct.get().getCode());
+//	assertEquals("product for test", actualProduct.get().getDescription());
+//	}
+//	
+//	@Test
+//	public void shouldReturnEmptyListWhenNoEntityFound() {
+//		when(repository.findAll()).thenReturn(List.of());
+//		
+//		List<ProductDTO> products = service.findAllProductDTO();
+//		assertEquals(0, products.size());
+//	}
+//	
+//	@Test
+//	public void shouldReturnAProductWhenCreateNewProduct() {
+//		UUID productID = UUID.randomUUID();
+//		Product product = Product.builder()
+//				.id(productID)
+//				.code("Test_product")
+//				.description("product for test")
+//				.build();
+//		
+//	}
 }

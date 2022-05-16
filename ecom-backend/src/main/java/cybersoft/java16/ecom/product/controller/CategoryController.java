@@ -40,7 +40,7 @@ public class CategoryController {
 		
 	@GetMapping
 	public Object findAllCategoryDTO() {	
-		List<CategoryDTO> categoriesDTO = service.findAllCategoryDTO();
+		List<CategoryWithSubCategoriesDTO> categoriesDTO = service.findAllCategoryDTO();
 		return ResponseHelper.getResponse(categoriesDTO, HttpStatus.OK);
 	}
 	
@@ -68,16 +68,7 @@ public class CategoryController {
 		return ResponseHelper.getResponse(updatedCategoryDTO, HttpStatus.OK);
 	}
 	
-	@PostMapping("/add-product/{category-id}/{product-id}")
-	public Object addProduct(@PathVariable("category-id") String categoryId
-							,@PathVariable("product-id") String productId) {
-		CategoryDTO modifiedCategory = service.addProduct(categoryId, productId);
-		if(modifiedCategory == null) {
-			return ResponseHelper.getErrorResponse(service.getErrorMessage(), HttpStatus.BAD_REQUEST);
-		}
-		return ResponseHelper.getResponse(modifiedCategory, HttpStatus.OK);
-	}
-		
+	
 	@PostMapping("/add-subcategory/{category-id}/{subcategory-id}")
 	public Object addSubCategory(@PathVariable("category-id") String categoryId
 								,@PathVariable("subcategory-id") String subCategoryId) {
@@ -97,7 +88,7 @@ public class CategoryController {
 		return ResponseHelper.getResponse(categories, HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/delete/{category-id}")
+	@DeleteMapping("/delete-category/{category-id}")
 	public Object deleteCategory(@PathVariable("category-id") String id) {
 		CategoryDTO deletedCategory = service.deleteCategory(id);
 		if(deletedCategory == null) {

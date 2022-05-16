@@ -12,7 +12,7 @@ import SearchBar from "./SearchBar";
 import { getTotalProductInCart } from "../../../common/shopUtils";
 import Container from "../../other/Container";
 
-function Menu({ containerType }) {
+function Menu({ containerType, shopData }) {
   const cartState = useSelector((state) => state.cartReducer);
   const wishlistState = useSelector((state) => state.wishlistReducer);
   const [cartSidebarOpen, setCartSidebarOpen] = useState(false);
@@ -48,6 +48,7 @@ function Menu({ containerType }) {
             <SearchBar
               fillData={productsData}
               placeholder="What are you looking for ?"
+              shopData={shopData}
             />
             <div className="menu-functions">
               <Button>
@@ -87,7 +88,7 @@ function Menu({ containerType }) {
       </div>
       <div className="menu-mobile-search">
         <Container>
-          <SearchBar fillData={productsData} placeholder="Searching..." />
+          <SearchBar fillData={productsData} placeholder="Searching..." shopData={shopData} />
         </Container>
       </div>
       <Drawer
