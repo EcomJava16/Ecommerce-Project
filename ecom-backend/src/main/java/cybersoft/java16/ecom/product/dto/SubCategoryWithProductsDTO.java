@@ -12,8 +12,8 @@ import lombok.Setter;
 @Setter
 @Builder
 public class SubCategoryWithProductsDTO {
-	@NotNull(message = "{subcategory.year.notnull}")
-	private short year;
+	@NotNull(message = "{subcategory.name.notnull}")
+	private String name;
 	
 	private Set<ProductDTO> products;
 }

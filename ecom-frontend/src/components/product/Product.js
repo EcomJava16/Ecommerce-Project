@@ -172,7 +172,7 @@ function Product({ data, productStyle }) {
           </Link>
           <div className="product-rate">
             <Rate defaultValue={data.rate} disabled />
-            <span className="product-rate-quantity">(06)</span>
+            <span className="product-rate-quantity">({data.quantity})</span>
           </div>
           <div className="product-content__footer">
             <div className="product-content__footer-price">

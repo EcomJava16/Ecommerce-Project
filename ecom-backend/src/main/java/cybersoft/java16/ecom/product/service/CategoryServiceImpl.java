@@ -41,10 +41,10 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 	
 	@Override
-	public List<CategoryDTO> findAllCategoryDTO() {
+	public List<CategoryWithSubCategoriesDTO> findAllCategoryDTO() {
 		List<Category> categories = repository.findAll();
 		return categories.stream()
-				.map(t -> CategoryMapper.INSTANCE.toDTO(t))
+				.map(t -> CategoryMapper.INSTANCE.toDTOWithSubCategories(t))
 				.collect(Collectors.toList());
 	}
 	
@@ -78,48 +78,9 @@ public class CategoryServiceImpl implements CategoryService {
 			return null;
 		}
 		Category category = categoryOpt.get();
-		category.setModel(dto.getModel());
+		category.setName(dto.getName());
 		repository.save(category);
 		return CategoryMapper.INSTANCE.toDTO(category);
-	}
-
-	@Override
-	public CategoryDTO addProduct(String categoryId, String productId) {
-		Optional<Category> categoryOpt;
-		Optional<Product> productOpt;
-		try {
-			categoryOpt = repository.findById(UUID.fromString(categoryId));
-			productOpt = productRepository.findById(UUID.fromString(productId));
-			if(categoryOpt.isEmpty()) {
-				errorMessage = ErrorMessage.NOT_FOUND_CATEGORY;
-				return null;
-			}
-			if(productOpt.isEmpty()) {
-				errorMessage = ErrorMessage.NOT_FOUND_PRODUCT;
-				return null;
-			}
-		} catch (IllegalArgumentException ex) {
-			errorMessage = ErrorMessage.INVALID_UUID;
-			return null;
-		}
-		//check subCategory's year is existed in category?
-		Optional<SubCategory> subCategoryOpt = categoryOpt.get().getSubCategories()
-				.stream()
-				.filter(s -> s.getYear() == productOpt.get().getYear())
-				.findFirst();
-		if(subCategoryOpt.isEmpty()) { // is not existed
-			SubCategory newSubCategory = subCategoryService.autoCreateNewSubCategoryWhenAddProductInCategory(categoryOpt.get(), productOpt.get());
-			newSubCategory.addProduct(productOpt.get());
-			categoryOpt.get().getSubCategories().add(subCategoryRepository.save(newSubCategory));	
-		}else { // existed
-			categoryOpt.get().getSubCategories().stream().forEach(s -> {
-				if(s.getYear() == productOpt.get().getYear()) {
-					s.addProduct(productOpt.get());
-				}
-			});
-		}	
-		repository.save(categoryOpt.get());	
-		return CategoryMapper.INSTANCE.toDTO(categoryOpt.get());
 	}
 
 	@Override
@@ -162,7 +123,7 @@ public class CategoryServiceImpl implements CategoryService {
 		// remove product from subCategory
 		List<Category> categories = new ArrayList<Category>();
 		if(productOpt.get().getSubCategory() != null) {
-			SubCategory subCategory = productOpt.get().getSubCategory();
+			SubCategory subCategory = productOpt.get().getSubCategoryModel();
 			subCategory.removeProduct(productOpt.get());
 			subCategoryRepository.save(subCategory);
 			if(subCategory.getCategory() != null) {

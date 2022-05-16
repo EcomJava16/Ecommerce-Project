@@ -13,6 +13,14 @@ export const SHOP = {
       ],
     },
     {
+      name: "Honda",
+      sub: [
+        { name: "TKP", iconClass: "icon-accessories" },
+        { name: "Test", iconClass: "icon-accessories" },
+        { name: "0", iconClass: "icon-accessories" },
+      ],
+    },
+    {
       name: "fruits",
       sub: [
         { name: "vegatables", iconClass: "icon-vegetable" },

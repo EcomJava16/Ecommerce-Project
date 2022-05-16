@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cybersoft.java16.ecom.product.dto.ProductDTO;
+import cybersoft.java16.ecom.product.dto.ProductReturnDTO;
 import cybersoft.java16.ecom.product.dto.ProductUpdateDTO;
 import cybersoft.java16.ecom.product.mapper.ProductMapper;
 import cybersoft.java16.ecom.product.model.Product;
@@ -25,14 +26,16 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public ProductDTO createNewProduct(ProductDTO dto) {
 		Product product = ProductMapper.INSTANCE.toModel(dto);
+		product.setCategory("");
+		product.setSubCategory("");
 		Product newProduct = repository.save(product);
 		return ProductMapper.INSTANCE.toDTO(newProduct);
 	}
 	
 	@Override
-	public List<ProductDTO> findAllProductDTO() {
+	public List<ProductReturnDTO> findAllProductDTO() {
 		return repository.findAll().stream()
-				.map(product -> ProductMapper.INSTANCE.toDTO(product))
+				.map(product -> ProductMapper.INSTANCE.toProductReturnDTO(product))
 				.collect(Collectors.toList());
 	}
 
@@ -47,22 +50,6 @@ public class ProductServiceImpl implements ProductService {
 				return null;
 			}
 		} catch (IllegalArgumentException ex) { // invalid
-			errorMessage = ErrorMessage.INVALID_UUID;
-			return null;
-		}
-		return ProductMapper.INSTANCE.toDTO(productOpt.get());
-	}
-
-	@Override
-	public ProductDTO findByCode(String code) {
-		Optional<Product> productOpt;
-		try{
-			productOpt = repository.findByCode(code);
-			if(productOpt.isEmpty()) {
-				errorMessage = ErrorMessage.NOT_FOUND_PRODUCT;
-				return null;
-			}
-		}catch(IllegalArgumentException ex) {
 			errorMessage = ErrorMessage.INVALID_UUID;
 			return null;
 		}
@@ -102,19 +89,23 @@ public class ProductServiceImpl implements ProductService {
 		Product product = productOpt.get();
 		
 		//Check code changed?
-		if(!(product.getCode().equals(dto.getCode()))) {
+		if(!(product.getName().equals(dto.getName()))) {
 			//Check code is used?
-			Optional<Product> existedProduct = repository.findByCode(dto.getCode());
+			Optional<Product> existedProduct = repository.findByName(dto.getName());
 			if(existedProduct.isPresent()) {
 				errorMessage = ErrorMessage.CODE_IS_USED;
 				return null;
 			}
-			product.setCode(dto.getCode());			
+			product.setName(dto.getName());			
 		}	
 		product.setName(dto.getName());	
-		product.setDescription(dto.getDescription());
+		product.setRate(dto.getRate());
+		product.setReviewCount(dto.getReviewCount());
 		product.setPrice(dto.getPrice());
-		product.setStock(dto.getStock());
+		product.setDiscount(dto.getDiscount());
+		product.setQuantity(dto.getQuantity());
+		product.setDescription(dto.getDescription());
+		product.setSlug(dto.getSlug());
 		repository.save(product);
 		
 		return ProductMapper.INSTANCE.toProductUpdateDTO(product);

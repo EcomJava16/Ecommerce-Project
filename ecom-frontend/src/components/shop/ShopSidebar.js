@@ -7,13 +7,12 @@ import { Select } from "antd";
 import { SHOP } from "../../common/defines";
 import { setSubCategory } from "../../redux/actions/shopActions";
 
-function ShopSidebar({ categories }) {
+function ShopSidebar(categoryData) {
   const { Option } = Select;
   const dispatch = useDispatch();
   const globalState = useSelector((state) => state.globalReducer);
   const shopState = useSelector((state) => state.shopReducer);
-
-  const subCategory = SHOP.category.find(
+  const subCategory = categoryData.categoryData.find(
     (item) => item.name.toLowerCase() === globalState.category.toLowerCase()
   );
   const onChooseSubCategory = (data) => {

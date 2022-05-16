@@ -11,20 +11,13 @@ import MenuSidebar from "./MenuSidebar";
 import SearchBar from "./SearchBar";
 import { getTotalProductInCart } from "../../../common/shopUtils";
 import Container from "../../other/Container";
-import LoginModal from "../../login/LoginModal";
 
-
-
-function Menu({ containerType }) {
+function Menu({ containerType, shopData }) {
   const cartState = useSelector((state) => state.cartReducer);
   const wishlistState = useSelector((state) => state.wishlistReducer);
   const [cartSidebarOpen, setCartSidebarOpen] = useState(false);
   const [menuSidebarOpen, setMenuSidebarOpen] = useState(false);
   const [wishlistSidebarOpen, setWishlistSidebarOpen] = useState(false);
-
-  const [openModal, setOpenModal] = useState(false);
-  const [isLogin, setIsLogin] = useState(false);
-
   return (
     <>
       <div className="menu">
@@ -55,13 +48,14 @@ function Menu({ containerType }) {
             <SearchBar
               fillData={productsData}
               placeholder="What are you looking for ?"
+              shopData={shopData}
             />
             <div className="menu-functions">
-              {isLogin ?
-                <Button onClick={()=>{localStorage.removeItem("token"); setIsLogin(false)}}>LOGOUT</Button>
-                :
-                <Button onClick={() => setOpenModal(true)}>LOGIN</Button>
-              }
+              <Button>
+                <Link href="#">
+                  <a>Join now</a>
+                </Link>
+              </Button>
               <div
                 className="menu-function-item"
                 onClick={() => setWishlistSidebarOpen(true)}
@@ -94,7 +88,7 @@ function Menu({ containerType }) {
       </div>
       <div className="menu-mobile-search">
         <Container>
-          <SearchBar fillData={productsData} placeholder="Searching..." />
+          <SearchBar fillData={productsData} placeholder="Searching..." shopData={shopData} />
         </Container>
       </div>
       <Drawer
@@ -145,7 +139,6 @@ function Menu({ containerType }) {
       >
         <MenuSidebar />
       </Drawer>
-      {openModal && <LoginModal closeModal={setOpenModal} logged={setIsLogin}/>}
     </>
   );
 }

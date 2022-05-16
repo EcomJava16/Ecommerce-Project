@@ -64,11 +64,11 @@ public class SubCategoryServiceImpl implements SubCategoryService {
 				errorMessage = ErrorMessage.NOT_FOUND_PRODUCT;
 				return null;
 			}
-			// check product's year and subCategory's year.
-			if(subCategoryOpt.get().getYear() != productOpt.get().getYear()) {
-				errorMessage = ErrorMessage.YEAR_NOT_ALIKE;
-				return null;
-			}
+//			// check product's year and subCategory's year.
+//			if(subCategoryOpt.get().getName() != productOpt.get().getSubCategory()) {
+//				errorMessage = ErrorMessage.YEAR_NOT_ALIKE;
+//				return null;
+//			}
 		}catch(IllegalArgumentException ex) {
 			errorMessage = ErrorMessage.INVALID_UUID;
 			return null;
@@ -92,11 +92,11 @@ public class SubCategoryServiceImpl implements SubCategoryService {
 			return null;
 		}
 		SubCategory newSubCategory = subCategoryOpt.get();
-		if(newSubCategory.getYear() == dto.getYear()) {
+		if(newSubCategory.getName() == dto.getName()) {
 			errorMessage = ErrorMessage.YEAR_NOT_CHANGE;
 			return null;
 		}
-		newSubCategory.setYear(dto.getYear());
+		newSubCategory.setName(dto.getName());
 		newSubCategory.getProducts().stream().forEach(p -> p.setSubCategory(null));
 		newSubCategory.setProducts(null);
 		return SubCategoryMapper.INSTANCE.toDTO(newSubCategory);
@@ -115,11 +115,13 @@ public class SubCategoryServiceImpl implements SubCategoryService {
 			errorMessage = ErrorMessage.INVALID_UUID;
 			return null;
 		}
-		if(productOpt.get().getSubCategory() != null) {
-			productOpt.get().getSubCategory().removeProduct(productOpt.get());
-			repository.save(productOpt.get().getSubCategory());
+		Product product = productOpt.get();
+		SubCategory subcategory = productOpt.get().getSubCategoryModel();
+		if(subcategory != null) {
+			subcategory.removeProduct(product);
+			repository.save(subcategory);
 		}
-		return SubCategoryMapper.INSTANCE.toDTOWithProducts(productOpt.get().getSubCategory());
+		return SubCategoryMapper.INSTANCE.toDTOWithProducts(subcategory);
 	}
 
 	@Override
@@ -142,7 +144,7 @@ public class SubCategoryServiceImpl implements SubCategoryService {
 	@Override
 	public SubCategory autoCreateNewSubCategoryWhenAddProductInCategory(Category category, Product product) {
 		SubCategory subCategory = SubCategory.builder()
-				.year(product.getYear())
+				.name(product.getSubCategory())
 				.category(category)
 				.products(new LinkedHashSet<Product>())
 				.build();

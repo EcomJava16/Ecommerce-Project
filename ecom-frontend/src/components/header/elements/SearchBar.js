@@ -12,7 +12,7 @@ import {
 import { setSubCategory } from "../../../redux/actions/shopActions";
 import useDebounce from "../../../common/useDebound";
 
-function SearchBarMobile({ fillData, placeholder }) {
+function SearchBarMobile({ fillData, placeholder, shopData }) {
   const { Option } = Select;
   const router = useRouter();
   const dispatch = useDispatch();
@@ -64,7 +64,7 @@ function SearchBarMobile({ fillData, placeholder }) {
           onChange={onSelectCateory}
           value={globalState.category}
         >
-          {SHOP.category.map((item, index) => (
+          {shopData.map((item, index) => (
             <Option key={index} value={item.name}>
               {item.name}
             </Option>

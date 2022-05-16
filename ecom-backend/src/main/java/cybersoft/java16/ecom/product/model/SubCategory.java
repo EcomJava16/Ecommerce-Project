@@ -24,21 +24,25 @@ import lombok.experimental.SuperBuilder;
 @Table(name = "sub_category")
 public class SubCategory extends BaseEntity {
 	@Column(nullable = false)
-	private short year;
+	private String name;
 	
 	@ManyToOne()
 	@JoinColumn(name = "category_id")
 	private Category  category;
 	
-	@OneToMany(mappedBy = "subCategory")
+	@OneToMany(mappedBy = "subCategoryModel")
 	private Set<Product> products = new LinkedHashSet<Product>();
 	
 	public void addProduct(Product product) {
-		product.setSubCategory(this);
+		product.setSubCategoryModel(this);
+		product.setCategory(category.getName());
+		product.setSubCategory(name);
 		products.add(product);
 	}
 	
 	public void removeProduct(Product product) {
+		product.setSubCategoryModel(null);
+		product.setCategory(null);
 		product.setSubCategory(null);
 		products.remove(product);
 	}

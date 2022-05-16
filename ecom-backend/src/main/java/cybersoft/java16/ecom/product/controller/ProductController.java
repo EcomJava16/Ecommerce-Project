@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cybersoft.java16.ecom.common.helper.ResponseHelper;
 import cybersoft.java16.ecom.product.dto.ProductDTO;
+import cybersoft.java16.ecom.product.dto.ProductReturnDTO;
 import cybersoft.java16.ecom.product.dto.ProductUpdateDTO;
 import cybersoft.java16.ecom.product.service.ProductService;
 
@@ -42,22 +43,13 @@ public class ProductController {
 	
 	@GetMapping
 	public Object findAllProductDTO() {
-		List<ProductDTO> productsDTO = service.findAllProductDTO(); 
+		List<ProductReturnDTO> productsDTO = service.findAllProductDTO(); 
 		return ResponseHelper.getResponse(productsDTO, HttpStatus.OK);	
 	}
 	
 	@GetMapping("/id/{product-id}")
 	public Object findById(@PathVariable("product-id") String id ) {
 		ProductDTO product = service.findById(id);
-		if(product == null) {
-			return ResponseHelper.getErrorResponse(service.getErrorMessage(), HttpStatus.BAD_REQUEST);
-		}
-		return ResponseHelper.getResponse(product, HttpStatus.OK);
-	}
-	
-	@GetMapping("/code/{product-code}")
-	public Object findByCode(@PathVariable("product-code") String code) {
-		ProductDTO product = service.findByCode(code);
 		if(product == null) {
 			return ResponseHelper.getErrorResponse(service.getErrorMessage(), HttpStatus.BAD_REQUEST);
 		}
