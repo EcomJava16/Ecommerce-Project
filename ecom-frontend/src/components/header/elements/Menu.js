@@ -11,6 +11,7 @@ import SearchBar from "./SearchBar";
 import { getTotalProductInCart } from "../../../common/shopUtils";
 import Container from "../../other/Container";
 import LoginModal from "../../login/LoginModal";
+import Profile from '../elements/Profile';
 
 
 
@@ -22,7 +23,7 @@ function Menu({ containerType, shopData }) {
   const [wishlistSidebarOpen, setWishlistSidebarOpen] = useState(false);
 
   const [openModal, setOpenModal] = useState(false);
-  const [isLogin, setIsLogin] = useState(false);
+  const [isLogin, setIsLogin] = useState(localStorage.getItem('token') != null);
 
   return (
     <>
@@ -58,7 +59,7 @@ function Menu({ containerType, shopData }) {
             />
             <div className="menu-functions">
               {isLogin ?
-                <Button onClick={()=>{localStorage.removeItem("token"); setIsLogin(false)}}>LOGOUT</Button>
+                <Profile logged={setIsLogin} />
                 :
                 <Button onClick={() => setOpenModal(true)}>LOGIN</Button>
               }
