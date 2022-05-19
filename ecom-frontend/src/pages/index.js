@@ -1,21 +1,34 @@
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
 
 import Banners from "../components/shop/Banners";
 import LayoutOne from "../components/layouts/LayoutOne";
 import ShopLayout from "../components/shop/ShopLayout";
 import useProductData from "../common/useProductData";
+import { useEffect, useState } from "react";
+import fetchProducts from "../redux/actions/fetchProducts";
+import fetchCategory from "../redux/actions/fetchCategory";
 
 export default function Home({products,categories}) {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const productState = useSelector((state) => state.productReducer);
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, []);
+  const categoryState = useSelector((state) => state.categoryReducer);
+  useEffect(() => {
+    dispatch(fetchCategory());
+  }, []);
   const globalState = useSelector((state) => state.globalReducer);
   const data = useProductData(
-    products.content,
+    productState.products,
     globalState.category,
     router.query.q
   );
   return (
-    <LayoutOne title="Homepage 1" shopData={categories.content}>
+    <LayoutOne title="Homepage 1">
       <Banners />
       <ShopLayout
         fiveColumn
@@ -24,26 +37,7 @@ export default function Home({products,categories}) {
         productResponsive={{ xs: 12, sm: 8, md: 6 }}
         productPerPage={15}
         data={[...data]}
-        categoryData={categories.content}
       />
     </LayoutOne>
   );
-}
-
-export async function getServerSideProps() {
-  console.log("fetch in index.js is called!")
-  // Fetch data from external API
-  const [productRes, categoryRes] = await Promise.all([
-    fetch("http://localhost:8080/api/v1/product"),
-    fetch("http://localhost:8080/api/v1/category")
-  ]);
-  const [products, categories] = await Promise.all([
-    productRes.json(),
-    categoryRes.json()
-  ]);
-  console.log("fetch!");
-  return { props: {
-    products,
-    categories} 
-    }
 }

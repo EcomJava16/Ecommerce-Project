@@ -1,11 +1,10 @@
 package cybersoft.java16.ecom.product.dto;
 
 import java.util.ArrayList;
-
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 import cybersoft.java16.ecom.product.model.Sex;
+import cybersoft.java16.ecom.product.model.Size;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -38,10 +37,10 @@ public class ProductReturnDTO {
 
 	private ArrayList<String> images;
 	
-	@NotNull(message = "{product.description.notnull}")
+	private Set<Size> size;
+	
 	private String description;
 	
-	@NotBlank(message = "{product.slug.notblank}")
 	private String slug;
 		
 }

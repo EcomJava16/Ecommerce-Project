@@ -39,7 +39,7 @@ const paymentData = [
   },
 ];
 
-export default function checkout({products,categories}) {
+export default function checkout() {
   const { Option } = Select;
   const { Panel } = Collapse;
   const router = useRouter();
@@ -88,7 +88,7 @@ export default function checkout({products,categories}) {
     [paymentMethod]
   );
   return (
-    <LayoutOne title="Checkout" shopData={categories.content}>
+    <LayoutOne title="Checkout" >
       <div className="checkout">
         <div className="checkout-top">
           <Container>
@@ -410,21 +410,4 @@ export default function checkout({products,categories}) {
       </div>
     </LayoutOne>
   );
-}
-
-export async function getServerSideProps() {
-  console.log("fetch in checkout.js is called!");
-  // Fetch data from external API
-  const [productRes, categoryRes] = await Promise.all([
-    fetch("http://localhost:8080/api/v1/product"),
-    fetch("http://localhost:8080/api/v1/category")
-  ]);
-  const [products, categories] = await Promise.all([
-    productRes.json(),
-    categoryRes.json()
-  ]);
-  return { props: {
-    products,
-    categories} 
-    }
 }

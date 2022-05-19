@@ -13,6 +13,8 @@ import org.hibernate.annotations.ColumnDefault;
 
 import cybersoft.java16.ecom.product.model.Sex;
 import cybersoft.java16.ecom.product.util.Value;
+import cybersoft.java16.ecom.product.validation.annotation.UniqueProductName;
+import cybersoft.java16.ecom.product.validation.annotation.UniqueProductSlug;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +23,7 @@ import lombok.Setter;
 @Getter
 @Builder
 public class ProductUpdateDTO {
+	@UniqueProductName
 	@NotBlank(message = "{product.name.notblank}")
 	private String name;
 	
@@ -64,6 +67,7 @@ public class ProductUpdateDTO {
 	@NotNull(message = "{product.description.notnull}")
 	private String description;
 	
+	@UniqueProductSlug
 	@NotBlank(message = "{product.slug.notblank}")
 	private String slug;
 }

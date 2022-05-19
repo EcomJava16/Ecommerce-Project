@@ -29,23 +29,6 @@ public class Category extends BaseEntity {
 	@OneToMany(mappedBy = "category")
 	private Set<SubCategory> sub = new LinkedHashSet<SubCategory>();
 	
-	public void addProduct(Product product) {
-		sub.stream().map(s -> {
-			if (product.getSubCategoryModel() == s)
-				s.getProducts().add(product);
-			return sub;
-		});
-	}
-	
-	public void removeProduct(Product product) {
-		if(product.getSubCategory() == null)
-			sub.stream().map(s -> {
-			if (product.getSubCategoryModel() == s)
-				s.getProducts().remove(product);
-			return sub;
-		});
-	}
-	
 	public void addSubCategory(SubCategory subCategory) {
 		subCategory.setCategory(this);
 		sub.add(subCategory);

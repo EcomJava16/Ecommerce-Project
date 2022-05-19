@@ -11,19 +11,18 @@ import SearchBar from "./SearchBar";
 import { getTotalProductInCart } from "../../../common/shopUtils";
 import Container from "../../other/Container";
 import LoginModal from "../../login/LoginModal";
-import Profile from '../elements/Profile';
 
 
 
-function Menu({ containerType, shopData }) {
+function Menu({ containerType}) {
   const cartState = useSelector((state) => state.cartReducer);
   const wishlistState = useSelector((state) => state.wishlistReducer);
+  const productState = useSelector((state) => state.productReducer);
   const [cartSidebarOpen, setCartSidebarOpen] = useState(false);
   const [menuSidebarOpen, setMenuSidebarOpen] = useState(false);
   const [wishlistSidebarOpen, setWishlistSidebarOpen] = useState(false);
-
   const [openModal, setOpenModal] = useState(false);
-  const [isLogin, setIsLogin] = useState(localStorage.getItem('token') != null);
+  const [isLogin, setIsLogin] = useState(false);
 
   return (
     <>
@@ -53,13 +52,12 @@ function Menu({ containerType, shopData }) {
               </Link>
             </div>
             <SearchBar
-              fillData={productsData}
+              fillData={productState.products}
               placeholder="What are you looking for ?"
-              shopData={shopData}
             />
             <div className="menu-functions">
               {isLogin ?
-                <Profile logged={setIsLogin} />
+                <Button onClick={()=>{localStorage.removeItem("token"); setIsLogin(false)}}>LOGOUT</Button>
                 :
                 <Button onClick={() => setOpenModal(true)}>LOGIN</Button>
               }
@@ -95,7 +93,7 @@ function Menu({ containerType, shopData }) {
       </div>
       <div className="menu-mobile-search">
         <Container>
-          <SearchBar fillData={productsData} placeholder="Searching..." shopData={shopData} />
+          <SearchBar fillData={productState.products} placeholder="Searching..." />
         </Container>
       </div>
       <Drawer

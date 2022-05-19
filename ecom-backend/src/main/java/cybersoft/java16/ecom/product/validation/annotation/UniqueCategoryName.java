@@ -8,14 +8,14 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import cybersoft.java16.ecom.product.validation.validator.UniqueCodeValidator;
+import cybersoft.java16.ecom.product.validation.validator.UniqueCategoryNameValidator;
 
-@Constraint(validatedBy = UniqueCodeValidator.class)
+@Constraint(validatedBy = UniqueCategoryNameValidator.class)
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD})
-public @interface UniqueCode {
-	String message() default "{product.validation.uniquecode.existedcode}";
+public @interface UniqueCategoryName {
+	String message() default "{category.validation.uniquecategoryname.existedname}";
 	
-	Class<?>[] groups() default {};
+	Class<?>[] groups() default{};
 	Class<? extends Payload>[] payload() default {};
 }

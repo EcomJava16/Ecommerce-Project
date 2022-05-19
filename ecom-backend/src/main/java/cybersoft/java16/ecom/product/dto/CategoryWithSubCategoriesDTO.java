@@ -2,8 +2,6 @@ package cybersoft.java16.ecom.product.dto;
 
 import java.util.Set;
 
-import javax.validation.constraints.NotBlank;
-
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -12,8 +10,6 @@ import lombok.Setter;
 @Setter
 @Builder
 public class CategoryWithSubCategoriesDTO {
-	@NotBlank(message = "{category.model.notblank}")
-	private String name;
-	
+	private String name;	
 	private Set<SubCategoryDTO> sub;
 }
