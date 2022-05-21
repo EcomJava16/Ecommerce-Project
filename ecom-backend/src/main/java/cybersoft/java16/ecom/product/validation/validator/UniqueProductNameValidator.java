@@ -9,28 +9,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import cybersoft.java16.ecom.product.model.Product;
 import cybersoft.java16.ecom.product.repository.ProductRepository;
-import cybersoft.java16.ecom.product.validation.annotation.UniqueCode;
+import cybersoft.java16.ecom.product.validation.annotation.UniqueProductName;
 
-public class UniqueCodeValidator implements ConstraintValidator<UniqueCode, String> {
+public class UniqueProductNameValidator implements ConstraintValidator<UniqueProductName, String> {
 	private String message;
-
+	
 	@Autowired
 	private ProductRepository repository;
-
+	
 	@Override
-	public void initialize(UniqueCode uniqueCode) {
-		message = uniqueCode.message();
+	public void initialize(UniqueProductName uniqueProductName) {
+		message = uniqueProductName.message();
 	}
-
+	
 	@Override
-	public boolean isValid(String code, ConstraintValidatorContext context) {
-		Optional<Product> productOpt = repository.findByCode(code);
-		if (productOpt.isEmpty()) {
+	public boolean isValid(String name, ConstraintValidatorContext context) {
+		Optional<Product> productOpt = repository.findByName(name);
+		if(productOpt.isEmpty())
 			return true;
-		}
 		context.buildConstraintViolationWithTemplate(message)
-			.addConstraintViolation()
-			.disableDefaultConstraintViolation();
+				.addConstraintViolation()
+				.disableDefaultConstraintViolation();
 		return false;
 	}
 

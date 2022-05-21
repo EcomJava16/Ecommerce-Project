@@ -1,17 +1,29 @@
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
 
 import Banners from "../components/shop/Banners";
 import LayoutOne from "../components/layouts/LayoutOne";
 import ShopLayout from "../components/shop/ShopLayout";
-import productData from "../data/product.json";
 import useProductData from "../common/useProductData";
+import { useEffect, useState } from "react";
+import fetchProducts from "../redux/actions/fetchProducts";
+import fetchCategory from "../redux/actions/fetchCategory";
 
-export default function Home() {
+export default function Home({products,categories}) {
   const router = useRouter();
+  const dispatch = useDispatch();
+  const productState = useSelector((state) => state.productReducer);
+  useEffect(() => {
+    dispatch(fetchProducts());
+  }, []);
+  const categoryState = useSelector((state) => state.categoryReducer);
+  useEffect(() => {
+    dispatch(fetchCategory());
+  }, []);
   const globalState = useSelector((state) => state.globalReducer);
   const data = useProductData(
-    productData,
+    productState.products,
     globalState.category,
     router.query.q
   );

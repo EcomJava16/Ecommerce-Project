@@ -1,5 +1,7 @@
 package cybersoft.java16.ecom.product.dto;
 
+import java.util.ArrayList;
+
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Digits;
@@ -7,13 +9,12 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-
 import org.hibernate.annotations.ColumnDefault;
 
-import cybersoft.java16.ecom.product.model.Country;
+import cybersoft.java16.ecom.product.model.Sex;
 import cybersoft.java16.ecom.product.util.Value;
-import cybersoft.java16.ecom.product.validation.annotation.UniqueCode;
+import cybersoft.java16.ecom.product.validation.annotation.UniqueProductName;
+import cybersoft.java16.ecom.product.validation.annotation.UniqueProductSlug;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,41 +23,57 @@ import lombok.Setter;
 @Getter
 @Builder
 public class ProductDTO {
-	@UniqueCode
-	@NotNull(message = "{product.code.notnull}")
-	@NotBlank (message = "{product.code.notblank}")
-	@Size(min =5, max = 100, message = "{product.code.size}")
-	private String code;
-	
-	@NotNull(message = "{product.name.notnull}")
+	@UniqueProductName
 	@NotBlank(message = "{product.name.notblank}")
 	private String name;
 	
-	@NotNull(message = "{product.description.notnull}")
-	@NotBlank(message = "{product.description.notblank}")
-	private String description;
+	@Min(value = Value.RATE_MIN, message = "{product.rate.min}")
+	@Max(value = Value.RATE_MAX, message = "{product.rate.max}")
+	@NotNull(message = "{product.rate.notnull}")
+	private byte rate;
 	
-	@NotNull(message = "{product.year.notnull}")
-	private short year;
-	
-	
-	@NotNull(message = "{product.country.notnull}")
-	private Country country;
-	
+	@Min(value = Value.REVIEW_COUNT_MIN, message = "{product.reviewcount.min}")
+	@Max(value = Value.REVIEW_COUNT_MAX, message = "{product.reviewcount.max}")
+	@NotNull(message = "{product.reviewcount.notnull}")
+	private short reviewCount;
+
 	@NotNull(message = "{product.price.notnull}")
 	@DecimalMin(value = Value.PRICE_DECIMAL_MIN,message = "{product.price.decimalmin}")
 	@Digits(fraction = Value.PRICE_DIGITS_FRACTION
-			,integer = Value.PRICE_DIGITS_INTEGER, message = "{product.price.digits}")
+	,integer = Value.PRICE_DIGITS_INTEGER, message = "{product.price.digits}")
 	@DecimalMax(value = Value.PRICE_DECIMAL_MAX,message = "{product.price.decimalmax}")
 	@ColumnDefault(value = Value.PRICE_COLUMN_DEFAULT)
 	private double price;
 	
+	@NotNull(message = "{product.discount.notnull}")
+	@DecimalMin(value = Value.DISCOUNT_DECIMAL_MIN,message = "{product.discount.decimalmin}")
+	@Digits(fraction = Value.DISCOUNT_DIGITS_FRACTION
+	,integer = Value.DISCOUNT_DIGITS_INTEGER, message = "{product.discount.digits}")
+	@DecimalMax(value = Value.DISCOUNT_DECIMAL_MAX,message = "{product.discount.decimalmax}")
+	@ColumnDefault(value = Value.DISCOUNT_COLUMN_DEFAULT)
+	private float discount;
 	
-	@NotNull(message = "{product.stock.notnull}")
-	@Min(value = Value.STOCK_MIN,message = "{product.stock.min}")
-	@Max(value = Value.STOCK_MAX,message = "{product.stock.max}")
-	@Digits(fraction = Value.STOCK_DIGITS_FRACTION
-			,integer = Value.STOCK_DIGITS_INTEGER, message = "{product.stock.digits}")
-	@ColumnDefault(value = Value.STOCK_COLUMN_DEFAULT)
-	private int stock;
+	@NotNull(message = "{product.brandnew.notnull}")
+	private boolean brandNew;
+	
+	@Min(value = Value.QUANTITY_MIN, message = "{product.quantity.min}")
+	@Max(value = Value.QUANTITY_MAX, message = "{product.quantity.max}")
+	@NotNull(message = "{product.quantity.notnull}")
+	private short quantity;
+	
+	@ColumnDefault(value = Value.SEX_DEFAULT)
+	private Sex sex;
+	
+	private ArrayList<String> thumbImage;
+
+	private ArrayList<String> images;
+	
+	@NotNull(message = "{product.description.notnull}")
+	private String description;
+	
+	@UniqueProductSlug
+	@NotBlank(message = "{product.slug.notblank}")
+	private String slug;
+	
+	
 }

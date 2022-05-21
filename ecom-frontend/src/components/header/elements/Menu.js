@@ -3,7 +3,6 @@ import Link from "next/link";
 import { Button, Drawer } from "antd";
 import { useSelector, useDispatch } from "react-redux";
 import { CloseOutlined } from "@ant-design/icons";
-
 import productsData from "../../../data/product.json";
 import CartSidebar from "../../cart/CartSidebar";
 import WishlistSidebar from "../../wishlist/WishlistSidebar";
@@ -12,19 +11,18 @@ import SearchBar from "./SearchBar";
 import { getTotalProductInCart } from "../../../common/shopUtils";
 import Container from "../../other/Container";
 import LoginModal from "../../login/LoginModal";
-import Profile from '../elements/Profile';
 
 
 
-function Menu({ containerType }) {
+function Menu({ containerType}) {
   const cartState = useSelector((state) => state.cartReducer);
   const wishlistState = useSelector((state) => state.wishlistReducer);
+  const productState = useSelector((state) => state.productReducer);
   const [cartSidebarOpen, setCartSidebarOpen] = useState(false);
   const [menuSidebarOpen, setMenuSidebarOpen] = useState(false);
   const [wishlistSidebarOpen, setWishlistSidebarOpen] = useState(false);
-
   const [openModal, setOpenModal] = useState(false);
-  const [isLogin, setIsLogin] = useState(localStorage.getItem('token') != null);
+  const [isLogin, setIsLogin] = useState(false);
 
   return (
     <>
@@ -54,12 +52,12 @@ function Menu({ containerType }) {
               </Link>
             </div>
             <SearchBar
-              fillData={productsData}
+              fillData={productState.products}
               placeholder="What are you looking for ?"
             />
             <div className="menu-functions">
               {isLogin ?
-                <Profile logged={setIsLogin} />
+                <Profile logged={setIsLogin}/>
                 :
                 <Button onClick={() => setOpenModal(true)}>LOGIN</Button>
               }
@@ -95,7 +93,7 @@ function Menu({ containerType }) {
       </div>
       <div className="menu-mobile-search">
         <Container>
-          <SearchBar fillData={productsData} placeholder="Searching..." />
+          <SearchBar fillData={productState.products} placeholder="Searching..." />
         </Container>
       </div>
       <Drawer
@@ -150,5 +148,4 @@ function Menu({ containerType }) {
     </>
   );
 }
-
 export default React.memo(Menu);

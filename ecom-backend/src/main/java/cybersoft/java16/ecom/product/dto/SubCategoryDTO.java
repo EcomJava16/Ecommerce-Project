@@ -1,6 +1,6 @@
 package cybersoft.java16.ecom.product.dto;
 
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.NotBlank;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,6 +14,6 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class SubCategoryDTO {
-	@NotNull(message = "{subcategory.year.notnull}")
-	private short year;
+	@NotBlank(message = "{subcategory.name.notnull}")
+	private String name;
 }

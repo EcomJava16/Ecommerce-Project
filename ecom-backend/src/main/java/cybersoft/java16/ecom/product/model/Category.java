@@ -24,35 +24,18 @@ public class Category extends BaseEntity {
 	private static final long serialVersionUID = 1L;
 	
 	@Column(nullable = false)
-	private String model;
+	private String name;
 	
 	@OneToMany(mappedBy = "category")
-	private Set<SubCategory> subCategories = new LinkedHashSet<SubCategory>();
-	
-	public void addProduct(Product product) {
-		subCategories.stream().map(s -> {
-			if (product.getSubCategory() == s)
-				s.getProducts().add(product);
-			return subCategories;
-		});
-	}
-	
-	public void removeProduct(Product product) {
-		if(product.getSubCategory() == null)
-		subCategories.stream().map(s -> {
-			if (product.getSubCategory() == s)
-				s.getProducts().remove(product);
-			return subCategories;
-		});
-	}
+	private Set<SubCategory> sub = new LinkedHashSet<SubCategory>();
 	
 	public void addSubCategory(SubCategory subCategory) {
 		subCategory.setCategory(this);
-		subCategories.add(subCategory);
+		sub.add(subCategory);
 	}
 	
 	public void removeSubCategory(SubCategory subCategory) {
 		subCategory.setCategory(null);
-		subCategories.remove(subCategory);
+		sub.remove(subCategory);
 	}
 }

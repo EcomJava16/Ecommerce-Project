@@ -26,7 +26,7 @@ function LayoutOne({
       <Head>
         <title>{title}</title>
       </Head>
-      <ScrollHeader headerStyle={headerStyle} containerType={containerType} />
+      <ScrollHeader headerStyle={headerStyle} containerType={containerType}/>
       <div className={`content ${classNames({ "clear-top": clearSpaceTop })}`}>
         {children}
       </div>

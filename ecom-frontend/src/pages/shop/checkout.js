@@ -88,7 +88,7 @@ export default function checkout() {
     [paymentMethod]
   );
   return (
-    <LayoutOne title="Checkout">
+    <LayoutOne title="Checkout" >
       <div className="checkout">
         <div className="checkout-top">
           <Container>
@@ -352,7 +352,7 @@ export default function checkout() {
             <h5>Discount When Purchased Together</h5>
             <div className="checkout-related-products">
               <Slider {...settings}>
-                {productData.slice(0, 8).map((item, index) => (
+                {products.content.slice(0, 8).map((item, index) => (
                   <div className="slider-item" key={index}>
                     <Product data={item} />
                   </div>

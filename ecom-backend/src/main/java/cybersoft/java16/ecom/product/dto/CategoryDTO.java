@@ -1,8 +1,8 @@
 package cybersoft.java16.ecom.product.dto;
 
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
+import cybersoft.java16.ecom.product.validation.annotation.UniqueCategoryName;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -15,7 +15,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CategoryDTO {
-	@NotNull(message = "{category.model.notnull}")
-	@NotBlank(message = "{category.model.notblank}")
-	private String model;
+	@UniqueCategoryName
+	@NotBlank(message = "{category.name.notblank}")
+	private String name;
 }

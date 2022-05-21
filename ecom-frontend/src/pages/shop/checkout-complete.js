@@ -9,7 +9,7 @@ import LayoutOne from "../../components/layouts/LayoutOne";
 import Container from "../../components/other/Container";
 import { formatCurrency } from "../../common/utils";
 
-export default function checkoutComplete() {
+export default function checkoutComplete({categories }) {
   return (
     <LayoutOne title="Checkout completed">
       <Container>
