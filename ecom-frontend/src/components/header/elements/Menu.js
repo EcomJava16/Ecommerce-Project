@@ -57,7 +57,7 @@ function Menu({ containerType}) {
             />
             <div className="menu-functions">
               {isLogin ?
-                <Button onClick={()=>{localStorage.removeItem("token"); setIsLogin(false)}}>LOGOUT</Button>
+                <>
                 :
                 <Button onClick={() => setOpenModal(true)}>LOGIN</Button>
               }
