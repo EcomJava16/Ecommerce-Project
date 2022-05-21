@@ -57,7 +57,7 @@ function Menu({ containerType}) {
             />
             <div className="menu-functions">
               {isLogin ?
-                <>
+                <Profile logged={setIsLogin}/>
                 :
                 <Button onClick={() => setOpenModal(true)}>LOGIN</Button>
               }
