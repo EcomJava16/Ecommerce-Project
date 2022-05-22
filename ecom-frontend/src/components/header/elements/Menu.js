@@ -11,6 +11,7 @@ import SearchBar from "./SearchBar";
 import { getTotalProductInCart } from "../../../common/shopUtils";
 import Container from "../../other/Container";
 import LoginModal from "../../login/LoginModal";
+import Profile from "./Profile";
 
 
 

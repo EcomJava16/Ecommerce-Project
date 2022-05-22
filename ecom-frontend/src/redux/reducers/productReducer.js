@@ -1,4 +1,7 @@
 import {PRODUCT} from '../defines';
+import productData from "../../data/product.json";
+import useProductData from '../../common/useProductData';
+
 const initialState = {
     pending: false,
     products: [],

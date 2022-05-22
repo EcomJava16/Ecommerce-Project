@@ -94,6 +94,7 @@ function Product({ data, productStyle }) {
                     key={index}
                     src={item}
                     alt="Product image"
+                    style={{height:"227px"}}
                   />
                 ))}
             </a>

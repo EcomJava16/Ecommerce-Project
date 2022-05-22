@@ -1,9 +1,15 @@
 package cybersoft.java16.ecom.security.controller;
 
+import java.security.Principal;
+import java.util.Collections;
+import java.util.Map;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,4 +39,8 @@ public class AuthController {
 		}
 		return ResponseHelper.getResponse(jwt, HttpStatus.CREATED);
 	}
+	@GetMapping("/user")
+    public Map<String, Object> user(@AuthenticationPrincipal OAuth2User principal) {
+        return Collections.singletonMap("name", principal.getAttribute("name"));
+    }
 }

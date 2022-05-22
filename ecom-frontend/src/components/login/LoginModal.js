@@ -26,9 +26,7 @@ export default function Modal({ closeModal, logged }) {
             url: 'http://localhost:8080/api/v1/login',
             data: loginInfo
         }).then(res => {
-            console.log(res);
             localStorage.setItem("token", res.data.content);
-            localStorage.setItem("username", loginInfo.username);
             logged(true);
             closeModal(false)
         }).catch(err => {
@@ -55,6 +53,9 @@ export default function Modal({ closeModal, logged }) {
                 <div className="modalContainer">
                     <div className="title">
                         <h1>Login</h1>
+                    </div>
+                    <div className='title' style={{color:"red",marginBottom:"10px"}}>
+                    <h2><a href="http://localhost:8080/oauth2/authorize/google?redirec_uri=http://localhost:3000/oauth2/redirect">Login with Google</a></h2>
                     </div>
                     <form className="body">
                         <div>

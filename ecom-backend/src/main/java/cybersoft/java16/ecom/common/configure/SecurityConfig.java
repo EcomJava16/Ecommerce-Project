@@ -12,6 +12,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import cybersoft.java16.ecom.security.filter.JwtAuthenticationFilter;
@@ -27,6 +28,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	@Autowired
 	private UserDetailsService service;
 	
+	@Autowired
+	private DefaultOAuth2UserService oAuth2UserService;
+	
 	@Bean
 	public PasswordEncoder bCryptPasswordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -41,19 +45,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(service).passwordEncoder(bCryptPasswordEncoder());
 	}
-
+	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.cors();
 		http.csrf().disable();
 		http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 		http.antMatcher("/api/v1/**").authorizeRequests()
-				.antMatchers("/api/v1/login").permitAll()
+				.antMatchers("/api/v1/login").permitAll()		
 				.antMatchers("/api/v1/user/register").permitAll()
 				.antMatchers("/api/v1/product/**").permitAll()
 				.antMatchers("/api/v1/category/**").permitAll()
 				.antMatchers("/api/v1/subCategory/**").permitAll()
-				.anyRequest().authenticated();
+				.anyRequest().authenticated()
+				.and().oauth2Login();
 		http.addFilterBefore(jwtAuthenticationFilter(), UsernamePasswordAuthenticationFilter.class);
 	}
 
