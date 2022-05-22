@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
-
+import productData from "../data/product.json";
 import Banners from "../components/shop/Banners";
 import LayoutOne from "../components/layouts/LayoutOne";
 import ShopLayout from "../components/shop/ShopLayout";
@@ -23,7 +23,7 @@ export default function Home({products,categories}) {
   }, []);
   const globalState = useSelector((state) => state.globalReducer);
   const data = useProductData(
-    productState.products,
+   productState.products,
     globalState.category,
     router.query.q
   );

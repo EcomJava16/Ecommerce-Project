@@ -2,11 +2,11 @@
   @if ($size == "auto" or $size == "100%") {
     @return $size;
   }
-  @return ($size/$rem-baseline) * 1rem;
+  @return calc($size/$rem-baseline) * 1rem;
 }
 
 @function emCal($em, $size) {
-  @return ($size/$em) * 1em;
+  @return calc($size/$em) * 1em;
 }
 
 @function setColor($color) {
