@@ -13,7 +13,9 @@ import cybersoft.java16.ecom.product.dto.ProductReturnDTO;
 import cybersoft.java16.ecom.product.dto.ProductUpdateDTO;
 import cybersoft.java16.ecom.product.mapper.ProductMapper;
 import cybersoft.java16.ecom.product.model.Product;
+import cybersoft.java16.ecom.product.model.ProductSize;
 import cybersoft.java16.ecom.product.repository.ProductRepository;
+import cybersoft.java16.ecom.product.repository.ProductSizeRepository;
 import cybersoft.java16.ecom.product.util.ErrorMessage;
 
 @Service
@@ -22,6 +24,9 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Autowired
 	private ProductRepository repository;
+	
+	@Autowired
+	private ProductSizeRepository sizeRepository;
 	
 	@Override
 	public ProductDTO createNewProduct(ProductDTO dto) {
@@ -112,6 +117,31 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
+	public ProductReturnDTO addSize(String productId, String sizeId) {
+		Optional<Product> productOpt;
+		Optional<ProductSize> sizeOpt;
+		try {
+			productOpt = repository.findById(UUID.fromString(productId));
+			sizeOpt = sizeRepository.findById(UUID.fromString(sizeId));
+			if(productOpt.isEmpty()) {
+				errorMessage = ErrorMessage.NOT_FOUND_PRODUCT;
+				return null;
+			}
+			if(sizeOpt.isEmpty()) {
+				errorMessage = ErrorMessage.NOT_FOUND_PRODUCT_SIZE;
+				return null;
+			}
+		}catch(IllegalArgumentException ex) {
+			errorMessage = ErrorMessage.INVALID_UUID;
+			return null;
+		}
+		Product product = productOpt.get();
+		ProductSize size = sizeOpt.get();
+		product.addSize(size);
+		return ProductMapper.INSTANCE.toProductReturnDTO(repository.save(product));
+	}
+	
+	@Override
 	public ProductDTO deleteProductById(String id) {
 		Optional<Product> existedProductOpt;
 		try{
@@ -129,8 +159,35 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
+	public ProductReturnDTO removeSize(String productId, String sizeId) {
+		Optional<Product> productOpt;
+		Optional<ProductSize> sizeOpt;
+		try {
+			productOpt = repository.findById(UUID.fromString(productId));
+			sizeOpt = sizeRepository.findById(UUID.fromString(sizeId));
+			if(productOpt.isEmpty()) {
+				errorMessage = ErrorMessage.NOT_FOUND_PRODUCT;
+				return null;
+			}
+			if(sizeOpt.isEmpty()) {
+				errorMessage = ErrorMessage.NOT_FOUND_PRODUCT_SIZE;
+				return null;
+			}
+		}catch(IllegalArgumentException ex) {
+			errorMessage = ErrorMessage.INVALID_UUID;
+			return null;
+		}
+		Product product = productOpt.get();
+		ProductSize size = sizeOpt.get();
+		product.removeSize(size);
+		return ProductMapper.INSTANCE.toProductReturnDTO(repository.save(product));
+	}
+	
+	@Override
 	public String getErrorMessage() {
 		return errorMessage;
 	}
+
+	
 
 }

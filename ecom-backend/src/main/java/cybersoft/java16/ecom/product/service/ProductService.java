@@ -12,6 +12,8 @@ public interface ProductService {
 	ProductDTO 			findById(String id);
 	ProductDTO 			findByName(String name);
 	ProductUpdateDTO 	updateProduct(String id,ProductUpdateDTO dto);
+	ProductReturnDTO    addSize(String productId, String sizeId);
 	ProductDTO 			deleteProductById(String id);
+	ProductReturnDTO	removeSize(String productId, String sizeId);
 	String 				getErrorMessage();
 }

@@ -15,4 +15,7 @@ public class ErrorMessage {
 	// Product
 	public static final String NOT_FOUND_PRODUCT = "Product not found";
 	public static final String CODE_IS_USED = "Product's Code is used";
+	
+	// Product Size
+	public static final String NOT_FOUND_PRODUCT_SIZE = "Product's size not found";
 }

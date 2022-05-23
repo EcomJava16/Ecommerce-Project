@@ -68,7 +68,7 @@ public class Product extends BaseEntity {
 	
 	@JsonIgnore
 	@ManyToMany(mappedBy = "products")
-	private Set<Size> size = new LinkedHashSet<Size>();
+	private Set<ProductSize> size = new LinkedHashSet<ProductSize>();
 	
 	private ArrayList<String> thumbImage = new ArrayList<String>();
 	
@@ -84,4 +84,13 @@ public class Product extends BaseEntity {
 	@JoinColumn(name = "subcategory_id")
 	private SubCategory subCategoryModel;
 
+	public void addSize(ProductSize productSize) {
+		size.add(productSize);
+		productSize.getProducts().add(this);
+	}
+	
+	public void removeSize(ProductSize productSize) {
+		size.remove(productSize);
+		productSize.getProducts().remove(this);
+	}
 }

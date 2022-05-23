@@ -8,14 +8,13 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import cybersoft.java16.ecom.product.validation.validator.UniqueProductSlugValidator;
+import cybersoft.java16.ecom.product.validation.validator.UniqueProductSizeNameValidator;
 
-@Constraint(validatedBy = UniqueProductSlugValidator.class)
+@Constraint(validatedBy = UniqueProductSizeNameValidator.class)
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.FIELD})
-public @interface UniqueProductSlug {
-	String message() default "{product.validation.uniqueproductslug.existedslug}";
-	
+public @interface UniqueProductSizeName {
+	String message() default "{productsize.validation.uniqueproductsizename.existedname}";
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
 }

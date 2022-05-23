@@ -64,11 +64,6 @@ public class SubCategoryServiceImpl implements SubCategoryService {
 				errorMessage = ErrorMessage.NOT_FOUND_PRODUCT;
 				return null;
 			}
-//			// check product's year and subCategory's year.
-//			if(subCategoryOpt.get().getName() != productOpt.get().getSubCategory()) {
-//				errorMessage = ErrorMessage.YEAR_NOT_ALIKE;
-//				return null;
-//			}
 		}catch(IllegalArgumentException ex) {
 			errorMessage = ErrorMessage.INVALID_UUID;
 			return null;
