@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Set;
 
 import cybersoft.java16.ecom.product.model.Sex;
-import cybersoft.java16.ecom.product.model.Size;
+import cybersoft.java16.ecom.product.model.ProductSize;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -37,7 +37,7 @@ public class ProductReturnDTO {
 
 	private ArrayList<String> images;
 	
-	private Set<Size> size;
+	private Set<ProductSizeDTO> size;
 	
 	private String description;
 	

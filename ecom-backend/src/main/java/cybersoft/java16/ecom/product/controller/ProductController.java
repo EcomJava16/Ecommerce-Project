@@ -80,6 +80,16 @@ public class ProductController {
 		return ResponseHelper.getResponse(updatedProduct, HttpStatus.OK);
 	}
 	
+	@PostMapping("/add-size/{product-id}/{size-id}")
+	public Object addSize(@PathVariable("product-id") String productId,
+							@PathVariable("size-id") String sizeId) {
+		ProductReturnDTO productReturnDTO = service.addSize(productId, sizeId);	
+		if(productReturnDTO == null) {
+			return ResponseHelper.getErrorResponse(service.getErrorMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return ResponseHelper.getResponse(productReturnDTO, HttpStatus.OK);
+	}
+	
 	@DeleteMapping("/{product-id}")
 	public Object deleteProduct(@PathVariable("product-id") String id) {
 		ProductDTO deleteProduct = service.deleteProductById(id);
@@ -88,5 +98,15 @@ public class ProductController {
 		}
 		
 		return ResponseHelper.getResponse(deleteProduct, HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/remove-size/{product-id}/{size-id}")
+	public Object removeSize(@PathVariable("product-id") String productId,
+								@PathVariable("size-id") String sizeId) {
+		ProductReturnDTO modifiedProductReturnDTO = service.removeSize(productId, sizeId);
+		if(modifiedProductReturnDTO == null) {
+			return ResponseHelper.getErrorResponse(service.getErrorMessage(), HttpStatus.BAD_REQUEST);
+		}
+		return ResponseHelper.getResponse(modifiedProductReturnDTO, HttpStatus.OK);
 	}
 }
