@@ -1,9 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Link from "next/link";
 import { useSelector, useDispatch } from "react-redux";
 import classNames from "classnames";
 import { Select } from "antd";
-
 import { SHOP } from "../../common/defines";
 import { setSubCategory } from "../../redux/actions/shopActions";
 
@@ -12,8 +11,7 @@ function ShopSidebar() {
   const dispatch = useDispatch();
   const globalState = useSelector((state) => state.globalReducer);
   const shopState = useSelector((state) => state.shopReducer);
-  const categoryState = useSelector((state) => state.categoryReducer);
-  const subCategory = categoryState.category.find(
+  const subCategory = SHOP.category.find(
     (item) => item.name.toLowerCase() === globalState.category.toLowerCase()
   );
   const onChooseSubCategory = (data) => {
@@ -94,5 +92,4 @@ function ShopSidebar() {
     </div>
   );
 }
-
 export default React.memo(ShopSidebar);

@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import cybersoft.java16.ecom.user.dto.UserDTO;
+import cybersoft.java16.ecom.user.dto.UserReturnDTO;
 import cybersoft.java16.ecom.user.dto.UserUpdateDTO;
 import cybersoft.java16.ecom.user.mapper.UserMapper;
 import cybersoft.java16.ecom.user.model.EcomUser;
@@ -77,8 +78,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDTO findUserByUsername(@Valid String username) {
-		return repository.findByUsername(username).map(t -> UserMapper.INSTANCE.toUserDto(t)).get();
+	public UserReturnDTO findUserByUsername(String username) {
+		return repository.findByUsername(username).map(t -> UserMapper.INSTANCE.toUserReturnDTO(t)).get();
 	}
 
 }

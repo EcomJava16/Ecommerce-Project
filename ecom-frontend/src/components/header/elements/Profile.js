@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
+import userReducer from '../../../redux/reducers/userReducer';
+import { addUser, removeUser } from '../../../redux/actions/userAction';
+
 
 export default function Profile({ logged }) {
-    const [user, setUser] = useState({
-        username: "",
-        firstName: ""
-    });
-
+    const selector = useSelector((state)=>state.userReducer);
+    const dispatch = useDispatch();
     const logout = () => {
-        localStorage.removeItem("token");
+        dispatch(removeUser())
         logged(false)
     }
-
     useEffect(() => {
         loadData();
     }, [])
@@ -21,19 +21,19 @@ export default function Profile({ logged }) {
             method: 'get',
             url: 'http://localhost:8080/api/v1/user/' + localStorage.getItem("username"),
             headers: {
-                'Authorization': 'Bearer ' + localStorage.getItem("token"),
+                'Authorization': 'Bearer ' + selector.token,
                 'Content-Type': 'application/json'
             }
         }).then(res => {
-            setUser({ username: res.data.content.username, firstName: res.data.content.firstName })
+            dispatch(addUser(res.data.content))
         }).catch(err => {
-            logout();
+            // logout(err.data.content);
         });
     }
 
     return (
         <div className='dropdown'>
-            <button className='btn-dropdown'>Hi {user.firstName}</button>
+            <button className='btn-dropdown'>Hi {localStorage.getItem("username")}</button>
             <div className='dropdown-item'>
                 <a onClick={logout}>Logout</a>
             </div>

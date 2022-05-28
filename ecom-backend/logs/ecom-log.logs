@@ -1,0 +1,601 @@
+23:51:44 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Starting EcomBackendApplication using Java 17.0.2 on MSI with PID 21248 (E:\Back_End\BaiHoc\Last Project\ecom-backend\target\classes started by ADMIN in E:\Back_End\BaiHoc\Last Project\ecom-backend)
+23:51:44 [restartedMain] DEBUG   --- c.j.e.EcomBackendApplication - Running with Spring Boot v2.5.10, Spring v5.3.16
+23:51:44 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - No active profile set, falling back to 1 default profile: "default"
+23:51:44 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+23:51:44 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 24 ms. Found 8 JPA repository interfaces.
+23:51:44 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+23:51:44 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+23:51:44 [restartedMain] INFO    --- o.a.c.c.StandardService - Starting service [Tomcat]
+23:51:44 [restartedMain] INFO    --- o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.58]
+23:51:44 [restartedMain] INFO    --- o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+23:51:44 [restartedMain] INFO    --- o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 297 ms
+23:51:44 [restartedMain] WARN    --- o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+23:51:44 [restartedMain] INFO    --- o.f.c.i.l.VersionPrinter - Flyway Community Edition 7.7.3 by Redgate
+23:51:44 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-2 - Starting...
+23:51:44 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-2 - Start completed.
+23:51:44 [restartedMain] INFO    --- o.f.c.i.d.b.DatabaseType - Database: jdbc:postgresql://localhost:5432/ecom (PostgreSQL 14.2)
+23:51:44 [restartedMain] WARN    --- o.f.c.i.d.b.Database - Flyway upgrade recommended: org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f 14.2 is newer than this version of Flyway and support has not been tested. The latest supported version of org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f is 13.
+23:51:44 [restartedMain] INFO    --- o.f.c.i.c.DbValidate - Successfully validated 1 migration (execution time 00:00.005s)
+23:51:44 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Current version of schema "public": 1
+23:51:44 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Schema "public" is up to date. No migration necessary.
+23:51:44 [restartedMain] INFO    --- o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+23:51:44 [restartedMain] INFO    --- o.h.d.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+23:51:44 [restartedMain] INFO    --- o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+23:51:44 [restartedMain] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+23:51:44 [restartedMain] DEBUG   --- c.j.e.s.f.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+23:51:45 [restartedMain] INFO    --- s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+23:51:45 [restartedMain] INFO    --- o.s.s.w.DefaultSecurityFilterChain - Will not secure Ant [pattern='/api/v1/**']
+23:51:45 [restartedMain] INFO    --- o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+23:51:45 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+23:51:45 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+23:51:45 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+23:51:45 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+23:51:45 [restartedMain] INFO    --- s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+23:51:45 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_1
+23:51:45 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: removeProductUsingDELETE_1
+23:51:45 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Started EcomBackendApplication in 1.128 seconds (JVM running for 111.819)
+23:51:45 [restartedMain] INFO    --- o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+23:55:37 [Thread-7] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+23:55:37 [Thread-7] INFO    --- c.z.h.HikariDataSource - HikariPool-2 - Shutdown initiated...
+23:55:37 [Thread-7] INFO    --- c.z.h.HikariDataSource - HikariPool-2 - Shutdown completed.
+23:55:37 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Starting EcomBackendApplication using Java 17.0.2 on MSI with PID 21248 (E:\Back_End\BaiHoc\Last Project\ecom-backend\target\classes started by ADMIN in E:\Back_End\BaiHoc\Last Project\ecom-backend)
+23:55:37 [restartedMain] DEBUG   --- c.j.e.EcomBackendApplication - Running with Spring Boot v2.5.10, Spring v5.3.16
+23:55:37 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - No active profile set, falling back to 1 default profile: "default"
+23:55:37 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+23:55:37 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 23 ms. Found 8 JPA repository interfaces.
+23:55:37 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+23:55:37 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+23:55:37 [restartedMain] INFO    --- o.a.c.c.StandardService - Starting service [Tomcat]
+23:55:37 [restartedMain] INFO    --- o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.58]
+23:55:37 [restartedMain] INFO    --- o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+23:55:37 [restartedMain] INFO    --- o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 283 ms
+23:55:37 [restartedMain] WARN    --- o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+23:55:37 [restartedMain] INFO    --- o.f.c.i.l.VersionPrinter - Flyway Community Edition 7.7.3 by Redgate
+23:55:37 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-3 - Starting...
+23:55:37 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-3 - Start completed.
+23:55:37 [restartedMain] INFO    --- o.f.c.i.d.b.DatabaseType - Database: jdbc:postgresql://localhost:5432/ecom (PostgreSQL 14.2)
+23:55:37 [restartedMain] WARN    --- o.f.c.i.d.b.Database - Flyway upgrade recommended: org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f 14.2 is newer than this version of Flyway and support has not been tested. The latest supported version of org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f is 13.
+23:55:37 [restartedMain] INFO    --- o.f.c.i.c.DbValidate - Successfully validated 1 migration (execution time 00:00.004s)
+23:55:37 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Current version of schema "public": 1
+23:55:37 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Schema "public" is up to date. No migration necessary.
+23:55:37 [restartedMain] INFO    --- o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+23:55:37 [restartedMain] INFO    --- o.h.d.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+23:55:37 [restartedMain] INFO    --- o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+23:55:37 [restartedMain] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+23:55:37 [restartedMain] DEBUG   --- c.j.e.s.f.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+23:55:38 [restartedMain] INFO    --- s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+23:55:38 [restartedMain] INFO    --- o.s.s.w.DefaultSecurityFilterChain - Will not secure Ant [pattern='/api/v1/**']
+23:55:38 [restartedMain] INFO    --- o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+23:55:38 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+23:55:38 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+23:55:38 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+23:55:38 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+23:55:38 [restartedMain] INFO    --- s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+23:55:38 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_1
+23:55:38 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: removeProductUsingDELETE_1
+23:55:38 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Started EcomBackendApplication in 1.08 seconds (JVM running for 344.752)
+23:55:38 [restartedMain] INFO    --- o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+23:55:55 [Thread-11] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+23:55:55 [Thread-11] INFO    --- c.z.h.HikariDataSource - HikariPool-3 - Shutdown initiated...
+23:55:55 [Thread-11] INFO    --- c.z.h.HikariDataSource - HikariPool-3 - Shutdown completed.
+23:55:55 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Starting EcomBackendApplication using Java 17.0.2 on MSI with PID 21248 (E:\Back_End\BaiHoc\Last Project\ecom-backend\target\classes started by ADMIN in E:\Back_End\BaiHoc\Last Project\ecom-backend)
+23:55:55 [restartedMain] DEBUG   --- c.j.e.EcomBackendApplication - Running with Spring Boot v2.5.10, Spring v5.3.16
+23:55:55 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - No active profile set, falling back to 1 default profile: "default"
+23:55:56 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+23:55:56 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 24 ms. Found 8 JPA repository interfaces.
+23:55:56 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+23:55:56 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+23:55:56 [restartedMain] INFO    --- o.a.c.c.StandardService - Starting service [Tomcat]
+23:55:56 [restartedMain] INFO    --- o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.58]
+23:55:56 [restartedMain] INFO    --- o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+23:55:56 [restartedMain] INFO    --- o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 256 ms
+23:55:56 [restartedMain] WARN    --- o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+23:55:56 [restartedMain] INFO    --- o.f.c.i.l.VersionPrinter - Flyway Community Edition 7.7.3 by Redgate
+23:55:56 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-4 - Starting...
+23:55:56 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-4 - Start completed.
+23:55:56 [restartedMain] INFO    --- o.f.c.i.d.b.DatabaseType - Database: jdbc:postgresql://localhost:5432/ecom (PostgreSQL 14.2)
+23:55:56 [restartedMain] WARN    --- o.f.c.i.d.b.Database - Flyway upgrade recommended: org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f 14.2 is newer than this version of Flyway and support has not been tested. The latest supported version of org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f is 13.
+23:55:56 [restartedMain] INFO    --- o.f.c.i.c.DbValidate - Successfully validated 1 migration (execution time 00:00.005s)
+23:55:56 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Current version of schema "public": 1
+23:55:56 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Schema "public" is up to date. No migration necessary.
+23:55:56 [restartedMain] INFO    --- o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+23:55:56 [restartedMain] INFO    --- o.h.d.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+23:55:56 [restartedMain] INFO    --- o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+23:55:56 [restartedMain] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+23:55:56 [restartedMain] DEBUG   --- c.j.e.s.f.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+23:55:56 [restartedMain] INFO    --- s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+23:55:56 [restartedMain] INFO    --- o.s.s.w.DefaultSecurityFilterChain - Will not secure Ant [pattern='/api/v1/**']
+23:55:56 [restartedMain] INFO    --- o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+23:55:56 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+23:55:56 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+23:55:56 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+23:55:56 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+23:55:56 [restartedMain] INFO    --- s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+23:55:56 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_1
+23:55:56 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: removeProductUsingDELETE_1
+23:55:56 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Started EcomBackendApplication in 0.978 seconds (JVM running for 363.391)
+23:55:56 [restartedMain] INFO    --- o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+23:56:02 [Thread-15] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+23:56:02 [Thread-15] INFO    --- c.z.h.HikariDataSource - HikariPool-4 - Shutdown initiated...
+23:56:02 [Thread-15] INFO    --- c.z.h.HikariDataSource - HikariPool-4 - Shutdown completed.
+23:56:02 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Starting EcomBackendApplication using Java 17.0.2 on MSI with PID 21248 (E:\Back_End\BaiHoc\Last Project\ecom-backend\target\classes started by ADMIN in E:\Back_End\BaiHoc\Last Project\ecom-backend)
+23:56:02 [restartedMain] DEBUG   --- c.j.e.EcomBackendApplication - Running with Spring Boot v2.5.10, Spring v5.3.16
+23:56:02 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - No active profile set, falling back to 1 default profile: "default"
+23:56:02 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+23:56:02 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 26 ms. Found 8 JPA repository interfaces.
+23:56:02 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+23:56:02 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+23:56:02 [restartedMain] INFO    --- o.a.c.c.StandardService - Starting service [Tomcat]
+23:56:02 [restartedMain] INFO    --- o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.58]
+23:56:02 [restartedMain] INFO    --- o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+23:56:02 [restartedMain] INFO    --- o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 284 ms
+23:56:02 [restartedMain] WARN    --- o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+23:56:02 [restartedMain] INFO    --- o.f.c.i.l.VersionPrinter - Flyway Community Edition 7.7.3 by Redgate
+23:56:02 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-5 - Starting...
+23:56:02 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-5 - Start completed.
+23:56:02 [restartedMain] INFO    --- o.f.c.i.d.b.DatabaseType - Database: jdbc:postgresql://localhost:5432/ecom (PostgreSQL 14.2)
+23:56:02 [restartedMain] WARN    --- o.f.c.i.d.b.Database - Flyway upgrade recommended: org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f 14.2 is newer than this version of Flyway and support has not been tested. The latest supported version of org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f is 13.
+23:56:02 [restartedMain] INFO    --- o.f.c.i.c.DbValidate - Successfully validated 1 migration (execution time 00:00.005s)
+23:56:02 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Current version of schema "public": 1
+23:56:02 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Schema "public" is up to date. No migration necessary.
+23:56:02 [restartedMain] INFO    --- o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+23:56:02 [restartedMain] INFO    --- o.h.d.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+23:56:02 [restartedMain] INFO    --- o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+23:56:02 [restartedMain] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+23:56:02 [restartedMain] DEBUG   --- c.j.e.s.f.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+23:56:03 [restartedMain] INFO    --- s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+23:56:03 [restartedMain] INFO    --- o.s.s.w.DefaultSecurityFilterChain - Will not secure Ant [pattern='/api/v1/**']
+23:56:03 [restartedMain] INFO    --- o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+23:56:03 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+23:56:03 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+23:56:03 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+23:56:03 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+23:56:03 [restartedMain] INFO    --- s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+23:56:03 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_1
+23:56:03 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: removeProductUsingDELETE_1
+23:56:03 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Started EcomBackendApplication in 0.997 seconds (JVM running for 369.847)
+23:56:03 [restartedMain] INFO    --- o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+23:56:13 [Thread-19] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+23:56:13 [Thread-19] INFO    --- c.z.h.HikariDataSource - HikariPool-5 - Shutdown initiated...
+23:56:13 [Thread-19] INFO    --- c.z.h.HikariDataSource - HikariPool-5 - Shutdown completed.
+23:56:14 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Starting EcomBackendApplication using Java 17.0.2 on MSI with PID 21248 (E:\Back_End\BaiHoc\Last Project\ecom-backend\target\classes started by ADMIN in E:\Back_End\BaiHoc\Last Project\ecom-backend)
+23:56:14 [restartedMain] DEBUG   --- c.j.e.EcomBackendApplication - Running with Spring Boot v2.5.10, Spring v5.3.16
+23:56:14 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - No active profile set, falling back to 1 default profile: "default"
+23:56:14 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+23:56:14 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20 ms. Found 8 JPA repository interfaces.
+23:56:14 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+23:56:14 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+23:56:14 [restartedMain] INFO    --- o.a.c.c.StandardService - Starting service [Tomcat]
+23:56:14 [restartedMain] INFO    --- o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.58]
+23:56:14 [restartedMain] INFO    --- o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+23:56:14 [restartedMain] INFO    --- o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 236 ms
+23:56:14 [restartedMain] WARN    --- o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+23:56:14 [restartedMain] INFO    --- o.f.c.i.l.VersionPrinter - Flyway Community Edition 7.7.3 by Redgate
+23:56:14 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-6 - Starting...
+23:56:14 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-6 - Start completed.
+23:56:14 [restartedMain] INFO    --- o.f.c.i.d.b.DatabaseType - Database: jdbc:postgresql://localhost:5432/ecom (PostgreSQL 14.2)
+23:56:14 [restartedMain] WARN    --- o.f.c.i.d.b.Database - Flyway upgrade recommended: org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f 14.2 is newer than this version of Flyway and support has not been tested. The latest supported version of org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f is 13.
+23:56:14 [restartedMain] INFO    --- o.f.c.i.c.DbValidate - Successfully validated 1 migration (execution time 00:00.004s)
+23:56:14 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Current version of schema "public": 1
+23:56:14 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Schema "public" is up to date. No migration necessary.
+23:56:14 [restartedMain] INFO    --- o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+23:56:14 [restartedMain] INFO    --- o.h.d.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+23:56:14 [restartedMain] INFO    --- o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+23:56:14 [restartedMain] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+23:56:14 [restartedMain] DEBUG   --- c.j.e.s.f.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+23:56:14 [restartedMain] INFO    --- s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+23:56:14 [restartedMain] INFO    --- o.s.s.w.DefaultSecurityFilterChain - Will not secure Ant [pattern='/api/v1/**']
+23:56:14 [restartedMain] INFO    --- o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+23:56:14 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+23:56:14 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+23:56:14 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+23:56:14 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+23:56:14 [restartedMain] INFO    --- s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+23:56:14 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_1
+23:56:14 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: removeProductUsingDELETE_1
+23:56:14 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Started EcomBackendApplication in 0.952 seconds (JVM running for 381.387)
+23:56:14 [restartedMain] INFO    --- o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+23:56:34 [Thread-23] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+23:56:34 [Thread-23] INFO    --- c.z.h.HikariDataSource - HikariPool-6 - Shutdown initiated...
+23:56:34 [Thread-23] INFO    --- c.z.h.HikariDataSource - HikariPool-6 - Shutdown completed.
+23:56:34 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Starting EcomBackendApplication using Java 17.0.2 on MSI with PID 21248 (E:\Back_End\BaiHoc\Last Project\ecom-backend\target\classes started by ADMIN in E:\Back_End\BaiHoc\Last Project\ecom-backend)
+23:56:34 [restartedMain] DEBUG   --- c.j.e.EcomBackendApplication - Running with Spring Boot v2.5.10, Spring v5.3.16
+23:56:34 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - No active profile set, falling back to 1 default profile: "default"
+23:56:34 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+23:56:34 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 22 ms. Found 8 JPA repository interfaces.
+23:56:34 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+23:56:34 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+23:56:34 [restartedMain] INFO    --- o.a.c.c.StandardService - Starting service [Tomcat]
+23:56:34 [restartedMain] INFO    --- o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.58]
+23:56:34 [restartedMain] INFO    --- o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+23:56:34 [restartedMain] INFO    --- o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 247 ms
+23:56:34 [restartedMain] WARN    --- o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+23:56:34 [restartedMain] INFO    --- o.f.c.i.l.VersionPrinter - Flyway Community Edition 7.7.3 by Redgate
+23:56:34 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-7 - Starting...
+23:56:34 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-7 - Start completed.
+23:56:34 [restartedMain] INFO    --- o.f.c.i.d.b.DatabaseType - Database: jdbc:postgresql://localhost:5432/ecom (PostgreSQL 14.2)
+23:56:35 [restartedMain] WARN    --- o.f.c.i.d.b.Database - Flyway upgrade recommended: org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f 14.2 is newer than this version of Flyway and support has not been tested. The latest supported version of org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f is 13.
+23:56:35 [restartedMain] INFO    --- o.f.c.i.c.DbValidate - Successfully validated 1 migration (execution time 00:00.004s)
+23:56:35 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Current version of schema "public": 1
+23:56:35 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Schema "public" is up to date. No migration necessary.
+23:56:35 [restartedMain] INFO    --- o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+23:56:35 [restartedMain] INFO    --- o.h.d.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+23:56:35 [restartedMain] INFO    --- o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+23:56:35 [restartedMain] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+23:56:35 [restartedMain] DEBUG   --- c.j.e.s.f.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+23:56:35 [restartedMain] INFO    --- s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+23:56:35 [restartedMain] INFO    --- o.s.s.w.DefaultSecurityFilterChain - Will not secure Ant [pattern='/api/v1/**']
+23:56:35 [restartedMain] INFO    --- o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+23:56:35 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+23:56:35 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+23:56:35 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+23:56:35 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+23:56:35 [restartedMain] INFO    --- s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+23:56:35 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_1
+23:56:35 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: removeProductUsingDELETE_1
+23:56:35 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Started EcomBackendApplication in 0.929 seconds (JVM running for 402.055)
+23:56:35 [restartedMain] INFO    --- o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+23:56:45 [Thread-27] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+23:56:45 [Thread-27] INFO    --- c.z.h.HikariDataSource - HikariPool-7 - Shutdown initiated...
+23:56:45 [Thread-27] INFO    --- c.z.h.HikariDataSource - HikariPool-7 - Shutdown completed.
+23:56:45 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Starting EcomBackendApplication using Java 17.0.2 on MSI with PID 21248 (E:\Back_End\BaiHoc\Last Project\ecom-backend\target\classes started by ADMIN in E:\Back_End\BaiHoc\Last Project\ecom-backend)
+23:56:45 [restartedMain] DEBUG   --- c.j.e.EcomBackendApplication - Running with Spring Boot v2.5.10, Spring v5.3.16
+23:56:45 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - No active profile set, falling back to 1 default profile: "default"
+23:56:45 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+23:56:45 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 19 ms. Found 8 JPA repository interfaces.
+23:56:45 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+23:56:45 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+23:56:45 [restartedMain] INFO    --- o.a.c.c.StandardService - Starting service [Tomcat]
+23:56:45 [restartedMain] INFO    --- o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.58]
+23:56:45 [restartedMain] INFO    --- o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+23:56:45 [restartedMain] INFO    --- o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 230 ms
+23:56:45 [restartedMain] WARN    --- o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+23:56:45 [restartedMain] INFO    --- o.f.c.i.l.VersionPrinter - Flyway Community Edition 7.7.3 by Redgate
+23:56:45 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-8 - Starting...
+23:56:45 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-8 - Start completed.
+23:56:45 [restartedMain] INFO    --- o.f.c.i.d.b.DatabaseType - Database: jdbc:postgresql://localhost:5432/ecom (PostgreSQL 14.2)
+23:56:45 [restartedMain] WARN    --- o.f.c.i.d.b.Database - Flyway upgrade recommended: org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f 14.2 is newer than this version of Flyway and support has not been tested. The latest supported version of org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f is 13.
+23:56:45 [restartedMain] INFO    --- o.f.c.i.c.DbValidate - Successfully validated 1 migration (execution time 00:00.004s)
+23:56:45 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Current version of schema "public": 1
+23:56:45 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Schema "public" is up to date. No migration necessary.
+23:56:45 [restartedMain] INFO    --- o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+23:56:45 [restartedMain] INFO    --- o.h.d.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+23:56:45 [restartedMain] INFO    --- o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+23:56:45 [restartedMain] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+23:56:45 [restartedMain] DEBUG   --- c.j.e.s.f.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+23:56:45 [restartedMain] INFO    --- s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+23:56:45 [restartedMain] INFO    --- o.s.s.w.DefaultSecurityFilterChain - Will not secure Ant [pattern='/api/v1/**']
+23:56:45 [restartedMain] INFO    --- o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+23:56:45 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+23:56:45 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+23:56:45 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+23:56:45 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+23:56:45 [restartedMain] INFO    --- s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+23:56:46 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_1
+23:56:46 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: removeProductUsingDELETE_1
+23:56:46 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Started EcomBackendApplication in 0.912 seconds (JVM running for 412.529)
+23:56:46 [restartedMain] INFO    --- o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+23:57:28 [Thread-31] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+23:57:28 [Thread-31] INFO    --- c.z.h.HikariDataSource - HikariPool-8 - Shutdown initiated...
+23:57:28 [Thread-31] INFO    --- c.z.h.HikariDataSource - HikariPool-8 - Shutdown completed.
+23:57:28 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Starting EcomBackendApplication using Java 17.0.2 on MSI with PID 21248 (E:\Back_End\BaiHoc\Last Project\ecom-backend\target\classes started by ADMIN in E:\Back_End\BaiHoc\Last Project\ecom-backend)
+23:57:28 [restartedMain] DEBUG   --- c.j.e.EcomBackendApplication - Running with Spring Boot v2.5.10, Spring v5.3.16
+23:57:28 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - No active profile set, falling back to 1 default profile: "default"
+23:57:28 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+23:57:28 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 19 ms. Found 8 JPA repository interfaces.
+23:57:28 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+23:57:28 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+23:57:28 [restartedMain] INFO    --- o.a.c.c.StandardService - Starting service [Tomcat]
+23:57:28 [restartedMain] INFO    --- o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.58]
+23:57:28 [restartedMain] INFO    --- o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+23:57:28 [restartedMain] INFO    --- o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 237 ms
+23:57:28 [restartedMain] WARN    --- o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+23:57:28 [restartedMain] INFO    --- o.f.c.i.l.VersionPrinter - Flyway Community Edition 7.7.3 by Redgate
+23:57:28 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-9 - Starting...
+23:57:28 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-9 - Start completed.
+23:57:28 [restartedMain] INFO    --- o.f.c.i.d.b.DatabaseType - Database: jdbc:postgresql://localhost:5432/ecom (PostgreSQL 14.2)
+23:57:28 [restartedMain] WARN    --- o.f.c.i.d.b.Database - Flyway upgrade recommended: org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f 14.2 is newer than this version of Flyway and support has not been tested. The latest supported version of org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f is 13.
+23:57:28 [restartedMain] INFO    --- o.f.c.i.c.DbValidate - Successfully validated 1 migration (execution time 00:00.004s)
+23:57:28 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Current version of schema "public": 1
+23:57:28 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Schema "public" is up to date. No migration necessary.
+23:57:28 [restartedMain] INFO    --- o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+23:57:28 [restartedMain] INFO    --- o.h.d.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+23:57:28 [restartedMain] INFO    --- o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+23:57:28 [restartedMain] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+23:57:28 [restartedMain] DEBUG   --- c.j.e.s.f.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+23:57:28 [restartedMain] INFO    --- s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+23:57:28 [restartedMain] INFO    --- o.s.s.w.DefaultSecurityFilterChain - Will not secure Ant [pattern='/api/v1/**']
+23:57:28 [restartedMain] INFO    --- o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+23:57:28 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+23:57:28 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+23:57:28 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+23:57:28 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+23:57:28 [restartedMain] INFO    --- s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+23:57:28 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_1
+23:57:28 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: removeProductUsingDELETE_1
+23:57:29 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Started EcomBackendApplication in 0.881 seconds (JVM running for 455.488)
+23:57:29 [restartedMain] INFO    --- o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+23:58:16 [Thread-35] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+23:58:16 [Thread-35] INFO    --- c.z.h.HikariDataSource - HikariPool-9 - Shutdown initiated...
+23:58:16 [Thread-35] INFO    --- c.z.h.HikariDataSource - HikariPool-9 - Shutdown completed.
+23:58:16 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Starting EcomBackendApplication using Java 17.0.2 on MSI with PID 21248 (E:\Back_End\BaiHoc\Last Project\ecom-backend\target\classes started by ADMIN in E:\Back_End\BaiHoc\Last Project\ecom-backend)
+23:58:16 [restartedMain] DEBUG   --- c.j.e.EcomBackendApplication - Running with Spring Boot v2.5.10, Spring v5.3.16
+23:58:16 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - No active profile set, falling back to 1 default profile: "default"
+23:58:16 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+23:58:16 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 19 ms. Found 8 JPA repository interfaces.
+23:58:16 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+23:58:16 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+23:58:16 [restartedMain] INFO    --- o.a.c.c.StandardService - Starting service [Tomcat]
+23:58:16 [restartedMain] INFO    --- o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.58]
+23:58:16 [restartedMain] INFO    --- o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+23:58:16 [restartedMain] INFO    --- o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 230 ms
+23:58:16 [restartedMain] WARN    --- o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+23:58:16 [restartedMain] INFO    --- o.f.c.i.l.VersionPrinter - Flyway Community Edition 7.7.3 by Redgate
+23:58:16 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-10 - Starting...
+23:58:16 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-10 - Start completed.
+23:58:16 [restartedMain] INFO    --- o.f.c.i.d.b.DatabaseType - Database: jdbc:postgresql://localhost:5432/ecom (PostgreSQL 14.2)
+23:58:16 [restartedMain] WARN    --- o.f.c.i.d.b.Database - Flyway upgrade recommended: org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f 14.2 is newer than this version of Flyway and support has not been tested. The latest supported version of org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f is 13.
+23:58:16 [restartedMain] INFO    --- o.f.c.i.c.DbValidate - Successfully validated 1 migration (execution time 00:00.004s)
+23:58:16 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Current version of schema "public": 1
+23:58:16 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Schema "public" is up to date. No migration necessary.
+23:58:16 [restartedMain] INFO    --- o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+23:58:16 [restartedMain] INFO    --- o.h.d.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+23:58:16 [restartedMain] INFO    --- o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+23:58:16 [restartedMain] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+23:58:16 [restartedMain] DEBUG   --- c.j.e.s.f.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+23:58:16 [restartedMain] INFO    --- s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+23:58:16 [restartedMain] INFO    --- o.s.s.w.DefaultSecurityFilterChain - Will not secure Ant [pattern='/api/v1/**']
+23:58:17 [restartedMain] INFO    --- o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+23:58:17 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+23:58:17 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+23:58:17 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+23:58:17 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+23:58:17 [restartedMain] INFO    --- s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+23:58:17 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_1
+23:58:17 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: removeProductUsingDELETE_1
+23:58:17 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Started EcomBackendApplication in 0.9 seconds (JVM running for 503.626)
+23:58:17 [restartedMain] INFO    --- o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+23:58:31 [Thread-39] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+23:58:31 [Thread-39] INFO    --- c.z.h.HikariDataSource - HikariPool-10 - Shutdown initiated...
+23:58:31 [Thread-39] INFO    --- c.z.h.HikariDataSource - HikariPool-10 - Shutdown completed.
+23:58:31 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Starting EcomBackendApplication using Java 17.0.2 on MSI with PID 21248 (E:\Back_End\BaiHoc\Last Project\ecom-backend\target\classes started by ADMIN in E:\Back_End\BaiHoc\Last Project\ecom-backend)
+23:58:31 [restartedMain] DEBUG   --- c.j.e.EcomBackendApplication - Running with Spring Boot v2.5.10, Spring v5.3.16
+23:58:31 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - No active profile set, falling back to 1 default profile: "default"
+23:58:31 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+23:58:32 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 19 ms. Found 8 JPA repository interfaces.
+23:58:32 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+23:58:32 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+23:58:32 [restartedMain] INFO    --- o.a.c.c.StandardService - Starting service [Tomcat]
+23:58:32 [restartedMain] INFO    --- o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.58]
+23:58:32 [restartedMain] INFO    --- o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+23:58:32 [restartedMain] INFO    --- o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 236 ms
+23:58:32 [restartedMain] WARN    --- o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+23:58:32 [restartedMain] INFO    --- o.f.c.i.l.VersionPrinter - Flyway Community Edition 7.7.3 by Redgate
+23:58:32 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-11 - Starting...
+23:58:32 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-11 - Start completed.
+23:58:32 [restartedMain] INFO    --- o.f.c.i.d.b.DatabaseType - Database: jdbc:postgresql://localhost:5432/ecom (PostgreSQL 14.2)
+23:58:32 [restartedMain] WARN    --- o.f.c.i.d.b.Database - Flyway upgrade recommended: org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f 14.2 is newer than this version of Flyway and support has not been tested. The latest supported version of org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f is 13.
+23:58:32 [restartedMain] INFO    --- o.f.c.i.c.DbValidate - Successfully validated 1 migration (execution time 00:00.004s)
+23:58:32 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Current version of schema "public": 1
+23:58:32 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Schema "public" is up to date. No migration necessary.
+23:58:32 [restartedMain] INFO    --- o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+23:58:32 [restartedMain] INFO    --- o.h.d.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+23:58:32 [restartedMain] INFO    --- o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+23:58:32 [restartedMain] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+23:58:32 [restartedMain] DEBUG   --- c.j.e.s.f.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+23:58:32 [restartedMain] INFO    --- s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+23:58:32 [restartedMain] INFO    --- o.s.s.w.DefaultSecurityFilterChain - Will not secure Ant [pattern='/api/v1/**']
+23:58:32 [restartedMain] INFO    --- o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+23:58:32 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+23:58:32 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+23:58:32 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+23:58:32 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+23:58:32 [restartedMain] INFO    --- s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+23:58:32 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_1
+23:58:32 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: removeProductUsingDELETE_1
+23:58:32 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Started EcomBackendApplication in 0.877 seconds (JVM running for 519.183)
+23:58:32 [restartedMain] INFO    --- o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+23:58:42 [Thread-43] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+23:58:42 [Thread-43] INFO    --- c.z.h.HikariDataSource - HikariPool-11 - Shutdown initiated...
+23:58:42 [Thread-43] INFO    --- c.z.h.HikariDataSource - HikariPool-11 - Shutdown completed.
+23:58:42 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Starting EcomBackendApplication using Java 17.0.2 on MSI with PID 21248 (E:\Back_End\BaiHoc\Last Project\ecom-backend\target\classes started by ADMIN in E:\Back_End\BaiHoc\Last Project\ecom-backend)
+23:58:42 [restartedMain] DEBUG   --- c.j.e.EcomBackendApplication - Running with Spring Boot v2.5.10, Spring v5.3.16
+23:58:42 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - No active profile set, falling back to 1 default profile: "default"
+23:58:42 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+23:58:42 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20 ms. Found 8 JPA repository interfaces.
+23:58:42 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+23:58:42 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+23:58:42 [restartedMain] INFO    --- o.a.c.c.StandardService - Starting service [Tomcat]
+23:58:42 [restartedMain] INFO    --- o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.58]
+23:58:42 [restartedMain] INFO    --- o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+23:58:42 [restartedMain] INFO    --- o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 237 ms
+23:58:42 [restartedMain] WARN    --- o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+23:58:42 [restartedMain] INFO    --- o.f.c.i.l.VersionPrinter - Flyway Community Edition 7.7.3 by Redgate
+23:58:42 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-12 - Starting...
+23:58:42 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-12 - Start completed.
+23:58:42 [restartedMain] INFO    --- o.f.c.i.d.b.DatabaseType - Database: jdbc:postgresql://localhost:5432/ecom (PostgreSQL 14.2)
+23:58:42 [restartedMain] WARN    --- o.f.c.i.d.b.Database - Flyway upgrade recommended: org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f 14.2 is newer than this version of Flyway and support has not been tested. The latest supported version of org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f is 13.
+23:58:42 [restartedMain] INFO    --- o.f.c.i.c.DbValidate - Successfully validated 1 migration (execution time 00:00.003s)
+23:58:42 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Current version of schema "public": 1
+23:58:42 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Schema "public" is up to date. No migration necessary.
+23:58:42 [restartedMain] INFO    --- o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+23:58:42 [restartedMain] INFO    --- o.h.d.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+23:58:42 [restartedMain] INFO    --- o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+23:58:42 [restartedMain] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+23:58:42 [restartedMain] DEBUG   --- c.j.e.s.f.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+23:58:42 [restartedMain] INFO    --- s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+23:58:43 [restartedMain] INFO    --- o.s.s.w.DefaultSecurityFilterChain - Will not secure Ant [pattern='/api/v1/**']
+23:58:43 [restartedMain] INFO    --- o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+23:58:43 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+23:58:43 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+23:58:43 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+23:58:43 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+23:58:43 [restartedMain] INFO    --- s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+23:58:43 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_1
+23:58:43 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: removeProductUsingDELETE_1
+23:58:43 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Started EcomBackendApplication in 0.886 seconds (JVM running for 529.657)
+23:58:43 [restartedMain] INFO    --- o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+23:59:30 [Thread-47] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+23:59:30 [Thread-47] INFO    --- c.z.h.HikariDataSource - HikariPool-12 - Shutdown initiated...
+23:59:30 [Thread-47] INFO    --- c.z.h.HikariDataSource - HikariPool-12 - Shutdown completed.
+23:59:30 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Starting EcomBackendApplication using Java 17.0.2 on MSI with PID 21248 (E:\Back_End\BaiHoc\Last Project\ecom-backend\target\classes started by ADMIN in E:\Back_End\BaiHoc\Last Project\ecom-backend)
+23:59:30 [restartedMain] DEBUG   --- c.j.e.EcomBackendApplication - Running with Spring Boot v2.5.10, Spring v5.3.16
+23:59:30 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - No active profile set, falling back to 1 default profile: "default"
+23:59:30 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+23:59:30 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 24 ms. Found 8 JPA repository interfaces.
+23:59:30 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+23:59:30 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+23:59:30 [restartedMain] INFO    --- o.a.c.c.StandardService - Starting service [Tomcat]
+23:59:30 [restartedMain] INFO    --- o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.58]
+23:59:30 [restartedMain] INFO    --- o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+23:59:30 [restartedMain] INFO    --- o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 244 ms
+23:59:30 [restartedMain] WARN    --- o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+23:59:30 [restartedMain] INFO    --- o.f.c.i.l.VersionPrinter - Flyway Community Edition 7.7.3 by Redgate
+23:59:30 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-13 - Starting...
+23:59:30 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-13 - Start completed.
+23:59:30 [restartedMain] INFO    --- o.f.c.i.d.b.DatabaseType - Database: jdbc:postgresql://localhost:5432/ecom (PostgreSQL 14.2)
+23:59:30 [restartedMain] WARN    --- o.f.c.i.d.b.Database - Flyway upgrade recommended: org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f 14.2 is newer than this version of Flyway and support has not been tested. The latest supported version of org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f is 13.
+23:59:30 [restartedMain] INFO    --- o.f.c.i.c.DbValidate - Successfully validated 1 migration (execution time 00:00.003s)
+23:59:30 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Current version of schema "public": 1
+23:59:30 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Schema "public" is up to date. No migration necessary.
+23:59:30 [restartedMain] INFO    --- o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+23:59:30 [restartedMain] INFO    --- o.h.d.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+23:59:30 [restartedMain] INFO    --- o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+23:59:30 [restartedMain] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+23:59:30 [restartedMain] DEBUG   --- c.j.e.s.f.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+23:59:31 [restartedMain] INFO    --- s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+23:59:31 [restartedMain] INFO    --- o.s.s.w.DefaultSecurityFilterChain - Will not secure Ant [pattern='/api/v1/**']
+23:59:31 [restartedMain] INFO    --- o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+23:59:31 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+23:59:31 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+23:59:31 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+23:59:31 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+23:59:31 [restartedMain] INFO    --- s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+23:59:31 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_1
+23:59:31 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: removeProductUsingDELETE_1
+23:59:31 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Started EcomBackendApplication in 0.93 seconds (JVM running for 577.813)
+23:59:31 [restartedMain] INFO    --- o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+00:00:36 [Thread-51] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+00:00:36 [Thread-51] INFO    --- c.z.h.HikariDataSource - HikariPool-13 - Shutdown initiated...
+00:00:36 [Thread-51] INFO    --- c.z.h.HikariDataSource - HikariPool-13 - Shutdown completed.
+00:00:37 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Starting EcomBackendApplication using Java 17.0.2 on MSI with PID 21248 (E:\Back_End\BaiHoc\Last Project\ecom-backend\target\classes started by ADMIN in E:\Back_End\BaiHoc\Last Project\ecom-backend)
+00:00:37 [restartedMain] DEBUG   --- c.j.e.EcomBackendApplication - Running with Spring Boot v2.5.10, Spring v5.3.16
+00:00:37 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - No active profile set, falling back to 1 default profile: "default"
+00:00:37 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+00:00:37 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20 ms. Found 8 JPA repository interfaces.
+00:00:37 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+00:00:37 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+00:00:37 [restartedMain] INFO    --- o.a.c.c.StandardService - Starting service [Tomcat]
+00:00:37 [restartedMain] INFO    --- o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.58]
+00:00:37 [restartedMain] INFO    --- o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+00:00:37 [restartedMain] INFO    --- o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 238 ms
+00:00:37 [restartedMain] WARN    --- o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+00:00:37 [restartedMain] INFO    --- o.f.c.i.l.VersionPrinter - Flyway Community Edition 7.7.3 by Redgate
+00:00:37 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-14 - Starting...
+00:00:37 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-14 - Start completed.
+00:00:37 [restartedMain] INFO    --- o.f.c.i.d.b.DatabaseType - Database: jdbc:postgresql://localhost:5432/ecom (PostgreSQL 14.2)
+00:00:37 [restartedMain] WARN    --- o.f.c.i.d.b.Database - Flyway upgrade recommended: org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f 14.2 is newer than this version of Flyway and support has not been tested. The latest supported version of org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f is 13.
+00:00:37 [restartedMain] INFO    --- o.f.c.i.c.DbValidate - Successfully validated 1 migration (execution time 00:00.003s)
+00:00:37 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Current version of schema "public": 1
+00:00:37 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Schema "public" is up to date. No migration necessary.
+00:00:37 [restartedMain] INFO    --- o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+00:00:37 [restartedMain] INFO    --- o.h.d.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+00:00:37 [restartedMain] INFO    --- o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+00:00:37 [restartedMain] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+00:00:37 [restartedMain] DEBUG   --- c.j.e.s.f.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+00:00:37 [restartedMain] INFO    --- s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+00:00:37 [restartedMain] INFO    --- o.s.s.w.DefaultSecurityFilterChain - Will not secure Ant [pattern='/api/v1/**']
+00:00:37 [restartedMain] INFO    --- o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+00:00:37 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+00:00:37 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+00:00:37 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+00:00:37 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+00:00:37 [restartedMain] INFO    --- s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+00:00:37 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_1
+00:00:37 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: removeProductUsingDELETE_1
+00:00:37 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Started EcomBackendApplication in 0.875 seconds (JVM running for 644.327)
+00:00:37 [restartedMain] INFO    --- o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+00:01:54 [Thread-55] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+00:01:54 [Thread-55] INFO    --- c.z.h.HikariDataSource - HikariPool-14 - Shutdown initiated...
+00:01:54 [Thread-55] INFO    --- c.z.h.HikariDataSource - HikariPool-14 - Shutdown completed.
+00:01:54 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Starting EcomBackendApplication using Java 17.0.2 on MSI with PID 21248 (E:\Back_End\BaiHoc\Last Project\ecom-backend\target\classes started by ADMIN in E:\Back_End\BaiHoc\Last Project\ecom-backend)
+00:01:54 [restartedMain] DEBUG   --- c.j.e.EcomBackendApplication - Running with Spring Boot v2.5.10, Spring v5.3.16
+00:01:54 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - No active profile set, falling back to 1 default profile: "default"
+00:01:54 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+00:01:54 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20 ms. Found 8 JPA repository interfaces.
+00:01:54 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+00:01:54 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+00:01:54 [restartedMain] INFO    --- o.a.c.c.StandardService - Starting service [Tomcat]
+00:01:54 [restartedMain] INFO    --- o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.58]
+00:01:54 [restartedMain] INFO    --- o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+00:01:54 [restartedMain] INFO    --- o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 234 ms
+00:01:54 [restartedMain] WARN    --- o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+00:01:55 [restartedMain] INFO    --- o.f.c.i.l.VersionPrinter - Flyway Community Edition 7.7.3 by Redgate
+00:01:55 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-15 - Starting...
+00:01:55 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-15 - Start completed.
+00:01:55 [restartedMain] INFO    --- o.f.c.i.d.b.DatabaseType - Database: jdbc:postgresql://localhost:5432/ecom (PostgreSQL 14.2)
+00:01:55 [restartedMain] WARN    --- o.f.c.i.d.b.Database - Flyway upgrade recommended: org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f 14.2 is newer than this version of Flyway and support has not been tested. The latest supported version of org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f is 13.
+00:01:55 [restartedMain] INFO    --- o.f.c.i.c.DbValidate - Successfully validated 1 migration (execution time 00:00.003s)
+00:01:55 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Current version of schema "public": 1
+00:01:55 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Schema "public" is up to date. No migration necessary.
+00:01:55 [restartedMain] INFO    --- o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+00:01:55 [restartedMain] INFO    --- o.h.d.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+00:01:55 [restartedMain] INFO    --- o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+00:01:55 [restartedMain] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+00:01:55 [restartedMain] DEBUG   --- c.j.e.s.f.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+00:01:55 [restartedMain] INFO    --- s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+00:01:55 [restartedMain] INFO    --- o.s.s.w.DefaultSecurityFilterChain - Will not secure Ant [pattern='/api/v1/**']
+00:01:55 [restartedMain] INFO    --- o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+00:01:55 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+00:01:55 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+00:01:55 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+00:01:55 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+00:01:55 [restartedMain] INFO    --- s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+00:01:55 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_1
+00:01:55 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: removeProductUsingDELETE_1
+00:01:55 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Started EcomBackendApplication in 0.891 seconds (JVM running for 722.053)
+00:01:55 [restartedMain] INFO    --- o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+00:02:09 [Thread-59] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+00:02:09 [Thread-59] INFO    --- c.z.h.HikariDataSource - HikariPool-15 - Shutdown initiated...
+00:02:09 [Thread-59] INFO    --- c.z.h.HikariDataSource - HikariPool-15 - Shutdown completed.
+00:02:09 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Starting EcomBackendApplication using Java 17.0.2 on MSI with PID 21248 (E:\Back_End\BaiHoc\Last Project\ecom-backend\target\classes started by ADMIN in E:\Back_End\BaiHoc\Last Project\ecom-backend)
+00:02:09 [restartedMain] DEBUG   --- c.j.e.EcomBackendApplication - Running with Spring Boot v2.5.10, Spring v5.3.16
+00:02:09 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - No active profile set, falling back to 1 default profile: "default"
+00:02:09 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+00:02:09 [restartedMain] INFO    --- o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 20 ms. Found 8 JPA repository interfaces.
+00:02:09 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+00:02:09 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+00:02:09 [restartedMain] INFO    --- o.a.c.c.StandardService - Starting service [Tomcat]
+00:02:09 [restartedMain] INFO    --- o.a.c.c.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.58]
+00:02:09 [restartedMain] INFO    --- o.a.c.c.C.[.[.[/] - Initializing Spring embedded WebApplicationContext
+00:02:09 [restartedMain] INFO    --- o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 229 ms
+00:02:09 [restartedMain] WARN    --- o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+00:02:09 [restartedMain] INFO    --- o.f.c.i.l.VersionPrinter - Flyway Community Edition 7.7.3 by Redgate
+00:02:09 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-16 - Starting...
+00:02:09 [restartedMain] INFO    --- c.z.h.HikariDataSource - HikariPool-16 - Start completed.
+00:02:09 [restartedMain] INFO    --- o.f.c.i.d.b.DatabaseType - Database: jdbc:postgresql://localhost:5432/ecom (PostgreSQL 14.2)
+00:02:09 [restartedMain] WARN    --- o.f.c.i.d.b.Database - Flyway upgrade recommended: org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f 14.2 is newer than this version of Flyway and support has not been tested. The latest supported version of org.flywaydb.core.internal.database.postgresql.PostgreSQLDatabaseType@16c5cd0f is 13.
+00:02:09 [restartedMain] INFO    --- o.f.c.i.c.DbValidate - Successfully validated 1 migration (execution time 00:00.003s)
+00:02:09 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Current version of schema "public": 1
+00:02:09 [restartedMain] INFO    --- o.f.c.i.c.DbMigrate - Schema "public" is up to date. No migration necessary.
+00:02:09 [restartedMain] INFO    --- o.h.j.i.u.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+00:02:09 [restartedMain] INFO    --- o.h.d.Dialect - HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+00:02:09 [restartedMain] INFO    --- o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+00:02:09 [restartedMain] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+00:02:09 [restartedMain] DEBUG   --- c.j.e.s.f.JwtAuthenticationFilter - Filter 'jwtAuthenticationFilter' configured for use
+00:02:09 [restartedMain] INFO    --- s.d.s.w.PropertySourcedRequestMappingHandlerMapping - Mapped URL path [/v2/api-docs] onto method [springfox.documentation.swagger2.web.Swagger2Controller#getDocumentation(String, HttpServletRequest)]
+00:02:09 [restartedMain] INFO    --- o.s.s.w.DefaultSecurityFilterChain - Will not secure Ant [pattern='/api/v1/**']
+00:02:09 [restartedMain] INFO    --- o.s.b.d.a.OptionalLiveReloadServer - LiveReload server is running on port 35729
+00:02:09 [restartedMain] INFO    --- o.a.c.h.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+00:02:10 [restartedMain] INFO    --- o.s.b.w.e.t.TomcatWebServer - Tomcat started on port(s): 8080 (http) with context path ''
+00:02:10 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Context refreshed
+00:02:10 [restartedMain] INFO    --- s.d.s.w.p.DocumentationPluginsBootstrapper - Found 1 custom documentation plugin(s)
+00:02:10 [restartedMain] INFO    --- s.d.s.w.s.ApiListingReferenceScanner - Scanning for api listing references
+00:02:10 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: findByIdUsingGET_1
+00:02:10 [restartedMain] INFO    --- s.d.s.w.r.o.CachingOperationNameGenerator - Generating unique operation named: removeProductUsingDELETE_1
+00:02:10 [restartedMain] INFO    --- c.j.e.EcomBackendApplication - Started EcomBackendApplication in 0.884 seconds (JVM running for 736.561)
+00:02:10 [restartedMain] INFO    --- o.s.b.d.a.ConditionEvaluationDeltaLoggingListener - Condition evaluation unchanged
+00:02:33 [RMI TCP Connection(17)-127.0.0.1] INFO    --- o.s.b.a.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin - Application shutdown requested.
+00:02:33 [RMI TCP Connection(17)-127.0.0.1] INFO    --- o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+00:02:33 [RMI TCP Connection(17)-127.0.0.1] INFO    --- c.z.h.HikariDataSource - HikariPool-16 - Shutdown initiated...
+00:02:33 [RMI TCP Connection(17)-127.0.0.1] INFO    --- c.z.h.HikariDataSource - HikariPool-16 - Shutdown completed.

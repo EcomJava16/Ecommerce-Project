@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Button, Drawer } from "antd";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector} from "react-redux";
 import { CloseOutlined } from "@ant-design/icons";
 import productsData from "../../../data/product.json";
 import CartSidebar from "../../cart/CartSidebar";
@@ -18,13 +18,12 @@ import Profile from "./Profile";
 function Menu({ containerType}) {
   const cartState = useSelector((state) => state.cartReducer);
   const wishlistState = useSelector((state) => state.wishlistReducer);
-  const productState = useSelector((state) => state.productReducer);
   const [cartSidebarOpen, setCartSidebarOpen] = useState(false);
   const [menuSidebarOpen, setMenuSidebarOpen] = useState(false);
   const [wishlistSidebarOpen, setWishlistSidebarOpen] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [isLogin, setIsLogin] = useState(false);
-
+  const userSelector = useSelector(state=>state.userReducer)
   return (
     <>
       <div className="menu">
@@ -53,11 +52,11 @@ function Menu({ containerType}) {
               </Link>
             </div>
             <SearchBar
-              fillData={productState.products}
+              fillData={productsData}
               placeholder="What are you looking for ?"
             />
             <div className="menu-functions">
-              {isLogin ?
+              {userSelector.token ?
                 <Profile logged={setIsLogin}/>
                 :
                 <Button onClick={() => setOpenModal(true)}>LOGIN</Button>
@@ -94,7 +93,7 @@ function Menu({ containerType}) {
       </div>
       <div className="menu-mobile-search">
         <Container>
-          <SearchBar fillData={productState.products} placeholder="Searching..." />
+          <SearchBar fillData={productsData} placeholder="Searching..." />
         </Container>
       </div>
       <Drawer

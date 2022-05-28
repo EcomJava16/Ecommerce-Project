@@ -15,10 +15,15 @@ spring:
     password: postgres
     
   flyway:
-    enabled: false
+    enabled: true
     driver-class-name: org.postgresql.Driver
   jpa:
     show-sql: true
     generate-ddl: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: validate
+logging:
+  level:
+    '[cybersoft.java16]': info
+          
+    
