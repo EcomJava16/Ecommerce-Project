@@ -27,7 +27,7 @@ export default function Profile({ logged }) {
         }).then(res => {
             dispatch(addUser(res.data.content))
         }).catch(err => {
-            // logout(err.data.content);
+            console.log(err)
         });
     }
 
