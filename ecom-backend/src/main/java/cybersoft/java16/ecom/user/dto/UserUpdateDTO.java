@@ -4,6 +4,8 @@ import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
 
+import cybersoft.java16.ecom.user.model.UserStatus;
+import cybersoft.java16.ecom.user.validation.annotation.UniqueUsername;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,4 +23,5 @@ public class UserUpdateDTO {
 	private String fullName;
 	private String address;
 	private String phoneNumber;
+	private UserStatus status;
 }

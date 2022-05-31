@@ -29,5 +29,6 @@ public class UserDTO {
 	private String fullName;
 	private String address;
 	private String phoneNumber;
+	private String email;
 	private UserStatus status;
 }

@@ -8,7 +8,7 @@ import {
   Select,
   Collapse,
 } from "antd";
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Slider from "react-slick";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
@@ -47,6 +47,10 @@ export default function checkout() {
   const globalState = useSelector((state) => state.globalReducer);
   const { currency, locales } = globalState.currency;
   const [paymentMethod, setPaymentMethod] = useState("Direct Bank Transfer");
+  const userSelector = useSelector((state)=>state.userReducer)
+  if (!userSelector.token) {
+    router.push("/404")
+  }
   const settings = {
     arrows: false,
     infinite: true,
@@ -109,45 +113,27 @@ export default function checkout() {
                       <Form.Item
                         label="First name"
                         name="firstname"
-                        rules={[
-                          {
-                            required: true,
-                            message: "Please input your first name!",
-                          },
-                        ]}
                       >
-                        <Input />
+                        <Input defaultValue={userSelector.user.firstName} />
                       </Form.Item>
                     </Col>
                     <Col span={24} md={12}>
                       <Form.Item
                         label="Last name"
                         name="lastname"
-                        rules={[
-                          {
-                            required: true,
-                            message: "Please input your last name!",
-                          },
-                        ]}
                       >
-                        <Input />
+                        <Input defaultValue={userSelector.user.lastName} />
                       </Form.Item>
                     </Col>
                     <Col span={24} md={12}>
                       <Form.Item
                         label="Provine"
                         name="provine"
-                        rules={[
-                          {
-                            required: true,
-                            message: "Please input your provine!",
-                          },
-                        ]}
                       >
-                        <Select>
-                          <Option value="male">male</Option>
-                          <Option value="female">female</Option>
-                          <Option value="other">other</Option>
+                        <Select defaultValue={"VietNam"}>
+                          <Option value="VietNam">VietNam</Option>
+                          <Option value="U.S">U.S</Option>
+                          <Option value="UK">UK</Option>
                         </Select>
                       </Form.Item>
                     </Col>
@@ -155,17 +141,11 @@ export default function checkout() {
                       <Form.Item
                         label="City"
                         name="city"
-                        rules={[
-                          {
-                            required: true,
-                            message: "Please input your city!",
-                          },
-                        ]}
                       >
-                        <Select>
-                          <Option value="male">male</Option>
-                          <Option value="female">female</Option>
-                          <Option value="other">other</Option>
+                        <Select defaultValue={"VietNam"}>
+                          <Option value="VietNam">VietNam</Option>
+                          <Option value="UK">UK</Option>
+                          <Option value="U.S">U.S</Option>
                         </Select>
                       </Form.Item>
                     </Col>
@@ -173,36 +153,24 @@ export default function checkout() {
                       <Form.Item
                         label="Address"
                         name="address"
-                        rules={[
-                          {
-                            required: true,
-                            message: "Please input your address!",
-                          },
-                        ]}
                       >
-                        <Input />
+                        <Input defaultValue={userSelector.user.address} />
                       </Form.Item>
                     </Col>
                     <Col span={24} md={12}>
                       <Form.Item label="Address 2" name="address2">
-                        <Input />
+                        <Input defaultValue={userSelector.user.address}/>
                       </Form.Item>
                     </Col>
                     <Col span={24} md={12}>
                       <Form.Item
                         label="Country/States"
                         name="country"
-                        rules={[
-                          {
-                            required: true,
-                            message: "Please input your country !",
-                          },
-                        ]}
                       >
-                        <Select>
-                          <Option value="male">male</Option>
-                          <Option value="female">female</Option>
-                          <Option value="other">other</Option>
+                        <Select defaultValue={"VietNam"}>
+                          <Option value="VietNam">VietNam</Option>
+                          <Option value="UK">UK</Option>
+                          <Option value="U.S">U.S</Option>
                         </Select>
                       </Form.Item>
                     </Col>
@@ -213,21 +181,15 @@ export default function checkout() {
                     </Col>
                     <Col span={24} md={12}>
                       <Form.Item label="Email" name="email">
-                        <Input />
+                        <Input defaultValue={userSelector.user.email} />
                       </Form.Item>
                     </Col>
                     <Col span={24} md={12}>
                       <Form.Item
                         label="Phone number"
                         name="phone"
-                        rules={[
-                          {
-                            required: true,
-                            message: "Please input your phone number !",
-                          },
-                        ]}
                       >
-                        <Input />
+                        <Input defaultValue={userSelector.user.phoneNumber} />
                       </Form.Item>
                     </Col>
                     <Col span={24}>
@@ -352,7 +314,7 @@ export default function checkout() {
             <h5>Discount When Purchased Together</h5>
             <div className="checkout-related-products">
               <Slider {...settings}>
-                {products.content.slice(0, 8).map((item, index) => (
+                {productData.slice(0, 8).map((item, index) => (
                   <div className="slider-item" key={index}>
                     <Product data={item} />
                   </div>

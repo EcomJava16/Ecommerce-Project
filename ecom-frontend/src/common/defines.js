@@ -3,21 +3,12 @@ export const SHOP = {
     {
       name: "clothing",
       sub: [
-        { name: "accessories", iconClass: "icon-accessories" },
         { name: "pants", iconClass: "icon-pant" },
         { name: "shorts", iconClass: "icon-short" },
         { name: "jacket", iconClass: "icon-jacket" },
         { name: "dress", iconClass: "icon-dress" },
         { name: "suits", iconClass: "icon-suit" },
         { name: "shirt", iconClass: "icon-shirt" },
-      ],
-    },
-    {
-      name: "Honda",
-      sub: [
-        { name: "TKP", iconClass: "icon-accessories" },
-        { name: "Test", iconClass: "icon-accessories" },
-        { name: "0", iconClass: "icon-accessories" },
       ],
     },
     {

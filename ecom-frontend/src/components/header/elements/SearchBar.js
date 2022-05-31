@@ -19,7 +19,6 @@ function SearchBarMobile({ fillData, placeholder}) {
   const [search, setSearch] = useState("");
   const [showDropdownOptions, setShowDropdownOptions] = useState(false);
   const globalState = useSelector((state) => state.globalReducer);
-  const categoryState = useSelector((state) => state.categoryReducer);
   const deboundValue = useDebounce(search, 300);
   useEffect(() => {
     dispatch(setGlobalSearch(deboundValue));
@@ -65,7 +64,7 @@ function SearchBarMobile({ fillData, placeholder}) {
           onChange={onSelectCateory}
           value={globalState.category}
         >
-          {categoryState.category.map((item, index) => (
+          {SHOP.category.map((item, index) => (
             <Option key={index} value={item.name}>
               {item.name}
             </Option>

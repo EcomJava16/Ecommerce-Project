@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { addToken } from '../../redux/actions/userAction'
 
 export default function Modal({ closeModal, logged }) {
+    const dispatch = useDispatch();
     const [loginInfo, setLoginInfo] = useState({
         username: "",
         password: ""
@@ -26,13 +29,14 @@ export default function Modal({ closeModal, logged }) {
             url: 'http://localhost:8080/api/v1/login',
             data: loginInfo
         }).then(res => {
-            localStorage.setItem("token", res.data.content);
+            dispatch(addToken(res.data.content))
             logged(true);
             closeModal(false)
         }).catch(err => {
+            console.log(err)
             setErrMessage(err.response.data.error);
         });
-
+        
     }
     useEffect(() => {
         function handlerClose(event) {
@@ -40,22 +44,18 @@ export default function Modal({ closeModal, logged }) {
                 closeModal(false)
             }
         }
-    
+
         document.addEventListener("keyup", handlerClose);
         return () => {
             document.removeEventListener("keyup", handlerClose);
         }
     }, [])
-
     return (
         <div >
             <div className="modalBackground" >
                 <div className="modalContainer">
                     <div className="title">
                         <h1>Login</h1>
-                    </div>
-                    <div className='title' style={{color:"red",marginBottom:"10px"}}>
-                    <h2><a href="http://localhost:8080/oauth2/authorize/google?redirec_uri=http://localhost:3000/oauth2/redirect">Login with Google</a></h2>
                     </div>
                     <form className="body">
                         <div>
@@ -67,10 +67,10 @@ export default function Modal({ closeModal, logged }) {
                             <input type='password' name='password' id='password' onChange={setParams}></input>
                         </div>
                         {errorMessage}
-                    <div className="footer">
-                        <button type='submit' className="btnLogin" onClick={login}>Login</button>
-                        <button className="btnCancel" onClick={() => closeModal(false)}>Cancel</button>
-                    </div>
+                        <div className="footer">
+                            <button type='submit' className="btnLogin" onClick={login}>Login</button>
+                            <button className="btnCancel" onClick={() => closeModal(false)}>Cancel</button>
+                        </div>
                     </form>
                 </div>
             </div>

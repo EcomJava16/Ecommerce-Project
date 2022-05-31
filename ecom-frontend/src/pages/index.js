@@ -1,29 +1,20 @@
 import { useSelector } from "react-redux";
-import { useRouter } from "next/router";
-import { useDispatch } from "react-redux";
-import productData from "../data/product.json";
+import productsData from "../data/product.json";
 import Banners from "../components/shop/Banners";
 import LayoutOne from "../components/layouts/LayoutOne";
 import ShopLayout from "../components/shop/ShopLayout";
 import useProductData from "../common/useProductData";
-import { useEffect, useState } from "react";
-import fetchProducts from "../redux/actions/fetchProducts";
-import fetchCategory from "../redux/actions/fetchCategory";
+import { SHOP } from "../common/defines";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
-export default function Home({products,categories}) {
+export default function Home({dataFetching,categoryFetching}) {
   const router = useRouter();
-  const dispatch = useDispatch();
-  const productState = useSelector((state) => state.productReducer);
-  useEffect(() => {
-    dispatch(fetchProducts());
-  }, []);
-  const categoryState = useSelector((state) => state.categoryReducer);
-  useEffect(() => {
-    dispatch(fetchCategory());
-  }, []);
   const globalState = useSelector((state) => state.globalReducer);
+  useEffect(()=>{dataFetching.map(item=>productsData.push(item))},[dataFetching])
+  useEffect(()=>{categoryFetching.map(item=>SHOP.category.push(item))},[categoryFetching])
   const data = useProductData(
-   productState.products,
+    productsData,
     globalState.category,
     router.query.q
   );
@@ -41,3 +32,12 @@ export default function Home({products,categories}) {
     </LayoutOne>
   );
 }
+  export async function getStaticProps(){
+  const dataFetching = await fetch("http://localhost:8080/api/v1/product").then(res=> res.json()).then(res=>res.content);
+  const categoryFetching = await fetch("http://localhost:8080/api/v1/category").then(res=>res.json()).then(res=>res.content);
+    return{
+      props:{
+        dataFetching,
+        categoryFetching
+      }
+    }}

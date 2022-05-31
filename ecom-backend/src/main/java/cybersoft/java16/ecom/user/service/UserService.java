@@ -3,6 +3,7 @@ package cybersoft.java16.ecom.user.service;
 import java.util.List;
 
 import cybersoft.java16.ecom.user.dto.UserDTO;
+import cybersoft.java16.ecom.user.dto.UserReturnDTO;
 import cybersoft.java16.ecom.user.dto.UserUpdateDTO;
 
 public interface UserService {
@@ -15,6 +16,6 @@ public interface UserService {
 
 	UserDTO deleteUser(String userId);
 
-	UserDTO findUserByUsername(String username);
+	UserReturnDTO findUserByUsername(String username);
 
 }

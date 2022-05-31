@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import cybersoft.java16.ecom.common.helper.ResponseHelper;
 import cybersoft.java16.ecom.user.dto.UserDTO;
+import cybersoft.java16.ecom.user.dto.UserReturnDTO;
 import cybersoft.java16.ecom.user.dto.UserUpdateDTO;
 import cybersoft.java16.ecom.user.service.UserService;
 
@@ -32,7 +33,7 @@ public class UserController {
 	
 	@GetMapping("/{username}")
 	public Object getCurrentUser(@Valid @PathVariable(name = "username") String username ) {
-		UserDTO user = service.findUserByUsername(username);
+		UserReturnDTO user = service.findUserByUsername(username);
 		return ResponseHelper.getResponse(user, HttpStatus.OK);
 	}
 
