@@ -52,8 +52,8 @@ public class UserRoleServiceImpl implements UserRoleService {
 		try {
 			UserRole updateRole = roleRepository.getById(UUID.fromString(roleId));
 			if (!updateRole.getName().equals(dto.getName())) {
-				UserRole existedRole = roleRepository.findByName(dto.getName());
-			if (existedRole != null) {
+				Optional<UserRole> existedRole = roleRepository.findByName(dto.getName());
+			if (existedRole.isPresent()) {
 				return null;
 			}
 			updateRole.setDescription(dto.getDescription());

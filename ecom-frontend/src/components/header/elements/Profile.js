@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import userReducer from '../../../redux/reducers/userReducer';
 import { addUser, removeUser } from '../../../redux/actions/userAction';
 
-
 export default function Profile({ logged }) {
     const selector = useSelector((state)=>state.userReducer);
     const dispatch = useDispatch();

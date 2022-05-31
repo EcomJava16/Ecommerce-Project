@@ -1,6 +1,8 @@
 package cybersoft.java16.ecom.role.validation.validator;
 
 
+import java.util.Optional;
+
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
@@ -24,8 +26,8 @@ public class UniqueRoleNameValidator implements ConstraintValidator<UniqueRoleNa
 
 	@Override
 	public boolean isValid(String  username , ConstraintValidatorContext context) {
-			UserRole role = roleRepository.findByName(username);
-			if (role == null) {
+			Optional<UserRole> role = roleRepository.findByName(username);
+			if (role.isEmpty()) {
 				return true;
 			}
 

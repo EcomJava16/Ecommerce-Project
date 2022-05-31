@@ -18,4 +18,6 @@ public interface UserService {
 
 	UserReturnDTO findUserByUsername(String username);
 
+	UserDTO resetPassword(String username, String newPassword);
+
 }
