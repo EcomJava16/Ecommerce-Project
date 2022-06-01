@@ -41,13 +41,14 @@ export default function Modal({ closeModal, logged, openRegister, openForgotPass
             data: loginInfo
         }).then(res => {
             dispatch(addToken(res.data.content))
+            dispatch(addUser('adminn'))
             logged(true);
             const array = res.data.content.roles;
             console.log(array);
             closeModal(false)
         }).catch(err => {
             console.log(err)
-            setErrMessage(err.response.data.error);
+            setErrMessage(err.response.data);
         });
 
     }
