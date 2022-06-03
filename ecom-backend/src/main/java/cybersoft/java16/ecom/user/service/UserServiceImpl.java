@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.databind.deser.impl.ExternalTypeHandler.Builder;
 
+import cybersoft.java16.ecom.security.dto.UserLoginDTO;
 import cybersoft.java16.ecom.user.dto.UserDTO;
 import cybersoft.java16.ecom.user.dto.UserReturnDTO;
 import cybersoft.java16.ecom.user.dto.UserUpdateDTO;
@@ -87,17 +88,17 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public UserDTO resetPassword(String username, String newPassword) {
-		Optional<EcomUser> user = repository.findByUsername(username);
+	public UserReturnDTO resetPassword(UserLoginDTO newPassword) {
+		Optional<EcomUser> user = repository.findByUsername(newPassword.getUsername());
 		if (user.isEmpty())
 			return null;
-		if (encoder.matches(newPassword, user.get().getPassword())) {
-			return UserDTO.builder().username("").build();
+		if (encoder.matches(newPassword.getPassword(), user.get().getPassword())) {
+			return UserReturnDTO.builder().username("").build();
 		}
-		user.get().setPassword(encoder.encode(newPassword));
+		user.get().setPassword(encoder.encode(newPassword.getPassword()));
 		repository.save(user.get());
 		user.get().setPassword(null);
-		UserDTO dto = UserMapper.INSTANCE.toUserDto(user.get());
+		UserReturnDTO dto = UserMapper.INSTANCE.toUserReturnDTO(user.get());
 		return dto;
 	}
 }

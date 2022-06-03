@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export default function Modal({ closeModal, logged }) {
+export default function Modal({ closeModal }) {
     const [passwordInfo, setPasswordInfo] = useState({
         username: "",
-        phone: "",
         password: "",
         repassword: ""
     });
@@ -29,20 +28,17 @@ export default function Modal({ closeModal, logged }) {
         }
         axios({
             method: 'put',
-            url: 'http://localhost:8080/api/v1/user/resetPassword/' + passwordInfo.username,
+            url: 'http://localhost:8080/api/v1/user/resetPassword',
             data: passwordInfo
         }).then(res => {
             console.log(res);
-            localStorage.setItem("token", res.data.content.jwt);
-            localStorage.setItem("username", res.data.content.username);   
-            logged(true);
             closeModal(false);            
             alert("Your password have been reset!");
         }).catch(err => {            
             console.log(err);
         });
-
     }
+
     useEffect(() => {
         function handlerClose(event) {
             if (event.which === 27) {
@@ -69,10 +65,6 @@ export default function Modal({ closeModal, logged }) {
                             <input type='text' name='username' id='username' onChange={setParams}></input><br />
                         </div>
                         <div>
-                            <label>Phone</label>
-                            <input type='text' name='phone' id='phone' onChange={setParams}></input><br />
-                        </div>
-                        <div>
                             <label>New Password</label>
                             <input type='password' name='password' id='password' onChange={setParams}></input>
                         </div>
@@ -82,7 +74,7 @@ export default function Modal({ closeModal, logged }) {
                         </div>
                         {errorMessage}
                         <div className="footer">
-                            <button type='submit' className="btnLogin" onClick={resetPassword}>Login</button>
+                            <button type='submit' className="btnLogin" onClick={resetPassword}>OK</button>
                             <button className="btnCancel" onClick={() => closeModal(false)}>Cancel</button>
                         </div>
                     </form>
