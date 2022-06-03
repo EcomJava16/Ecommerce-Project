@@ -36,6 +36,7 @@ export default function Modal({ closeModal }) {
             alert("Your password have been reset!");
         }).catch(err => {            
             console.log(err);
+            setErrMessage(err.response.data.error);
         });
     }
 
