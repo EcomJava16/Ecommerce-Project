@@ -57,4 +57,13 @@ public class UserGroup extends BaseEntity {
 		role.getGroups().remove(this);
 	}
 
+	public void addUser(EcomUser user) {
+		users.add(user);
+		user.getGroups().add(this);
+	}
+
+	public void removeUser(EcomUser user) {
+		users.remove(user);
+		user.getGroups().remove(this);
+	}
 }

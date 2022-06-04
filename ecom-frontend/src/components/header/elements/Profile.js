@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import userReducer from '../../../redux/reducers/userReducer';
 import { addUser, removeUser } from '../../../redux/actions/userAction';
 
-
 export default function Profile({ logged }) {
     const selector = useSelector((state)=>state.userReducer);
     const dispatch = useDispatch();
@@ -19,15 +18,17 @@ export default function Profile({ logged }) {
     const loadData = () => {
         axios({
             method: 'get',
-            url: 'http://localhost:8080/api/v1/user/' + localStorage.getItem("username"),
+            url: 'http://localhost:8080/api/v1/user/' + selector.user,
             headers: {
                 'Authorization': 'Bearer ' + selector.token,
                 'Content-Type': 'application/json'
             }
         }).then(res => {
             dispatch(addUser(res.data.content))
+            console.log(selector)
         }).catch(err => {
             console.log(err)
+            console.log(selector)
         });
     }
 

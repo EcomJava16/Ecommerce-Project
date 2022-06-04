@@ -1,6 +1,7 @@
 package cybersoft.java16.ecom.user.service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -10,6 +11,8 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.databind.deser.impl.ExternalTypeHandler.Builder;
 
 import cybersoft.java16.ecom.user.dto.UserDTO;
 import cybersoft.java16.ecom.user.dto.UserReturnDTO;
@@ -27,7 +30,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<UserDTO> findAllUser() {
-		return  repository.findByDeleteFalse().stream().map(t -> UserMapper.INSTANCE.toUserDto(t)).collect(Collectors.toList());
+		return repository.findByDeleteFalse().stream().map(t -> UserMapper.INSTANCE.toUserDto(t))
+				.collect(Collectors.toList());
 	}
 
 	@Override
@@ -82,4 +86,18 @@ public class UserServiceImpl implements UserService {
 		return repository.findByUsername(username).map(t -> UserMapper.INSTANCE.toUserReturnDTO(t)).get();
 	}
 
+	@Override
+	public UserDTO resetPassword(String username, String newPassword) {
+		Optional<EcomUser> user = repository.findByUsername(username);
+		if (user.isEmpty())
+			return null;
+		if (encoder.matches(newPassword, user.get().getPassword())) {
+			return UserDTO.builder().username("").build();
+		}
+		user.get().setPassword(encoder.encode(newPassword));
+		repository.save(user.get());
+		user.get().setPassword(null);
+		UserDTO dto = UserMapper.INSTANCE.toUserDto(user.get());
+		return dto;
+	}
 }

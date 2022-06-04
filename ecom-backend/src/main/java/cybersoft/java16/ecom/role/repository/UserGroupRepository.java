@@ -1,5 +1,6 @@
 package cybersoft.java16.ecom.role.repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -9,5 +10,5 @@ import cybersoft.java16.ecom.role.model.UserGroup;
 
 @Repository
 public interface UserGroupRepository extends JpaRepository<UserGroup, UUID>{
-	UserGroup findByName(String name);
+	Optional<UserGroup> findByName(String name);
 }

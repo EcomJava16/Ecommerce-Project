@@ -1,5 +1,6 @@
 package cybersoft.java16.ecom.role.repository;
 
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -10,6 +11,6 @@ import cybersoft.java16.ecom.role.model.UserRole;
 @Repository
 public interface UserRoleRepository extends JpaRepository<UserRole, UUID>{
 
-	UserRole findByName(String username);
+	Optional<UserRole> findByName(String username);
 
 }

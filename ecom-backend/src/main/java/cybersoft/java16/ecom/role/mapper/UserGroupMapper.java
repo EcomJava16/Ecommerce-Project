@@ -5,6 +5,7 @@ import org.mapstruct.factory.Mappers;
 
 import cybersoft.java16.ecom.role.dto.UserGroupDTO;
 import cybersoft.java16.ecom.role.dto.UserGroupWithRoleDTO;
+import cybersoft.java16.ecom.role.dto.UserGroupWithUserDTO;
 import cybersoft.java16.ecom.role.model.UserGroup;
 
 @Mapper
@@ -14,4 +15,5 @@ public interface UserGroupMapper {
 	UserGroupDTO toDTO(UserGroup group);
 	UserGroup toGroup(UserGroupDTO dto);
 	UserGroupWithRoleDTO toGroupWithRoleDTO(UserGroup group);
+	UserGroupWithUserDTO toGroupWithUserDTO(UserGroup group);
 }

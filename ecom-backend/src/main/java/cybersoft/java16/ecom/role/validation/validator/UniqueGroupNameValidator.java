@@ -1,5 +1,7 @@
 package cybersoft.java16.ecom.role.validation.validator;
 
+import java.util.Optional;
+
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
@@ -22,8 +24,8 @@ public class UniqueGroupNameValidator implements ConstraintValidator<UniqueGroup
 
 	@Override
 	public boolean isValid(String name, ConstraintValidatorContext context) {
-		UserGroup group = repository.findByName(name);
-		if (group == null) {
+		Optional<UserGroup> group = repository.findByName(name);
+		if (group.isEmpty()) {
 			return true;
 		}
 		context.buildConstraintViolationWithTemplate(message).addConstraintViolation()
