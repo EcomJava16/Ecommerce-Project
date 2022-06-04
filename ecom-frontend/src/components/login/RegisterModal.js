@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-export default function Modal({ closeModal, logged }) {
+export default function Modal({ closeModal, openLogin }) {
     const [registerInfo, setRegisterInfo] = useState({
         username: "",
         password: "",
@@ -40,6 +40,7 @@ export default function Modal({ closeModal, logged }) {
             console.log(res);
             closeModal(false);
             alert("You have created a new account!");
+            openLogin(true);
         }).catch(err => {            
             console.log(err);
             let arrError = err.response.data.error;
@@ -88,8 +89,8 @@ export default function Modal({ closeModal, logged }) {
                         <div className="body-item">                
                             <div>
                             <div>
-                                <label>Display Name</label>
-                                <input type='text' name='fullName' id='fullname' placeholder="This is your display name" onChange={setParams}></input>
+                                <label>Full Name</label>
+                                <input type='text' name='fullName' id='fullname' placeholder="Your full name" onChange={setParams}></input>
                             </div>
                                 <label>First Name</label>
                                 <input type='text' name='firstName' id='firstName' placeholder="Your first name" onChange={setParams}></input>

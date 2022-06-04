@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
-import { addToken } from '../../redux/actions/userAction'
+import { addToken, addUser } from '../../redux/actions/userAction'
 
 export default function Modal({ closeModal, logged, openRegister, openForgotPassword }) {
     const dispatch = useDispatch();
@@ -40,15 +40,13 @@ export default function Modal({ closeModal, logged, openRegister, openForgotPass
             url: 'http://localhost:8080/api/v1/login',
             data: loginInfo
         }).then(res => {
+            localStorage.setItem("username", loginInfo.username)
             dispatch(addToken(res.data.content))
-            dispatch(addUser('adminn'))
             logged(true);
-            const array = res.data.content.roles;
-            console.log(array);
             closeModal(false)
         }).catch(err => {
             console.log(err)
-            setErrMessage(err.response.data);
+            setErrMessage(err.response.data.error);
         });
 
     }
@@ -58,12 +56,13 @@ export default function Modal({ closeModal, logged, openRegister, openForgotPass
                 closeModal(false)
             }
         }
-
+        
         document.addEventListener("keyup", handlerClose);
         return () => {
             document.removeEventListener("keyup", handlerClose);
         }
     }, [])
+
     return (
         <div >
             <div className="loginModalBackground" >

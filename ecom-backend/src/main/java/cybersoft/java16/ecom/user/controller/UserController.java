@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import cybersoft.java16.ecom.common.helper.ResponseHelper;
+import cybersoft.java16.ecom.security.dto.UserLoginDTO;
 import cybersoft.java16.ecom.user.dto.UserDTO;
 import cybersoft.java16.ecom.user.dto.UserReturnDTO;
 import cybersoft.java16.ecom.user.dto.UserUpdateDTO;
@@ -74,14 +75,14 @@ public class UserController {
 		return ResponseHelper.getResponse(deleteUser, HttpStatus.ACCEPTED);
 	}
 	
-	@PutMapping("/resetPassword/{username}")
-	public Object resetPassword(@PathVariable(name = "username") String username, @RequestBody String newPassword, BindingResult result) {
+	@PutMapping("/resetPassword")
+	public Object resetPassword(@Valid @RequestBody UserLoginDTO newPassword, BindingResult result) {
 		if(result.hasErrors()) {
 			return ResponseHelper.getErrorResponse(result, HttpStatus.BAD_REQUEST);	
 		}
-		UserDTO updateUser = service.resetPassword(username, newPassword);
+		UserReturnDTO updateUser = service.resetPassword(newPassword);
 		if(updateUser == null) {
-			return ResponseHelper.getErrorResponse("Id is not valid", HttpStatus.BAD_REQUEST);
+			return ResponseHelper.getErrorResponse("{login.username.inexisted}", HttpStatus.BAD_REQUEST);
 		}
 		else if(updateUser.getUsername().equals("")) {
 			return ResponseHelper.getErrorResponse("The new password cannot be the same as the old one", HttpStatus.BAD_REQUEST);
