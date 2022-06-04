@@ -34,7 +34,7 @@ export default function Modal({ closeModal, openLogin }) {
         }
         axios({
             method: 'post',
-            url: 'http://localhost:8080/api/v1/user/register',
+            url: 'https://backendjava16.herokuapp.com/api/v1/user/register',
             data: registerInfo
         }).then(res => {
             console.log(res);

@@ -33,8 +33,8 @@ export default function Home({dataFetching,categoryFetching}) {
   );
 }
   export async function getStaticProps(){
-  const dataFetching = await fetch("http://localhost:8080/api/v1/product").then(res=> res.json()).then(res=>res.content);
-  const categoryFetching = await fetch("http://localhost:8080/api/v1/category").then(res=>res.json()).then(res=>res.content);
+  const dataFetching = await fetch("https://backendjava16.herokuapp.com/api/v1/product").then(res=> res.json()).then(res=>res.content);
+  const categoryFetching = await fetch("https://backendjava16.herokuapp.com/api/v1/category").then(res=>res.json()).then(res=>res.content);
     return{
       props:{
         dataFetching,

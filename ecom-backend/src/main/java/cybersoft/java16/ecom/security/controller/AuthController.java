@@ -22,7 +22,7 @@ import cybersoft.java16.ecom.common.helper.ResponseHelper;
 import cybersoft.java16.ecom.security.dto.UserLoginDTO;
 import cybersoft.java16.ecom.security.service.UserLoginService;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000","https://frontendjava16.herokuapp.com"})
 @RequestMapping("/api/v1/login")
 @RestController
 public class AuthController {

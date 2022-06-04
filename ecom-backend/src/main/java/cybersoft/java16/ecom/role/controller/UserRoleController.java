@@ -25,7 +25,7 @@ import cybersoft.java16.ecom.role.dto.UserRoleUpdateDTO;
 import cybersoft.java16.ecom.role.dto.UserRoleWithProgramsDTO;
 import cybersoft.java16.ecom.role.service.UserRoleService;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000","https://frontendjava16.herokuapp.com"})
 @RestController
 @RequestMapping("/api/v1/roles")
 public class UserRoleController {

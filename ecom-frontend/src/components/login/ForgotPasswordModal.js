@@ -28,7 +28,7 @@ export default function Modal({ closeModal }) {
         }
         axios({
             method: 'put',
-            url: 'http://localhost:8080/api/v1/user/resetPassword',
+            url: 'https://backendjava16.herokuapp.com/api/v1/user/resetPassword',
             data: passwordInfo
         }).then(res => {
             console.log(res);

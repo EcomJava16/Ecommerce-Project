@@ -19,7 +19,7 @@ import cybersoft.java16.ecom.product.dto.SubCategoryDTO;
 import cybersoft.java16.ecom.product.dto.SubCategoryWithProductsDTO;
 import cybersoft.java16.ecom.product.service.SubCategoryService;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000","https://frontendjava16.herokuapp.com"})
 @RestController
 @RequestMapping("/api/v1/subCategory")
 public class SubCategoryController {

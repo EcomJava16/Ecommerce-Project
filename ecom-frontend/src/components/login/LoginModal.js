@@ -37,7 +37,7 @@ export default function Modal({ closeModal, logged, openRegister, openForgotPass
         }
         axios({
             method: 'post',
-            url: 'http://localhost:8080/api/v1/login',
+            url: 'https://backendjava16.herokuapp.com/api/v1/login',
             data: loginInfo
         }).then(res => {
             localStorage.setItem("username", loginInfo.username)

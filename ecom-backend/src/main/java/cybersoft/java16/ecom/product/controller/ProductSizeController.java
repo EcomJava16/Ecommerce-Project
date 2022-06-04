@@ -21,7 +21,7 @@ import cybersoft.java16.ecom.common.helper.ResponseHelper;
 import cybersoft.java16.ecom.product.dto.ProductSizeDTO;
 import cybersoft.java16.ecom.product.service.ProductSizeService;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000","https://frontendjava16.herokuapp.com"})
 @RestController
 @RequestMapping("/api/v1/product-size")
 public class ProductSizeController {

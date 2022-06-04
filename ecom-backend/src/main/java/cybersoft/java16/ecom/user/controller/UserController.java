@@ -25,7 +25,7 @@ import cybersoft.java16.ecom.user.dto.UserReturnDTO;
 import cybersoft.java16.ecom.user.dto.UserUpdateDTO;
 import cybersoft.java16.ecom.user.service.UserService;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000","https://frontendjava16.herokuapp.com"})
 @RequestMapping("/api/v1/user")
 @RestController
 public class UserController {

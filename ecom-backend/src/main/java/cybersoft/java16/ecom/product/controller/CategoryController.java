@@ -21,7 +21,7 @@ import cybersoft.java16.ecom.product.dto.CategoryDTO;
 import cybersoft.java16.ecom.product.dto.CategoryWithSubCategoriesDTO;
 import cybersoft.java16.ecom.product.service.CategoryService;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000","https://frontendjava16.herokuapp.com"})
 @RestController
 @RequestMapping("/api/v1/category")
 public class CategoryController {

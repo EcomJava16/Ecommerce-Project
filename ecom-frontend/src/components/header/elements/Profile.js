@@ -19,7 +19,7 @@ export default function Profile({ logged }) {
     const loadData = () => {
         axios({
             method: 'get',
-            url: 'http://localhost:8080/api/v1/user/' + localStorage.getItem("username"),
+            url: 'https://backendjava16.herokuapp.com/api/v1/user/' + localStorage.getItem("username"),
             headers: {
                 'Authorization': 'Bearer ' + selector.token,
                 'Content-Type': 'application/json'
